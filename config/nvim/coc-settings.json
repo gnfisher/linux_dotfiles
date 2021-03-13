@@ -1,0 +1,31 @@
+{
+  "languageserver": {
+    "elmLS": {
+      "command": "elm-language-server",
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"],
+      "initializationOptions": {
+        "elmAnalyseTrigger": "change"
+      }
+    }
+  },
+  "codeLens.enable": true,
+  "coc.preferences.hoverTarget": "echo",
+  "diagnostic.messageTarget": "echo",
+  "signature.target": "echo",
+  "suggest.floatEnable": false,
+  "suggest.maxCompleteItemCount": 20,
+  "suggest.localityBonus": true,
+  "coc.preferences.formatOnType": true,
+  "metals.statusBarEnabled": true,
+  "workspace.ignoredFiletypes": ["gitcommit", "ruby"],
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextPrefix": " # ",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "tsserver.formatOnType": true
+}

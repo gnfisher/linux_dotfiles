@@ -1,0 +1,65 @@
+[init]
+  defaultBranch = main
+[alias]
+  aa = add --all
+  bselect = !git branch | grep -v '^*' | fzf-tmux --reverse | xargs git checkout
+  ca = !git commit --amend --verbose --date \"$(date)\"
+  car = commit --amend --no-edit
+  co = checkout
+  copysha = !git rev-parse HEAD | xclip
+  df = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd $GIT_PREFIX; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
+  dfw = !git df -w
+  dc = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd $GIT_PREFIX; git diff --color --cached $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
+  dcw = !git dc -w
+  fall = fetch --all
+  glog = log -E -i --grep
+  mup = !git checkout master && git fetch origin && echo && git sl master..origin/master && echo && git pull --quiet && git checkout -
+  pl = pull
+  ps = push
+  rbc = rebase --continue
+  riu = !git rebase -i $(git rev-parse --abbrev-ref --symbolic-full-name @{u})
+  rid = !git rebase -i $(git merge-base develop HEAD)
+  rim = !git rebase -i $(git merge-base master HEAD)
+  rmup = !git mup && git rebase master
+  sl = log --oneline --decorate -20
+  sla = log --oneline --decorate --graph --all -20
+  slp = log --oneline --decorate
+  slap = log --oneline --decorate --graph --all
+  todo = !git log --format=%B -n 1 | grep -A999 '^This change$'
+  uncommit = reset --soft HEAD^
+  unstage = reset
+  upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
+  ureset = !git reset --hard $(git upstream)
+[color]
+  ui = auto
+[core]
+  excludesfile = ~/.gitignore_global
+  autocrlf = input
+  editor = /usr/bin/nvim
+  pager = diff-so-fancy | less --tabs=2 -RFX
+[merge]
+  ff = only
+  tool = fugitive
+[push]
+  default = upstream
+[fetch]
+  prune = true
+[gitsh "color"]
+  default = cyan
+[gitsh]
+  defaultcommand = status -sb
+  gitcommand = git
+  nogreeting = true
+  prompt = "\n%D %c(%b%#)%w $ "
+[user]
+  name = Greg Fisher
+  email = gnfisher@thoughtbot.com
+[github]
+  user = gnfisher
+[credential]
+  helper = osxkeychain
+[filesystem "AdoptOpenJDK|1.8.0_242|/dev/disk1s1"]
+  timestampResolution = 1001 milliseconds
+  minRacyThreshold = 0 nanoseconds
+[mergetool "fugitive"]
+  cmd = vim -f -c \"Gdiff\" \"$MERGED\"
