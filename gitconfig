@@ -1,5 +1,6 @@
 [init]
   defaultBranch = main
+  templatedir = ~/.git_template
 [alias]
   aa = add --all
   bselect = !git branch | grep -v '^*' | fzf-tmux --reverse | xargs git checkout
