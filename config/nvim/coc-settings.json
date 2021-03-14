@@ -22,10 +22,6 @@
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextPrefix": " # ",
   "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
+    "scala"
   ],
-  "tsserver.formatOnType": true
 }

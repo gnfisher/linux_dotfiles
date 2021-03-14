@@ -123,7 +123,7 @@ inoremap <S-Tab> <C-n>
 " autocmd BufNew,BufEnter *.scala,*.sbt execute "silent! CocEnable"
 " autocmd BufLeave *.scala,*.sbt execute "silent! CocDisable"
 
-set tags^=.git/tags
+set tags=.git/tags,./../.git/tags,./tmp/tags,tags
 
 " convenience
 nnoremap <leader>; :
