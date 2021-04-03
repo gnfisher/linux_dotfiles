@@ -23,5 +23,5 @@
   "diagnostic.virtualTextPrefix": " # ",
   "coc.preferences.formatOnSaveFiletypes": [
     "scala"
-  ],
+  ]
 }
