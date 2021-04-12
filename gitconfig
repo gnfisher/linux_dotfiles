@@ -55,6 +55,7 @@
 [user]
   name = Greg Fisher
   email = gnfisher@thoughtbot.com
+	signingkey = AF4C98576155566D
 [github]
   user = gnfisher
 [filesystem "AdoptOpenJDK|1.8.0_242|/dev/disk1s1"]
