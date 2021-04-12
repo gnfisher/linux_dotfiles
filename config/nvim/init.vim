@@ -5,7 +5,7 @@ call plug#begin('~/.vim/bundle')
 " Define bundles via Github repos
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'altercation/vim-colors-solarized'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'dracula/vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'

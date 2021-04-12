@@ -25,10 +25,10 @@ endfunction
 
 set tabline=%!TabLine()
 syntax enable
-set t_Co=256 " 256 colors
+" set t_Co=256 " 256 colors
 " a better pattern for drawing vertical borders.
 set fillchars+=vert:\|
-" set termguicolors
+set termguicolors
 set background=dark
 colorscheme solarized
 call togglebg#map("<F6>")
