@@ -29,9 +29,9 @@ syntax enable
 " a better pattern for drawing vertical borders.
 set fillchars+=vert:\|
 set termguicolors
-set background=dark
-colorscheme solarized
-call togglebg#map("<F6>")
+set background=light
+" colorscheme solarized8_high
+" call togglebg#map("<F6>")
 highlight clear SignColumn
 let g:is_posix = 1
 

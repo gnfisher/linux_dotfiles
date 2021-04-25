@@ -5,11 +5,11 @@ call plug#begin('~/.vim/bundle')
 " Define bundles via Github repos
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'frankier/neovim-colors-solarized-truecolor-only'
+Plug 'lifepillar/vim-solarized8'
 Plug 'dracula/vim'
 Plug 'nanotech/jellybeans.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'janko-m/vim-test'
