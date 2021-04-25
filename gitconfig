@@ -8,7 +8,7 @@
   car = commit --amend --no-edit
   co = checkout
   copysha = !git rev-parse HEAD | xclip
-  df = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd $GIT_PREFIX; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
+  df = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd $GIT_PREFIX; git diff -U10 --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
   dfw = !git df -w
   dc = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd $GIT_PREFIX; git diff --color --cached $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
   dcw = !git dc -w
