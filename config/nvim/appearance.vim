@@ -30,6 +30,7 @@ syntax enable
 set fillchars+=vert:\|
 set termguicolors
 set background=light
+colorscheme one
 " colorscheme solarized8_high
 " call togglebg#map("<F6>")
 highlight clear SignColumn
