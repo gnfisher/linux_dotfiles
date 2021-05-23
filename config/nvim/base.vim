@@ -41,7 +41,7 @@ set shiftround
 set expandtab
 set list listchars=tab:»·,trail:·,nbsp:·
 " Make it obvious where 80 characters is
-set colorcolumn=81
+" set colorcolumn=81
 set number
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
