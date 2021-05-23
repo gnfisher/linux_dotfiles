@@ -5,12 +5,6 @@ call plug#begin('~/.vim/bundle')
 " Define bundles via Github repos
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'lifepillar/vim-solarized8'
-Plug 'dracula/vim'
-Plug 'nanotech/jellybeans.vim'
-Plug 'rakr/vim-one'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'janko-m/vim-test'
@@ -30,19 +24,14 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
-Plug 'jiangmiao/auto-pairs'
 Plug 'vim-ruby/vim-ruby'
 Plug 'ElmCast/elm-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'} 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'derekwyatt/vim-scala'
-Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'christoomey/vim-tmux-navigator'
-" Plug 'dense-analysis/ale'
-Plug 'junegunn/goyo.vim'
-Plug 'fatih/vim-go'
 call plug#end()
 
 set encoding=utf-8
@@ -55,6 +44,4 @@ source $HOME/.config/nvim/basecamp.vim
 source $HOME/.config/nvim/fzf.vim
 source $HOME/.config/nvim/navigation.vim
 source $HOME/.config/nvim/vim-test.vim
-source $HOME/.config/nvim/airline.vim
-source $HOME/.config/nvim/goyo.vim
 
