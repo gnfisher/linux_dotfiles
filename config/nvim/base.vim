@@ -116,6 +116,17 @@ inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
 inoremap <S-Tab> <C-n>
 
 " statusline
+set statusline=
+set statusline+=%{FugitiveStatusline()}
+set statusline+=\ %f
+set statusline+=%m\ 
+set statusline+=%=
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\ 
 " set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
 " autocmd BufNew,BufEnter *.vim,*.rb,*.erb execute "silent! CocDisable"
