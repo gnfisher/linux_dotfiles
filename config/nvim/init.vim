@@ -25,6 +25,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'vim-ruby/vim-ruby'
+Plug 'elixir-editors/vim-elixir'
 Plug 'ElmCast/elm-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'derekwyatt/vim-scala'
