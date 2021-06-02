@@ -33,6 +33,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'lifepillar/vim-solarized8'
 call plug#end()
 
 set encoding=utf-8
