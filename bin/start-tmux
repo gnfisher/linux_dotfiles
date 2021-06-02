@@ -1,0 +1,26 @@
+#!/bin/sh
+
+session="ads"
+
+tmux start-server
+
+# vertical split notes 
+tmux new-session -d -s $session -n "notes"
+tmux send-keys "cd ~/Notes && nvim today.md" C-m
+
+# scala-workspace 
+tmux new-window -t $session:2 -n "ads-server"
+tmux send-keys "cd ~/Code/ADS/ads-quoting-server && clear" C-m
+tmux split-window -v
+tmux send-keys "cd ~/Code/ADS/ads-quoting-server && clear" C-m
+tmux new-window -t $session:3 -n "ads-ui"
+tmux send-keys "cd ~/Code/ADS/ads-quoting-ui && clear" C-m
+tmux new-window -t $session:4 -n "term"
+tmux send-keys "cd ~/Code/ADS/ads-quoting-server && clear" C-m
+
+
+# select window to start 
+tmux select-window -t $session:1
+
+# attatchment 
+tmux -2 attach-session -t $session
