@@ -2,6 +2,9 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 
+" set the statusline
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
 " autocmd BufNew,BufEnter *.vim,*.rb,*.erb execute "silent! CocDisable"
 " autocmd BufLeave *.vim,*.rb,*.erb execute "silent! CocEnable"
 " autocmd BufNew,BufEnter *.scala,*.sbt execute "silent! CocEnable"
