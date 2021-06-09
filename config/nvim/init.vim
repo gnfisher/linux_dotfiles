@@ -29,15 +29,13 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'ElmCast/elm-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'derekwyatt/vim-scala'
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'lifepillar/vim-solarized8'
+Plug 'dense-analysis/ale'
 call plug#end()
 
 set encoding=utf-8
-autocmd! 
+autocmd!
 filetype plugin indent on
 
 source $HOME/.config/nvim/appearance.vim
@@ -46,4 +44,5 @@ source $HOME/.config/nvim/basecamp.vim
 source $HOME/.config/nvim/fzf.vim
 source $HOME/.config/nvim/navigation.vim
 source $HOME/.config/nvim/vim-test.vim
+source $HOME/.config/nvim/ale.vim
 
