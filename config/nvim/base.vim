@@ -34,6 +34,7 @@ set nojoinspaces
 set scrolloff=3
 set sidescrolloff=3
 set relativenumber
+set numberwidth=4
 set signcolumn=yes
 set tabstop=2
 set shiftwidth=2
@@ -115,25 +116,6 @@ endfunction
 inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
 inoremap <S-Tab> <C-n>
 
-" statusline
-set statusline=
-set statusline+=%{FugitiveStatusline()}
-set statusline+=\ %f
-set statusline+=%m\ 
-set statusline+=%=
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-set statusline+=\ 
-" set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-
-" autocmd BufNew,BufEnter *.vim,*.rb,*.erb execute "silent! CocDisable"
-" autocmd BufLeave *.vim,*.rb,*.erb execute "silent! CocEnable"
-" autocmd BufNew,BufEnter *.scala,*.sbt execute "silent! CocEnable"
-" autocmd BufLeave *.scala,*.sbt execute "silent! CocDisable"
-
 set tags=.git/tags,./../.git/tags,./tmp/tags,tags
 
 " convenience
@@ -147,6 +129,6 @@ nmap cV "+P
 " terminal escape
 tnoremap <leader><Esc> <C-\><C-n>
 
-" search
-nnoremap <leader>sub :%s///g<left><left>
-vnoremap <leader>sub :s///g<left><left>
+" Search for the word under the cursor
+" Normal mode: K
+nmap K :grep "\b<C-R><C-W>\b"<CR>

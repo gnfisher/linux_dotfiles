@@ -18,7 +18,7 @@
   "suggest.localityBonus": true,
   "coc.preferences.formatOnType": true,
   "metals.statusBarEnabled": true,
-  "workspace.ignoredFiletypes": ["gitcommit", "ruby"],
+  "workspace.ignoredFiletypes": ["gitcommit"],
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextPrefix": " # ",
   "coc.preferences.formatOnSaveFiletypes": [

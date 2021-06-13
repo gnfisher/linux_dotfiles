@@ -1,10 +1,10 @@
-" let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='one'
+" let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 0
+" let g:airline_theme = "solarized"
 
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
+" if !exists('g:airline_symbols')
+"     let g:airline_symbols = {}
+" endif
 
 " unicode symbols
 " let g:airline_left_sep = '»'
