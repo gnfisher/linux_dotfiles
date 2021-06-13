@@ -31,8 +31,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'derekwyatt/vim-scala'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'lifepillar/vim-solarized8'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'dense-analysis/ale'
 call plug#end()
 
@@ -41,7 +39,6 @@ autocmd!
 filetype plugin indent on
 
 source $HOME/.config/nvim/appearance.vim
-source $HOME/.config/nvim/airline.vim
 source $HOME/.config/nvim/base.vim
 source $HOME/.config/nvim/basecamp.vim
 source $HOME/.config/nvim/fzf.vim
