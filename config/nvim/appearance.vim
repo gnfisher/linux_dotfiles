@@ -29,7 +29,7 @@ syntax enable
 " a better pattern for drawing vertical borders.
 set fillchars+=vert:\|
 set termguicolors
-set background=light
+set background=dark
 " colorscheme solarized8
 " colorscheme github
 highlight clear SignColumn

@@ -36,7 +36,7 @@
 [core]
   excludesfile = ~/.gitignore_global
   autocrlf = input
-  editor = /usr/bin/nvim
+  editor = nvim
   pager = diff-so-fancy | less --tabs=2 -RFX
 [merge]
   ff = only
