@@ -47,6 +47,9 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-projectionist'
 Plug 'gruvbox-community/gruvbox'
 call plug#end()
 
@@ -82,6 +85,7 @@ augroup vimrcEx
   autocmd BufWritePre * :call TrimWhitespace()
   autocmd BufReadPost * :call JumpToLastLine()
   autocmd BufWritePost *.rb lua require('lint').try_lint()
+  autocmd FileType ruby let b:dispatch = 'ruby %'
 augroup END
 
 lua << EOF
@@ -141,6 +145,9 @@ require('lint').linters_by_ft = {
   ruby = {'ruby',}
 }
 EOF
+nnoremap <leader>vr :so ~/dotfiles/config/nvim/init.vim<CR>
+nnoremap <leader>q :copen<CR>
+nnoremap <leader>x :cclose<CR>
 
 " lsp config
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
@@ -166,8 +173,8 @@ nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<CR>
 nnoremap <leader>pt <cmd>lua require('telescope.builtin').tags()<CR>
 nnoremap <C-k> :cnext<CR>zz
 nnoremap <C-j> :cprev<CR>zz
-nnoremap <leader>k :lnext<CR>zz
-nnoremap <leader>j :lprev<CR>zz
+" nnoremap <leader>k :lnext<CR>zz
+" nnoremap <leader>j :lprev<CR>zz
 
 " compe
 inoremap <silent><expr> <C-Space> compe#complete()
@@ -184,3 +191,5 @@ nmap <leader>gf :diffget //3<CR>
 nmap <leader>gj :diffget //2<CR>
 nmap <leader>gs :G<CR>
 
+" temp
+" nnoremap <leader>rf :Dispatch %<CR>
