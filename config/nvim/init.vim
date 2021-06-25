@@ -33,6 +33,7 @@ set splitright
 set diffopt+=vertical
 
 set background=dark
+set termguicolors
 
 call plug#begin('~/.vim/bundle')
 Plug 'nvim-lua/popup.nvim'
@@ -51,11 +52,12 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-projectionist'
 Plug 'gruvbox-community/gruvbox'
+Plug 'jnurmine/Zenburn'
 call plug#end()
 
 runtime macros/matchit.vim
 
-colorscheme gruvbox
+colorscheme zenburn
 highlight link CompeDocumentation NormalFloat
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -178,7 +180,7 @@ nnoremap <C-j> :cprev<CR>zz
 
 " compe
 inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <CR>      pumvisible() ? "compe#confirm('<CR>')" : "<CR>"
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
