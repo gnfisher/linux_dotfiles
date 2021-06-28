@@ -1,26 +1,20 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-session="ads"
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    items=`find ~/Code/thoughtbot -maxdepth 1 -mindepth 1 -type d`
+    items+=`find ~/Code/ADS -maxdepth 1 -mindepth 1 -type d`
+    items+=`find ~/Code/TIL -maxdepth 1 -mindepth 1 -type d`
+    items+=`find ~/Code/ruby -maxdepth 1 -mindepth 1 -type d`
+    selected=`echo "$items" | fzf`
+fi
 
-tmux start-server
+dirname=`basename $selected`
 
-# vertical split notes 
-tmux new-session -d -s $session -n "notes"
-tmux send-keys "cd ~/Notes && nvim today.md" C-m
+tmux switch-client -t $dirname
+if [[ $? -eq 0 ]]; then
+    exit 0
+fi
 
-# scala-workspace 
-tmux new-window -t $session:2 -n "ads-server"
-tmux send-keys "cd ~/Code/ADS/ads-quoting-server && clear" C-m
-tmux split-window -v
-tmux send-keys "cd ~/Code/ADS/ads-quoting-server && clear" C-m
-tmux new-window -t $session:3 -n "ads-ui"
-tmux send-keys "cd ~/Code/ADS/ads-quoting-ui && clear" C-m
-tmux new-window -t $session:4 -n "term"
-tmux send-keys "cd ~/Code/ADS/ads-quoting-server && clear" C-m
-
-
-# select window to start 
-tmux select-window -t $session:1
-
-# attatchment 
-tmux -2 attach-session -t $session
+tmux new-session -c $selected -d -s $dirname && tmux switch-client -t $dirname || tmux new -c $selected -A -s $dirname
