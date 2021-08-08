@@ -164,8 +164,8 @@ map <Leader>se :sp <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>ve :vsp <C-R>=expand("%:p:h") . "/" <CR>
 
 " Better navigation
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 " move between wrapped lines
@@ -214,7 +214,7 @@ nnoremap <leader>ph <cmd>lua require('telescope.builtin').help_tags()<CR>
 nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<CR>
 nnoremap <leader>pt <cmd>lua require('telescope.builtin').tags()<CR>
 nnoremap <C-j> :cnext<CR>zz
-nnoremap <C-j> :cprev<CR>zz
+nnoremap <C-k> :cprev<CR>zz
 nnoremap <leader>j :lnext<CR>zz
 nnoremap <leader>k :lprev<CR>zz
 
