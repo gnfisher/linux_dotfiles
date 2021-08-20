@@ -52,15 +52,23 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-bundler'
 Plug 'gruvbox-community/gruvbox'
 Plug 'jnurmine/zenburn'
 Plug 'altercation/vim-colors-solarized'
 Plug 'jonathanfilip/vim-lucius'
+Plug 'sickill/vim-monokai'
+Plug 'encody/nvim'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 runtime macros/matchit.vim
 
-colorscheme gruvbox
+" colorscheme gruvbox
+set background=light
+
 highlight link CompeDocumentation NormalFloat
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -145,7 +153,7 @@ require'compe'.setup {
 }
 
 require('lint').linters_by_ft = {
-  ruby = {'ruby',}
+  ruby = {'standardrb','ruby',}
 }
 EOF
 
@@ -164,10 +172,10 @@ map <Leader>se :sp <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>ve :vsp <C-R>=expand("%:p:h") . "/" <CR>
 
 " Better navigation
-" nnoremap <C-j> <C-w>j
+" noremap <C-j> <C-w>j
 " nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-l> <C-w>l
 " move between wrapped lines
 nnoremap j gj
 nnoremap k gk
@@ -196,6 +204,7 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 nnoremap <leader>fd :lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>fi :lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>fsh :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <leader>fss :lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <leader>frr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>frn :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>fh :lua vim.lsp.buf.hover()<CR>

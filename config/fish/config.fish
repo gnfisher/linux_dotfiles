@@ -21,7 +21,7 @@ function mcd
 end
 
 function fish_prompt -d "Write out the prompt"
-    printf '%s%s%s@%s%s %s%s%s$ ' \
-    (set_color -o green) $USER (set_color white) (set_color cyan) (hostname -s) \
-    (set_color brwhite) (basename $PWD) (set_color normal)
+    set -g $__fish_git_prompt_showcolorhints true
+    printf '%s%s%s:%s%s%s%s%s $ ' \
+    (set_color -o blue) $USER (set_color normal) (set_color green) (basename $PWD) (set_color red) (fish_git_prompt) (set_color normal)
 end
