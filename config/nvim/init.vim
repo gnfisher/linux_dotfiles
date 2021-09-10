@@ -9,7 +9,6 @@ set smartindent
 set exrc "use custom vimrc in pwd
 set relativenumber
 set number
-set nohlsearch
 set incsearch
 set hidden
 set nowrap
@@ -27,10 +26,12 @@ set colorcolumn=80
 set cmdheight=2
 set updatetime=10
 set shortmess+=c
+set shortmess-=F
 set history=10000
 set list listchars=tab:»·,trail:·,nbsp:·
 set splitright
 set diffopt+=vertical
+set cursorline
 set fillchars+=vert:\|
 set tags^=.git/tags
 
@@ -40,6 +41,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'scalameta/nvim-metals'
 Plug 'mfussenegger/nvim-lint'
 Plug 'hrsh7th/nvim-compe'
 Plug 'kana/vim-textobj-user'
@@ -55,22 +57,17 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
-Plug 'gruvbox-community/gruvbox'
-Plug 'jnurmine/zenburn'
-Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-eunuch'
+Plug 'vim-test/vim-test'
 Plug 'jonathanfilip/vim-lucius'
-Plug 'sickill/vim-monokai'
-Plug 'encody/nvim'
-Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 runtime macros/matchit.vim
 
-" colorscheme gruvbox
-set background=light
+colorscheme lucius
+LuciusBlack
 
-highlight link CompeDocumentation NormalFloat
-hi Normal guibg=NONE ctermbg=NONE
+highlight LineNr ctermbg=NONE
 
 let mapleader=" "
 let g:netrw_browse_split = 0
@@ -90,15 +87,20 @@ fun! JumpToLastLine()
   endif
 endfun
 
-augroup vimrcEx
-  autocmd!
-  autocmd BufWritePre * :call TrimWhitespace()
-  autocmd BufReadPost * :call JumpToLastLine()
-  autocmd BufWritePost *.rb lua require('lint').try_lint()
-  autocmd FileType ruby let b:dispatch = 'ruby %'
-  autocmd FileType scala let b:dispatch = 'heroku local:run -- bloop test ads-quoting-server -o "*%:t:r*"'
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-augroup END
+fun! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col
+        return "\<tab>"
+    endif
+
+    let char = getline('.')[col - 1]
+    if char =~ '\k'
+        " There's an identifier before the cursor, so complete the identifier.
+        return "\<c-p>"
+    else
+        return "\<tab>"
+    endif
+endfunction
 
 lua << EOF
 local actions = require('telescope.actions')
@@ -123,39 +125,49 @@ require('telescope').setup{
 }
 require('telescope').load_extension('fzy_native')
 
-require'lspconfig'.metals.setup{}
 require'lspconfig'.elmls.setup{}
 
-require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'disable';
-  throttle_time = 80;
-  source_timeout = 200;
-  resolve_timeout = 800;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
+require("compe").setup({
+  enabled = true,
+  debug = false,
+  min_length = 1,
 
   source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    vsnip = false;
-    ultisnips = false;
-  };
-}
+    path = true,
+    buffer = true,
+    nvim_lsp = {
+      priority = 1000,
+      filetypes = { "scala", "sbt", "java" },
+    },
+  },
+})
 
 require('lint').linters_by_ft = {
   ruby = {'standardrb','ruby',}
 }
+
+metals_config = require("metals").bare_config
+metals_config.init_options.statusBarProvider = "on"
+metals_config.settings = {
+  showImplicitArguments = true
+  }
+metals_config.on_attach = function()
+  require'completion'.on_attach();
+end
 EOF
+
+augroup vimrcEx
+  autocmd!
+  autocmd BufWritePre * :call TrimWhitespace()
+  autocmd BufReadPost * :call JumpToLastLine()
+  autocmd BufWritePost *.rb lua require('lint').try_lint()
+  autocmd FileType scala,sbt lua require('metals').initialize_or_attach(metals_config)
+
+  autocmd FileType ruby let b:dispatch = 'ruby %'
+  autocmd FileType scala let b:dispatch = 'heroku local:run -- bloop test ads-quoting-server -o "*%:t:r*"'
+
+  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+augroup END
 
 nnoremap <leader>; :
 
@@ -164,6 +176,10 @@ nmap cp "+y
 xnoremap cp "+y
 nmap cv "+p
 nmap cV "+P
+
+" use tab to autocomplete
+inoremap <expr> <tab> InsertTabWrapper()
+inoremap <s-tab> <c-n>
 
 " quickly create new files with relative paths
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -222,17 +238,15 @@ nnoremap <leader>pb <cmd>lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>ph <cmd>lua require('telescope.builtin').help_tags()<CR>
 nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<CR>
 nnoremap <leader>pt <cmd>lua require('telescope.builtin').tags()<CR>
-nnoremap <C-j> :cnext<CR>zz
-nnoremap <C-k> :cprev<CR>zz
-nnoremap <leader>j :lnext<CR>zz
-nnoremap <leader>k :lprev<CR>zz
+" nnoremap <C-j> :cnext<CR>zz
+" nnoremap <C-k> :cprev<CR>zz
+nnoremap <leader>j :cnext<CR>zz
+nnoremap <leader>k :cprev<CR>zz
 
 " compe
-" inoremap <silent><expr> <C-Space> compe#complete()
-" inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-" inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-" inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-" inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR> compe#confirm("\<CR>")
 
 " fugitive
 nnoremap <leader>ga :Git fetch --all<CR>
@@ -244,3 +258,11 @@ nmap <leader>gs :G<CR>
 
 " Run the file you're in with Dispatch
 nnoremap <leader>d :Dispatch<CR>
+
+" vim-test
+let test#strategy = "dispatch"
+nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ts :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>
