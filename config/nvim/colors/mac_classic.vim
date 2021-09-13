@@ -45,18 +45,20 @@ let g:colors_name = "mac_classic"
 " GUI: {{{1
 hi Cursor  guifg=#FFFFFF ctermfg=15 guibg=#3C4C72 ctermbg=240
 hi Visual  guibg=#C6DEFF ctermbg=189
-hi CursorLine  guibg=#F0F6FF ctermbg=15
+hi CursorLine  guibg=#F0F6FF ctermbg=254 cterm=bold
 hi CursorColumn  guibg=#F0F6FF ctermbg=15
-hi LineNr  guifg=#808080 ctermfg=244 guibg=#EFEFEF ctermbg=7
+hi LineNr  guifg=#808080 ctermfg=244 guibg=#EFEFEF ctermbg=NONE
 hi VertSplit  guifg=#FFFFFF ctermfg=15 guibg=#CFCFCF ctermbg=252 gui=NONE
-hi MatchParen  guifg=#1E39F6 ctermfg=27 guibg=NONE gui=bold
-hi Pmenu guibg=#EFEFEF ctermbg=7
-hi PmenuSel  guibg=#C6DEFF ctermbg=189
+hi MatchParen  guifg=#1E39F6 ctermfg=27 guibg=NONE gui=bold cterm=bold
+hi Pmenu guibg=#EFEFEF ctermbg=229
+hi PmenuSel  guibg=#C6DEFF ctermbg=214
 hi Directory  guifg=#D51015 ctermfg=160 gui=bold
 hi Folded  guifg=#0066FF ctermfg=27 guibg=#FFFFFF ctermbg=15
+hi SignColumn ctermbg=NONE ctermfg=1
 " StatusLine: {{{2
-hi StatusLine  guifg=#000000 ctermfg=0 guibg=#C6DEFF ctermbg=189 gui=italic
-hi StatusLineNC  guifg=#000000 ctermfg=0 guibg=#EFEFEF ctermbg=7 gui=NONE
+hi StatusLine  guifg=#000000 ctermfg=7 guibg=#C6DEFF ctermbg=0 gui=italic
+hi StatusLineNC  guifg=#000000 ctermfg=7 guibg=#EFEFEF ctermbg=0 gui=NONE
+hi LspDiagnosticsDefaultError ctermfg=1
 
 " Search: {{{2
 " [IncSearch is stronger than Search]
@@ -68,26 +70,27 @@ hi Normal  guifg=#000000 ctermfg=0 guibg=#FFFFFF ctermbg=15
 hi Boolean  guifg=#6E79F1 ctermfg=69 gui=bold
 hi Character  guifg=#D51015 ctermfg=160 gui=bold
 hi Comment  guifg=#0066FF ctermfg=27 gui=italic
-hi Conditional  guifg=#1E39F6 ctermfg=27 gui=bold
+hi Conditional  guifg=#1E39F6 ctermfg=27 gui=bold cterm=bold
 hi Constant  guifg=#D51015 ctermfg=160 gui=bold
-hi Define  guifg=#1E39F6 ctermfg=27 gui=bold
+hi Define  guifg=#1E39F6 ctermfg=27 gui=bold cterm=bold
 hi ErrorMsg  guifg=#FFFFFF ctermfg=15 guibg=#990000 ctermbg=88
 hi WarningMsg  guifg=#FFFFFF ctermfg=15 guibg=#990000 ctermbg=88
 hi Float  guifg=#0000A2 ctermfg=19
 hi Function  guifg=#0000A2 ctermfg=19 gui=bold
 hi Identifier  guifg=#1E39F6 ctermfg=27 gui=bold
-hi Keyword  guifg=#1E39F6 ctermfg=27 gui=bold
+hi Keyword  guifg=#1E39F6 ctermfg=27 gui=bold cterm=bold
 hi Label  guifg=#007B22 ctermfg=28
 hi Number  guifg=#0000A2 ctermfg=19
 hi Operator  guifg=#1E39F6 ctermfg=27 gui=bold
 hi PreProc  guifg=#1E39F6 ctermfg=27 gui=bold
-hi Special  guifg=#000000 ctermfg=0
+hi Special  guifg=#000000 ctermfg=1
 hi Statement  guifg=#1E39F6 ctermfg=27 gui=bold
 hi StorageClass  guifg=#1E39F6 ctermfg=27 gui=bold
 hi String  guifg=#007B22 ctermfg=28
 hi Title  guifg=#000000 ctermfg=0 gui=bold
 hi Todo  guifg=#0066FF ctermfg=27 gui=inverse,bold,italic
 hi Underlined  gui=underline
+hi Type  guifg=#0000A2 ctermfg=19
 
 " Invisible character colors
 hi NonText  guifg=#DFDFDF ctermfg=253 guibg=#FFFFFF ctermbg=15
@@ -171,7 +174,7 @@ hi javaScriptSpecial  guifg=#00BC41 ctermfg=35 gui=NONE
 " syntax file does not create matches for some items. In
 " particular:
 " * javaScriptArgument - e.g. function(argument)
-" * javaScriptFuncName for object literal style functions - e.g.: 
+" * javaScriptFuncName for object literal style functions - e.g.:
 "     myFunction: function() { ... }
 
 " YAML: {{{1

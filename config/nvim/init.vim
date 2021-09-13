@@ -41,9 +41,9 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
 Plug 'scalameta/nvim-metals'
 Plug 'mfussenegger/nvim-lint'
-Plug 'hrsh7th/nvim-compe'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-vinegar'
@@ -60,20 +60,26 @@ Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-eunuch'
 Plug 'vim-test/vim-test'
 Plug 'jonathanfilip/vim-lucius'
+Plug 'mattn/emmet-vim'
+Plug 'derekwyatt/vim-scala'
 call plug#end()
 
 runtime macros/matchit.vim
 
-colorscheme lucius
-LuciusBlack
+set background=light
+colorscheme mac_classic
+" colorscheme lucius
+" LuciusBlack
 
-highlight LineNr ctermbg=NONE
+" highlight LineNr ctermbg=NONE
+" highlight SignColumn ctermbg=NONE
 
 let mapleader=" "
 let g:netrw_browse_split = 0
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 let g:netrw_localrmdir='rm -r'
+let test#enabled_runners = ["ruby#rspec"]
 
 fun! TrimWhitespace()
   let l:save = winsaveview()
@@ -126,21 +132,7 @@ require('telescope').setup{
 require('telescope').load_extension('fzy_native')
 
 require'lspconfig'.elmls.setup{}
-
-require("compe").setup({
-  enabled = true,
-  debug = false,
-  min_length = 1,
-
-  source = {
-    path = true,
-    buffer = true,
-    nvim_lsp = {
-      priority = 1000,
-      filetypes = { "scala", "sbt", "java" },
-    },
-  },
-})
+require'lspconfig'.tailwindcss.setup{}
 
 require('lint').linters_by_ft = {
   ruby = {'standardrb','ruby',}
@@ -151,13 +143,11 @@ metals_config.init_options.statusBarProvider = "on"
 metals_config.settings = {
   showImplicitArguments = true
   }
-metals_config.on_attach = function()
-  require'completion'.on_attach();
-end
 EOF
 
 augroup vimrcEx
   autocmd!
+  " autocmd BufEnter * lua require'completion'.on_attach()
   autocmd BufWritePre * :call TrimWhitespace()
   autocmd BufReadPost * :call JumpToLastLine()
   autocmd BufWritePost *.rb lua require('lint').try_lint()
@@ -244,9 +234,9 @@ nnoremap <leader>j :cnext<CR>zz
 nnoremap <leader>k :cprev<CR>zz
 
 " compe
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <CR> compe#confirm("\<CR>")
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <CR>    compe#confirm("\<CR>")
 
 " fugitive
 nnoremap <leader>ga :Git fetch --all<CR>
