@@ -66,8 +66,9 @@ call plug#end()
 
 runtime macros/matchit.vim
 
-set background=light
-colorscheme mac_classic
+set termguicolors
+colorscheme railscasts
+" colorscheme mac_classic
 " colorscheme lucius
 " LuciusBlack
 
@@ -80,6 +81,7 @@ let g:netrw_banner = 0
 let g:netrw_winsize = 25
 let g:netrw_localrmdir='rm -r'
 let test#enabled_runners = ["ruby#rspec"]
+let test#strategy = "dispatch"
 
 fun! TrimWhitespace()
   let l:save = winsaveview()
@@ -131,7 +133,7 @@ require('telescope').setup{
 }
 require('telescope').load_extension('fzy_native')
 
-require'lspconfig'.elmls.setup{}
+require'lspconfig'.elmls.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.tailwindcss.setup{}
 
 require('lint').linters_by_ft = {
@@ -233,11 +235,6 @@ nnoremap <leader>pt <cmd>lua require('telescope.builtin').tags()<CR>
 nnoremap <leader>j :cnext<CR>zz
 nnoremap <leader>k :cprev<CR>zz
 
-" compe
-" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <CR>    compe#confirm("\<CR>")
-
 " fugitive
 nnoremap <leader>ga :Git fetch --all<CR>
 nnoremap <leader>grom :Git rebase origin/master<CR>
@@ -250,7 +247,6 @@ nmap <leader>gs :G<CR>
 nnoremap <leader>d :Dispatch<CR>
 
 " vim-test
-let test#strategy = "dispatch"
 nmap <silent> <leader>tn :TestNearest<CR>
 nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ts :TestSuite<CR>
