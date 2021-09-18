@@ -68,12 +68,6 @@ runtime macros/matchit.vim
 
 set termguicolors
 colorscheme railscasts
-" colorscheme mac_classic
-" colorscheme lucius
-" LuciusBlack
-
-" highlight LineNr ctermbg=NONE
-" highlight SignColumn ctermbg=NONE
 
 let mapleader=" "
 let g:netrw_browse_split = 0

@@ -24,7 +24,11 @@ let g:colors_name = "railscasts"
 hi Normal     guifg=#E6E1DC guibg=#232323
 hi Cursor     guibg=#FFFFFF
 hi CursorLine guibg=#333435
-hi LineNr     guifg=#666666
+hi CursorLineNR guibg=#232323 guifg=#eeeeee
+hi LineNr     guibg=#333333 guifg=#777777
+hi SignColumn guibg=#333333
+hi SignColumnNR guibg=#232323
+hi ColorColumn guibg=#333333
 hi Visual     guibg=#5A647E
 hi Search     guifg=NONE    guibg=#131313  gui=NONE
 hi Folded     guifg=#F6F3E8 guibg=#444444  gui=NONE
@@ -32,6 +36,7 @@ hi Directory  guifg=#A5C160 gui=NONE
 hi Error      guifg=#FFFFFF guibg=#990000
 hi MatchParen guifg=NONE    guibg=#131313
 hi Title      guifg=#E6E1DC
+hi EndOfBuffer guifg=#777777
 
 hi Comment    guifg=#BC9357 guibg=NONE     gui=italic
 hi! link Todo Comment
@@ -68,6 +73,7 @@ hi! link PreCondit Statement
 
 " SomeClassName
 hi Type guifg=NONE gui=NONE
+hi Typedef guifg=#CC7733
 
 " has_many, respond_to, params
 hi railsMethod guifg=#DA4938 gui=NONE
