@@ -67,7 +67,8 @@ call plug#end()
 runtime macros/matchit.vim
 
 set termguicolors
-colorscheme railscasts
+set background=light
+" colorscheme railscasts
 
 let mapleader=" "
 let g:netrw_browse_split = 0
@@ -174,10 +175,10 @@ map <Leader>se :sp <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>ve :vsp <C-R>=expand("%:p:h") . "/" <CR>
 
 " Better navigation
-" noremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-l> <C-w>l
+noremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 " move between wrapped lines
 nnoremap j gj
 nnoremap k gk

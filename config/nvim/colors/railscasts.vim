@@ -37,6 +37,7 @@ hi Error      guifg=#FFFFFF guibg=#990000
 hi MatchParen guifg=NONE    guibg=#131313
 hi Title      guifg=#E6E1DC
 hi EndOfBuffer guifg=#777777
+hi Whitespace guifg=#777777
 
 hi Comment    guifg=#BC9357 guibg=NONE     gui=italic
 hi! link Todo Comment
@@ -53,6 +54,7 @@ hi Define guifg=#CC7733 gui=bold
 hi! link Include Define
 hi! link Keyword Define
 hi! link Macro Define
+hi! link StorageClass Define
 
 " #{foo}, <%= bar %>
 hi Delimiter guifg=#509E50
