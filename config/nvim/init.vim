@@ -67,8 +67,8 @@ call plug#end()
 runtime macros/matchit.vim
 
 set termguicolors
-set background=light
-" colorscheme railscasts
+set background=dark
+colorscheme railscasts
 
 let mapleader=" "
 let g:netrw_browse_split = 0
