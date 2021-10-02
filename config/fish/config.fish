@@ -4,6 +4,7 @@ set EDITOR nvim
 set JAVA_HOME "/usr/bin/java"
 
 set PATH $HOME/.cargo/bin $PATH
+set PATH $HOME/.local/bin $PATH
 set PATH $PATH "$PATH:$HOME/.bin:/usr/local/bin"
 set PATH $HOME/.asdf/installs/nodejs/15.13.0/.npm/bin $PATH
 set PATH $HOME/.local/share/coursier/bin $PATH
