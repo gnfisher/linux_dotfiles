@@ -62,13 +62,14 @@ Plug 'vim-test/vim-test'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'mattn/emmet-vim'
 Plug 'derekwyatt/vim-scala'
+Plug 'mhartington/oceanic-next'
 call plug#end()
 
 runtime macros/matchit.vim
 
 set termguicolors
 set background=dark
-colorscheme railscasts
+colorscheme OceanicNext
 
 let mapleader=" "
 let g:netrw_browse_split = 0
@@ -104,6 +105,12 @@ fun! InsertTabWrapper()
         return "\<tab>"
     endif
 endfunction
+
+fun! metals#status() abort
+  return get(g:, 'metals_status', '')
+endfunction
+
+set statusline =%f\ %h%w%m%r\ %=%(%l,%c%V\ %=\ %P%)%{metals#status()}
 
 lua << EOF
 local actions = require('telescope.actions')
@@ -151,6 +158,7 @@ augroup vimrcEx
   autocmd FileType scala,sbt lua require('metals').initialize_or_attach(metals_config)
 
   autocmd FileType ruby let b:dispatch = 'ruby %'
+  autocmd FileType javascript let b:dispatch = 'node %'
   autocmd FileType scala let b:dispatch = 'heroku local:run -- bloop test ads-quoting-server -o "*%:t:r*"'
 
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
