@@ -1,40 +1,5 @@
 let s:editor_root=expand("~/.config/nvim")
 
-set noerrorbells
-set mouse=a
-set tabstop=2 softtabstop=2
-set shiftwidth=2
-set expandtab
-set smartindent
-set exrc "use custom vimrc in pwd
-set relativenumber
-set number
-set incsearch
-set hidden
-set nowrap
-set noswapfile
-set nobackup
-set nowritebackup
-set undodir=~/.vim/undodir
-set undofile
-set autoread
-set scrolloff=8
-set noshowmode
-set completeopt=menuone,noselect
-set signcolumn=yes
-set colorcolumn=80
-set cmdheight=2
-set updatetime=10
-set shortmess+=c
-set shortmess-=F
-set history=10000
-set list listchars=tab:»·,trail:·,nbsp:·
-set splitright
-set diffopt+=vertical
-set cursorline
-set fillchars+=vert:\|
-set tags^=.git/tags
-
 call plug#begin('~/.vim/bundle')
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -66,10 +31,6 @@ Plug 'mhartington/oceanic-next'
 call plug#end()
 
 runtime macros/matchit.vim
-
-set termguicolors
-set background=dark
-colorscheme OceanicNext
 
 let mapleader=" "
 let g:netrw_browse_split = 0
@@ -113,6 +74,51 @@ endfunction
 set statusline =%f\ %h%w%m%r\ %=%(%l,%c%V\ %=\ %P%)%{metals#status()}
 
 lua << EOF
+vim.cmd [[
+  syntax enable
+  colorscheme OceanicNext
+]]
+vim.opt.termguicolors = true
+vim.opt.background = 'dark'
+vim.opt.errorbells = false
+vim.opt.mouse = 'a'
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.exrc = true
+vim.opt.relativenumber = true
+vim.opt.number = true
+vim.opt.incsearch = true
+vim.opt.hidden = true
+vim.opt.wrap = false
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.undodir = vim.env.HOME .. '/.vim/undodir'
+vim.opt.undofile = true
+vim.opt.autoread = true
+vim.opt.scrolloff = 8
+vim.opt.showmode = false
+vim.opt.completeopt = 'menuone,noselect'
+vim.opt.signcolumn = 'yes'
+vim.wo.colorcolumn = '80'
+vim.opt.cmdheight = 2
+vim.opt.updatetime = 10
+vim.opt.shortmess:append('c')
+vim.opt.shortmess:remove('F')
+vim.opt.history = 10000
+vim.opt.list = true
+vim.opt.listchars = {tab = '»·', trail = '·', nbsp = '·'}
+vim.opt.splitright = true
+vim.opt.diffopt:append('vertical')
+vim.opt.cursorline = true
+vim.opt.fillchars = {vert = '|'}
+vim.opt.tags:prepend('.git/tags')
+vim.opt.statusline = '%f %h%w%m%r %=%(%l,%c%V %= %P%)%{metals#status()}'
+
+
 local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
