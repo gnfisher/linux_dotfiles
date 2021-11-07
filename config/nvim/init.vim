@@ -28,6 +28,7 @@ Plug 'jonathanfilip/vim-lucius'
 Plug 'mattn/emmet-vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'mhartington/oceanic-next'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 runtime macros/matchit.vim
@@ -39,6 +40,21 @@ let g:netrw_winsize = 25
 let g:netrw_localrmdir='rm -r'
 let test#enabled_runners = ["ruby#rspec"]
 let test#strategy = "dispatch"
+
+"Enable indent folding
+set foldenable
+set foldmethod=indent
+set foldlevel=999
+
+" So I never use s, and I want a single key map to toggle folds, thus
+" lower s = toggle <=> upper S = toggle recursive
+nnoremap <leader>fs za
+nnoremap <leader>fS zA
+
+"Maps for folding, unfolding all
+nnoremap <LEADER>fu zM<CR>
+nnoremap <LEADER>uf zR<CR>
+
 
 fun! TrimWhitespace()
   let l:save = winsaveview()
@@ -76,10 +92,10 @@ set statusline =%f\ %h%w%m%r\ %=%(%l,%c%V\ %=\ %P%)%{metals#status()}
 lua << EOF
 vim.cmd [[
   syntax enable
-  colorscheme OceanicNext
 ]]
+vim.g.ruvbox_contrast_dark = true
 vim.opt.termguicolors = true
-vim.opt.background = 'dark'
+vim.opt.background = 'light'
 vim.opt.errorbells = false
 vim.opt.mouse = 'a'
 vim.opt.tabstop = 2
@@ -102,8 +118,8 @@ vim.opt.autoread = true
 vim.opt.scrolloff = 8
 vim.opt.showmode = false
 vim.opt.completeopt = 'menuone,noselect'
-vim.opt.signcolumn = 'yes'
-vim.wo.colorcolumn = '80'
+vim.opt.signcolumn = 'no'
+vim.opt.colorcolumn = '80'
 vim.opt.cmdheight = 2
 vim.opt.updatetime = 10
 vim.opt.shortmess:append('c')
@@ -117,6 +133,7 @@ vim.opt.cursorline = true
 vim.opt.fillchars = {vert = '|'}
 vim.opt.tags:prepend('.git/tags')
 vim.opt.statusline = '%f %h%w%m%r %=%(%l,%c%V %= %P%)%{metals#status()}'
+vim.g.gruvbox_contrast_dark = 'hard'
 
 
 local actions = require('telescope.actions')
@@ -155,6 +172,8 @@ metals_config.settings = {
   }
 EOF
 
+hi Normal guibg=NONE ctermbg=NONE
+
 augroup vimrcEx
   autocmd!
   " autocmd BufEnter * lua require'completion'.on_attach()
@@ -167,7 +186,7 @@ augroup vimrcEx
   autocmd FileType javascript let b:dispatch = 'node %'
   autocmd FileType scala let b:dispatch = 'heroku local:run -- bloop test ads-quoting-server -o "*%:t:r*"'
 
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+  " autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 augroup END
 
 nnoremap <leader>; :
@@ -234,11 +253,13 @@ nnoremap <leader>ff :lua vim.lsp.buf.formatting()<CR>
 " telescope
 nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
 nnoremap <leader>pk <cmd>lua require('telescope.builtin').grep_string()<CR>
-nnoremap <leader>ps <cmd>lua require('telescope.builtin').live_grep()<CR>
+nnoremap <leader>pg <cmd>lua require('telescope.builtin').live_grep()<CR>
 nnoremap <leader>pb <cmd>lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>ph <cmd>lua require('telescope.builtin').help_tags()<CR>
 nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<CR>
 nnoremap <leader>pt <cmd>lua require('telescope.builtin').tags()<CR>
+nnoremap <leader>ps <cmd>lua require('telescope.builtin').lsp_document_symbols{prompt_prefix=" "}<CR>
+nnoremap <leader>pd <cmd>lua require('telescope.builtin').lsp_workspace_diagnostics{prompt_prefix=" "}<CR>
 " nnoremap <C-j> :cnext<CR>zz
 " nnoremap <C-k> :cprev<CR>zz
 nnoremap <leader>j :cnext<CR>zz
