@@ -3,12 +3,11 @@ DEBIAN_CODENAME := $(lsb_release -a | grep "Codename:" | sed -i 's/^.*\s//')
 USER ?= greg
 
 setup/system:
-	sed -i.bak 's/$(DEBIAN_CODENAME)/testing/' /etc/apt/sources.list
+	sed -i.bak 's/${DEBIAN_CODENAME}/testing/' /etc/apt/sources.list
 	apt update;
 	apt upgrade -y;
 	apt install -y \
 		sudo \
-		build-essential \
 		xorg \
 		xinit \
 		suckless-tools \
