@@ -1,5 +1,5 @@
 # Scripts used to setup a fresh debian installation
-DEBIAN_CODENAME := $(lsb_release -a | grep "Codename:" | sed -En "s/^.*\s//p")
+DEBIAN_CODENAME := $(shell lsb_release -a | grep "Codename:" | sed -En "s/^.*\s//p")
 USER ?= greg
 
 setup/system:
