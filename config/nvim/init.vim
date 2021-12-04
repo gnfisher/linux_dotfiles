@@ -7,7 +7,6 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
-Plug 'scalameta/nvim-metals'
 Plug 'mfussenegger/nvim-lint'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
@@ -26,9 +25,8 @@ Plug 'tpope/vim-eunuch'
 Plug 'vim-test/vim-test'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'mattn/emmet-vim'
-Plug 'derekwyatt/vim-scala'
-Plug 'mhartington/oceanic-next'
 Plug 'morhetz/gruvbox'
+Plug 'itchyny/lightline.vim'
 call plug#end()
 
 runtime macros/matchit.vim
@@ -83,19 +81,13 @@ fun! InsertTabWrapper()
     endif
 endfunction
 
-fun! metals#status() abort
-  return get(g:, 'metals_status', '')
-endfunction
-
-set statusline =%f\ %h%w%m%r\ %=%(%l,%c%V\ %=\ %P%)%{metals#status()}
-
 lua << EOF
 vim.cmd [[
   syntax enable
+  colorscheme gruvbox
 ]]
-vim.g.ruvbox_contrast_dark = true
+vim.opt.background = 'dark'
 vim.opt.termguicolors = true
-vim.opt.background = 'light'
 vim.opt.errorbells = false
 vim.opt.mouse = 'a'
 vim.opt.tabstop = 2
@@ -132,8 +124,6 @@ vim.opt.diffopt:append('vertical')
 vim.opt.cursorline = true
 vim.opt.fillchars = {vert = '|'}
 vim.opt.tags:prepend('.git/tags')
-vim.opt.statusline = '%f %h%w%m%r %=%(%l,%c%V %= %P%)%{metals#status()}'
-vim.g.gruvbox_contrast_dark = 'hard'
 
 
 local actions = require('telescope.actions')
@@ -161,15 +151,50 @@ require('telescope').load_extension('fzy_native')
 require'lspconfig'.elmls.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.tailwindcss.setup{}
 
-require('lint').linters_by_ft = {
-  ruby = {'standardrb','ruby',}
+require('lint').linters.rubocop = {
+  cmd = 'rubocop',
+  stdin = true, -- or false if it doesn't support content input via stdin. In that case the filename is automatically added to the arguments.
+  args = {"--rails", "--force-exclusion", "--auto-correct", "--lint", "--stdin", "%:p", "--format", "json"}, -- list of arguments. Can contain functions with zero arguments that will be evaluated once the linter is used.
+  stream = 'both',
+  parser = function(output)
+    local sev = vim.lsp.protocol.DiagnosticSeverity
+    local diagnostics = {}
+    print(vim.inspect(output))
+    local decoded = vim.fn.json_decode(output)
+    local offences = decoded.files[1].offenses
+
+    for _, off in pairs(offences or {}) do
+      table.insert(diagnostics, {
+        range = {
+          ['start'] = {
+            line = off.location.start_line - 1,
+            character = off.location.start_column - 1
+          },
+          ['end'] = {
+            line = off.location.last_line - 1,
+            character = off.location.last_column
+          },
+        },
+        severity = (off.severity == "error" and sev.Error or sev.Warning ),
+        message = off.message,
+        code = off.cop_name,
+      })
+    end
+
+    return diagnostics
+  end,
 }
 
-metals_config = require("metals").bare_config
-metals_config.init_options.statusBarProvider = "on"
-metals_config.settings = {
-  showImplicitArguments = true
-  }
+require('lint').linters_by_ft = {
+  --ruby = {'rubocop',}
+}
+
+--metals_config = require("metals").bare_config
+--metals_config.init_options.statusBarProvider = "on"
+--metals_config.settings = {
+--  showImplicitArguments = true
+--  }
+
 EOF
 
 hi Normal guibg=NONE ctermbg=NONE
@@ -180,13 +205,13 @@ augroup vimrcEx
   autocmd BufWritePre * :call TrimWhitespace()
   autocmd BufReadPost * :call JumpToLastLine()
   autocmd BufWritePost *.rb lua require('lint').try_lint()
-  autocmd FileType scala,sbt lua require('metals').initialize_or_attach(metals_config)
+  " autocmd FileType scala,sbt lua require('metals').initialize_or_attach(metals_config)
 
   autocmd FileType ruby let b:dispatch = 'ruby %'
   autocmd FileType javascript let b:dispatch = 'node %'
   autocmd FileType scala let b:dispatch = 'heroku local:run -- bloop test ads-quoting-server -o "*%:t:r*"'
 
-  " autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 augroup END
 
 nnoremap <leader>; :
