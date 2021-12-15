@@ -15,9 +15,6 @@ my dotfiles, fish shell, some fonts, and other necessaries.
 
 - Tune [TLP](https://linrunner.de/tlp/installation/debian.html)
 
-
-
-
 # TODO
 
 - Dunst config in dotfiles

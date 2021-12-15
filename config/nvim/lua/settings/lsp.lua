@@ -8,23 +8,28 @@ M.setup = function()
     capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities),
   })
 
-  Metals_config = require("metals").bare_config()
-
-  Metals_config.settings = {
-    showImplicitArguments = true,
-    showInferredType = true,
+  local runtime_path = vim.split(package.path, ';')
+  table.insert(runtime_path, "lua/?.lua")
+  table.insert(runtime_path, "lua/?/init.lua")
+  require'lspconfig'.sumneko_lua.setup {
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+          path = runtime_path,
+        },
+        diagnostics = {
+          globals = {'vim'},
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
   }
-
-  Metals_config.init_options.statusBarProvider = "on"
-  Metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-
-  Metals_config.on_attach = function(client, bufnr)
-    vim.cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
-    vim.cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
-    vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
-
-    -- require("metals").setup_dap()
-  end
 
   lsp_config.elmls.setup({})
   lsp_config.html.setup({})
@@ -37,9 +42,6 @@ M.setup = function()
       },
     },
   })
-
-  -- Uncomment for trace logs from neovim
-  --vim.lsp.set_log_level('trace')
 end
 
 return M

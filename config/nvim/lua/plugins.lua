@@ -1,4 +1,5 @@
 return require('packer').startup(function(use)
+  use({ 'Mofiqul/vscode.nvim' })
   use({
     'nvim-telescope/telescope.nvim',
     requires = {

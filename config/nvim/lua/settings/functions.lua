@@ -21,7 +21,21 @@ local function split_on(s, delimiter)
   return result
 end
 
+local function trim_whitespace()
+  local save = vim.fn.winsaveview()
+  local cmd = 'keeppatterns %s/\\s\\+$//e'
+  vim.api.nvim_command(cmd)
+  vim.fn.winrestview(save)
+end
+
+-- fun! TrimWhitespace()
+--   let l:save = winsaveview()
+--  keeppatterns %s/\s\+$//e
+--   call winrestview(l:save)
+-- endfun
+
 return {
   map = map,
   split_on = split_on,
+  trim_whitespace = trim_whitespace,
 }

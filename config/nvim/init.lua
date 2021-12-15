@@ -27,8 +27,9 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
+-- g.vscode_style = 'dark'
 cmd([[syntax enable]])
-cmd([[colorscheme gruvbox]])
+-- cmd([[colorscheme vscode]])
 
 g["mapleader"] = " "
 
@@ -76,13 +77,14 @@ opt.writebackup = false
 opt.undodir = vim.env.HOME .. '/.vim/undodir'
 opt.undofile = true
 opt.autoread = true
+opt.background = 'light'
 
 -- statusline
-opt.statusline = "%!luaeval('Super_custom_status_line()')"
+-- opt.statusline = "%!luaeval('Super_custom_status_line()')"
 
 --Mappings-
 map("n", "<Leader>;", ":")
-map("n", "<Leader>vr", ":so ~/dotfiles/config/nvim/init.lua<CR>")
+map("n", "<Leader>vr", ":luafile ~/.config/nvim/init.lua<CR>")
 
 -- Copy paste helpers
 map("n", "cp", "\"+y")
@@ -135,12 +137,12 @@ map("n", "<leader>nd", [[<cmd>lua vim.diagnostic.goto_next()<CR>]])
 map("n", "<leader>pd", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]])
 map("n", "<leader>ld", [[<cmd>lua vim.diagnostic.open_float(0, {scope = "line"})<CR>]])
 map("n", "<leader>cl", [[<cmd>lua vim.lsp.codelens.run()<CR>]])
-map("n", "<leader>o", [[<cmd>lua vim.lsp.buf.formatting()<CR>]])
+map("n", "<leader>fr", [[<cmd>lua vim.lsp.buf.formatting()<CR>]])
 
-map("n", "<leader>ws", [[<cmd>lua require"metals".hover_worksheet()<CR>]])
-map("n", "<leader>a", [[<cmd>lua require("metals").open_all_diagnostics()<CR>]])
-map("n", "<leader>tt", [[<cmd>lua require("metals.tvp").toggle_tree_view()<CR>]])
-map("n", "<leader>tr", [[<cmd>lua require("metals.tvp").reveal_in_tree()<CR>]])
+-- map("n", "<leader>ws", [[<cmd>lua require"metals".hover_worksheet()<CR>]])
+-- map("n", "<leader>a", [[<cmd>lua require("metals").open_all_diagnostics()<CR>]])
+-- map("n", "<leader>tt", [[<cmd>lua require("metals.tvp").toggle_tree_view()<CR>]])
+-- map("n", "<leader>tr", [[<cmd>lua require("metals.tvp").reveal_in_tree()<CR>]])
 
 -- Telescope
 map("n", "<leader>ff", [[<cmd>lua require"telescope.builtin".find_files({layout_strategy="vertical"})<CR>]])
@@ -148,6 +150,8 @@ map("n", "<leader>lg", [[<cmd>lua require"telescope.builtin".live_grep({layout_s
 map("n", "<leader>fb", [[<cmd>lua require"telescope.builtin".file_browser({layout_strategy="vertical"})<CR>]])
 map("n", "<leader>pd", [[<cmd>lua require"telescope.builtin".lsp_workspace_diagnostics{prompt_prefix=" "}<CR>]])
 map("n", "<leader>mc", [[<cmd>lua require("telescope").extensions.metals.commands()<CR>]])
+map("n", "<leader>ob", [[<cmd>lua require("telescope.builtin").buffers({layout_strategy="vertical"})<CR>]])
+map("n", "<leader>fb", [[<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find({layout_strategy="vertical"})<CR>]])
 
 -- Fugitive
 map("n", "<leader>gs", ":G<CR>")
@@ -157,20 +161,20 @@ map("n", "<leader>gf", ":diffget //3><CR>")
 map("n", "<leader>gj", ":diffget //2><CR>")
 
 -- Commands
-
 cmd([[autocmd FileType markdown setlocal textwidth=80]])
 cmd(
   [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
 )
 cmd([[autocmd BufReadPost,BufNewFile .html,*.txt,*.md,*.adoc set spell spelllang=en_us]])
 cmd([[autocmd TermOpen * startinsert]])
+cmd([[autocmd BufWritePre * lua require('settings.functions').trim_whitespace()]])
 
 -- LSP
 cmd([[augroup lsp]])
 cmd([[autocmd!]])
  cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
- cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
-cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach({})]])
+ -- cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
+-- cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach({})]])
 --cmd([[autocmd FileType dap-repl lua require("dap.ext.autocompl").attatch()]])
 cmd([[augroup END]])
 
@@ -180,23 +184,23 @@ cmd([[hi! link LspReferenceRead CursorColumn]])
 cmd([[hi! link LspReferenceWrite CursorColumn]])
 
 -- Diagnostic specific colors
-cmd([[hi! DiagnosticError guifg=#e06c75]]) -- light red
-cmd([[hi! DiagnosticWarn guifg=#e5c07b]]) -- light yellow
-cmd([[hi! DiagnosticInfo guifg=#56b6c2]]) -- cyan
-cmd([[hi! link DiagnosticHint DiagnosticInfo]])
+-- cmd([[hi! DiagnosticError guifg=#e06c75]]) -- light red
+-- cmd([[hi! DiagnosticWarn guifg=#e5c07b]]) -- light yellow
+-- cmd([[hi! DiagnosticInfo guifg=#56b6c2]]) -- cyan
+-- cmd([[hi! link DiagnosticHint DiagnosticInfo]])
 
 -- _Maybe_ try underline for a bit
-cmd([[hi! DiagnosticUnderlineError cterm=NONE gui=underline guifg=NONE]])
-cmd([[hi! DiagnosticUnderlineWarn cterm=NONE gui=underline guifg=NONE]])
-cmd([[hi! DiagnosticUnderlineInfo cterm=NONE gui=underline guifg=NONE]])
-cmd([[hi! DiagnosticUnderlineHint cterm=NONE gui=underline guifg=NONE]])
+-- cmd([[hi! DiagnosticUnderlineError cterm=NONE gui=underline guifg=NONE]])
+-- cmd([[hi! DiagnosticUnderlineWarn cterm=NONE gui=underline guifg=NONE]])
+-- cmd([[hi! DiagnosticUnderlineInfo cterm=NONE gui=underline guifg=NONE]])
+-- cmd([[hi! DiagnosticUnderlineHint cterm=NONE gui=underline guifg=NONE]])
 
 -- Statusline specific highlights
-cmd([[hi! StatusLine guifg=#5C6370 guibg=#282c34]])
-cmd([[hi! link StatusError DiagnosticError]])
-cmd([[hi! link StatusWarn DiagnosticWarn]])
+-- cmd([[hi! StatusLine guifg=#5C6370 guibg=#282c34]])
+-- cmd([[hi! link StatusError DiagnosticError]])
+-- cmd([[hi! link StatusWarn DiagnosticWarn]])
 
-cmd([[hi! TelescopeTitle guifg=#e5c07b]])
+-- cmd([[hi! TelescopeTitle guifg=#e5c07b]])
 
 cmd([[autocmd TextYankPost * silent! lua vim.highlight.on_yank {}]])
 
@@ -208,9 +212,9 @@ fn.sign_define("DiagnosticSignHint", { text = "▬", texthl = "DiagnosticHint" }
 -- Since a lot of errors can be super long and multiple lines in Scala, I use
 -- this to split on the first new line and only dispaly the first line as the
 -- virtual text... that is when I actually use virtual text for diagnsostics
-local diagnostic_foramt = function(diagnostic)
-  return string.format("%s: %s", diagnostic.source, f.split_on(diagnostic.message, "\n")[1])
-end
+-- local diagnostic_foramt = function(diagnostic)
+--   return string.format("%s: %s", diagnostic.source, f.split_on(diagnostic.message, "\n")[1])
+-- end
 
 --vim.diagnostic.config({ virtual_text = { format = diagnostic_foramt }, severity_sort = true })
 --vim.diagnostic.config({ virtual_text = false })
