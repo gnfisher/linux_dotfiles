@@ -1,4 +1,5 @@
 # Scripts used to setup a fresh debian installation
+# with i3 gaps and some minimal extras.
 DEBIAN_CODENAME := $(shell lsb_release -a | grep "Codename:" | sed -En "s/^.*\s//p")
 I3_GAPS_REPO = https://www.github.com/Airblader/i3
 USER_HOME = /home/greg

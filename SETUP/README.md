@@ -17,5 +17,5 @@ my dotfiles, fish shell, some fonts, and other necessaries.
 
 # TODO
 
-- Dunst config in dotfiles
-- Possible GTK themeing.
+- Separate steps for doing a more complete setup (not meant for a VM).
+  - Dunst config in dotfiles etc.
