@@ -27,7 +27,6 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
--- g.vscode_style = 'dark'
 cmd([[syntax enable]])
 -- cmd([[colorscheme vscode]])
 
@@ -168,6 +167,7 @@ cmd(
 cmd([[autocmd BufReadPost,BufNewFile .html,*.txt,*.md,*.adoc set spell spelllang=en_us]])
 cmd([[autocmd TermOpen * startinsert]])
 cmd([[autocmd BufWritePre * lua require('settings.functions').trim_whitespace()]])
+cmd([[autocmd BufReadPost * lua require('settings.functions').jump_to_last_line()]])
 
 -- LSP
 cmd([[augroup lsp]])

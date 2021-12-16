@@ -22,7 +22,8 @@ return require('packer').startup(function(use)
       { 'hrsh7th/vim-vsnip' },
     },
   })
-  use({ "scalameta/nvim-metals" })
+  use({ 'scalameta/nvim-metals' })
+  use({ 'mfussenegger/nvim-jdtls' })
   -- Dispatch
   use({ 'tpope/vim-dispatch' })
   -- Git(Hub)

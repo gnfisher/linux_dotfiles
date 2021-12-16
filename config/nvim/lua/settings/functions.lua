@@ -28,14 +28,24 @@ local function trim_whitespace()
   vim.fn.winrestview(save)
 end
 
--- fun! TrimWhitespace()
---   let l:save = winsaveview()
---  keeppatterns %s/\s\+$//e
---   call winrestview(l:save)
+local function jump_to_last_line()
+  local ft = vim.bo.filetype
+  local ln = vim.fn.line("'\"")
+  local last_line = vim.fn.line("$")
+  if ft ~= 'gitcommit' and ln > 0 and ln < last_line then
+    vim.api.nvim_command([[:normal g`"]])
+  end
+end
+
+-- fun! JumpToLastLine()
+--   if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+--     exe "normal g`\"" |
+--   endif
 -- endfun
 
 return {
   map = map,
   split_on = split_on,
   trim_whitespace = trim_whitespace,
+  jump_to_last_line = jump_to_last_line,
 }
