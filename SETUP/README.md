@@ -19,3 +19,5 @@ my dotfiles, fish shell, some fonts, and other necessaries.
 
 - Separate steps for doing a more complete setup (not meant for a VM).
   - Dunst config in dotfiles etc.
+- Install Nerd Fonts
+- Setup proper colors/themes/etc.
