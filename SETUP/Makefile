@@ -6,7 +6,7 @@ USER_HOME = /home/greg
 setup/system:
 	dnf update -y
 	dnf install -y \
-		xorg \
+		xorg-x11-server \
 		xinit \
 		suckless-tools \
 		i3status \
@@ -14,10 +14,6 @@ setup/system:
 		pulseaudio \
 		pasystray \
 		pavucontrol \
-		fonts-noto \
-		fonts-hack-ttf \
-		ttf-mscorefonts-installer \
-		fonts-powerline \
 		dunst \
 		tlp tlp-rdw
 	dnf install -y dh-autoreconf libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm0 libxcb-xrm-dev libxcb-shape0 libxcb-shape0-dev
