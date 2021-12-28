@@ -1,16 +1,12 @@
 set $mod Mod1
 
-exec /usr/libexec/gnome-settings-daemon
-
 floating_modifier $mod
 
 bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+Shift+q kill
 
-# bindsym $mod+Shift+y exec "$HOME/.bin/lockscreen"
-
-# bindsym $mod+d exec i3-dmenu-desktop
+bindsym $mod+d exec i3-dmenu-desktop
 bindsym $mod+shift+d exec --no-startup-id dmenu_run
 
 bindsym $mod+h focus left
