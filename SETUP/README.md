@@ -15,9 +15,10 @@ my dotfiles, fish shell, some fonts, and other necessaries.
 
 - Tune [TLP](https://linrunner.de/tlp/installation/debian.html)
 
-# TODO
+# TODOS
 
 - Separate steps for doing a more complete setup (not meant for a VM).
   - Dunst config in dotfiles etc.
 - Install Nerd Fonts
-- Setup proper colors/themes/etc.
+- Setup proper colors/themes
+- picom for compositing

@@ -43,3 +43,4 @@ setup/user:
 	chsh -s $(which fish)
 	git clone https://github.com/gnfisher/linux_dotfiles.git /home/greg/dotfiles
 	env RCRC=$(USER_HOME)/dotfiles/rcrc rcup
+
