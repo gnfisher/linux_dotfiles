@@ -54,8 +54,7 @@
   prompt = "\n%D %c(%b%#)%w $ "
 [user]
   name = Greg Fisher
-  email = gnfisher@thoughtbot.com
-	signingkey = AF4C98576155566D
+  email = me@gnfisher.com
 [github]
   user = gnfisher
 [filesystem "AdoptOpenJDK|1.8.0_242|/dev/disk1s1"]
@@ -63,3 +62,5 @@
   minRacyThreshold = 0 nanoseconds
 [mergetool "fugitive"]
   cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+[url "git@github.com:"]
+	insteadOf = https://github.com/
