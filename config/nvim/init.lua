@@ -28,7 +28,7 @@ require("nvim-treesitter.configs").setup({
 })
 
 cmd([[syntax enable]])
--- cmd([[colorscheme vscode]])
+cmd([[colorscheme jellybeans-nvim ]])
 
 g["mapleader"] = " "
 

@@ -1,13 +1,14 @@
-set $mod Mod1
+set $mod Mod4
 
 floating_modifier $mod
 
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
 
 bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec i3-dmenu-desktop
 bindsym $mod+shift+d exec --no-startup-id dmenu_run
+bindsym $mod+z exec --no-startup-id ~/.bin/display.sh
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -107,25 +108,25 @@ set $darkgray #1d2021
 
 font pango:Noto sans mono 8
 
-# bar {
-#     position bottom
-#     colors {
-#         # bar background color
-#         background $bg
-#         # text color used for blocks that do not have a color specified.
-#         statusline $yellow
-#         # workspaces section
-#         #                    border  backgr. text
-#         focused_workspace    $aqua $aqua $darkgray
-#         inactive_workspace   $darkgray $darkgray $yellow
-#         active_workspace     $darkgray $darkgray $yellow
-#         urgent_workspace     $red $red $bg
-#     }
-# }
+bar {
+    position bottom
+    colors {
+        # bar background color
+        background $bg
+        # text color used for blocks that do not have a color specified.
+        statusline $yellow
+        # workspaces section
+        #                    border  backgr. text
+        focused_workspace    $aqua $aqua $darkgray
+        inactive_workspace   $darkgray $darkgray $yellow
+        active_workspace     $darkgray $darkgray $yellow
+        urgent_workspace     $red $red $bg
+    }
+}
 
 # green gruvbox
 # class                 border|backgr|text|indicator|child_border
-client.focused          $green $green $darkgray $purple $darkgray
+client.focused          $red $red $red $red $red
 client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
 client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
 client.urgent           $red $red $white $red $red
@@ -137,9 +138,7 @@ client.urgent           $red $red $white $red $red
 # client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
 # client.urgent           $red $red $white $red $red
 
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 3
 
-# gaps inner all set 5
-# gaps outer current plus 5
-# gaps horizontal current plus 5
-# gaps outer current toggle 5
+gaps inner 10
+gaps outer 10
