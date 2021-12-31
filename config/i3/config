@@ -9,6 +9,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec i3-dmenu-desktop
 bindsym $mod+shift+d exec --no-startup-id dmenu_run
 bindsym $mod+z exec --no-startup-id ~/.bin/display.sh
+exec_always --no-startup-id picom
+exec_always --no-startup-id nitrogen --restore
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down

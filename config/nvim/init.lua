@@ -200,6 +200,9 @@ cmd([[hi! link LspReferenceWrite CursorColumn]])
 -- cmd([[hi! link StatusError DiagnosticError]])
 -- cmd([[hi! link StatusWarn DiagnosticWarn]])
 
+-- Transparent backgrounds
+cmd([[hi! Normal ctermbg=none guibg=none]])
+
 -- cmd([[hi! TelescopeTitle guifg=#e5c07b]])
 
 cmd([[autocmd TextYankPost * silent! lua vim.highlight.on_yank {}]])

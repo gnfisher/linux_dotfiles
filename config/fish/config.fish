@@ -21,3 +21,8 @@ end
 function mcd
   command mkdir $argv[1] && cd $argv[1]
 end
+
+# Ensure tmux is running
+if not set -q TMUX
+  command tat
+end
