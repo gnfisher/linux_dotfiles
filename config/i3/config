@@ -9,7 +9,6 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+shift+d exec --no-startup-id dmenu_run
 bindsym $mod+z exec --no-startup-id ~/.bin/display.sh
-exec_always --no-startup-id picom
 exec_always --no-startup-id nitrogen --restore
 exec --no-startup-id /usr/bin/setxkbmap -option "caps:escape"
 
@@ -137,10 +136,10 @@ client.urgent           $red $red $white $red $red
 # client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
 # client.urgent           $red $red $white $red $red
 
-for_window [class=".*"] border pixel 3
+for_window [class=".*"] border pixel 0
 
-gaps inner 10
-gaps outer 10
+# gaps inner 10
+# gaps outer 10
 
 assign [class="Firefox"] 2
 assign [class="Boxes"] 0
