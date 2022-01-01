@@ -184,16 +184,16 @@ cmd([[hi! link LspReferenceRead CursorColumn]])
 cmd([[hi! link LspReferenceWrite CursorColumn]])
 
 -- Diagnostic specific colors
--- cmd([[hi! DiagnosticError guifg=#e06c75]]) -- light red
--- cmd([[hi! DiagnosticWarn guifg=#e5c07b]]) -- light yellow
--- cmd([[hi! DiagnosticInfo guifg=#56b6c2]]) -- cyan
--- cmd([[hi! link DiagnosticHint DiagnosticInfo]])
+cmd([[hi! DiagnosticError guifg=#e06c75]]) -- light red
+cmd([[hi! DiagnosticWarn guifg=#e5c07b]]) -- light yellow
+cmd([[hi! DiagnosticInfo guifg=#56b6c2]]) -- cyan
+cmd([[hi! link DiagnosticHint DiagnosticInfo]])
 
 -- _Maybe_ try underline for a bit
--- cmd([[hi! DiagnosticUnderlineError cterm=NONE gui=underline guifg=NONE]])
--- cmd([[hi! DiagnosticUnderlineWarn cterm=NONE gui=underline guifg=NONE]])
--- cmd([[hi! DiagnosticUnderlineInfo cterm=NONE gui=underline guifg=NONE]])
--- cmd([[hi! DiagnosticUnderlineHint cterm=NONE gui=underline guifg=NONE]])
+cmd([[hi! DiagnosticUnderlineError cterm=NONE gui=underline guifg=NONE]])
+cmd([[hi! DiagnosticUnderlineWarn cterm=NONE gui=underline guifg=NONE]])
+cmd([[hi! DiagnosticUnderlineInfo cterm=NONE gui=underline guifg=NONE]])
+cmd([[hi! DiagnosticUnderlineHint cterm=NONE gui=underline guifg=NONE]])
 
 -- Statusline specific highlights
 -- cmd([[hi! StatusLine guifg=#5C6370 guibg=#282c34]])
@@ -201,7 +201,7 @@ cmd([[hi! link LspReferenceWrite CursorColumn]])
 -- cmd([[hi! link StatusWarn DiagnosticWarn]])
 
 -- Transparent backgrounds
--- cmd([[hi! Normal ctermbg=none guibg=none]])
+cmd([[hi! Normal ctermbg=none guibg=none]])
 
 -- cmd([[hi! TelescopeTitle guifg=#e5c07b]])
 
