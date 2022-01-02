@@ -44,8 +44,14 @@ chosen=$(echo -e $choices | dmenu -i)
 
 # xrander will run and turn on the display you want, if you have an option for 3 displays, this will need some modifications
 case "$chosen" in
-    external) xrandr --output $INTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT --auto --primary ;;
-    laptop) xrandr --output $INTERNAL_OUTPUT --auto --primary --output $EXTERNAL_OUTPUT --off ;;
+    external)
+        xrandr --output $INTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT --auto --primary
+        xrdb -merge $HOME/.96.dpi
+        ;;
+    laptop)
+        xrandr --output $INTERNAL_OUTPUT --auto --primary --dpi 96 --output $EXTERNAL_OUTPUT --off
+        xrdb -merge $HOME/.X144.dpi
+        ;;
     clone) xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --auto --same-as $INTERNAL_OUTPUT ;;
     dual) xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --auto --right-of $INTERNAL_OUTPUT --primary ;;
 esac
