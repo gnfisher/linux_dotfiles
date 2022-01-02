@@ -125,19 +125,19 @@ bar {
 
 # green gruvbox
 # class                 border|backgr|text|indicator|child_border
-client.focused          $red $red $red $red $red
-client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
-client.urgent           $red $red $white $red $red
-
-# blue gruvbox
-# class                 border|backgr|text|indicator|child_border
-# client.focused          $blue $blue $darkgray $purple $darkgray
+# client.focused          $red $red $red $red $red
 # client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
 # client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
 # client.urgent           $red $red $white $red $red
 
-for_window [class=".*"] border pixel 0
+# blue gruvbox
+# class                 border|backgr|text|indicator|child_border
+client.focused          $blue $blue $darkgray $purple $darkgray
+client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+client.urgent           $red $red $white $red $red
+
+for_window [class=".*"] border pixel 2
 
 # gaps inner 10
 # gaps outer 10
