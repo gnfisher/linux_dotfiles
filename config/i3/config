@@ -159,4 +159,5 @@ client.urgent           $red $red $white $red $red
 # gaps outer 10
 
 assign [class="Firefox"] 2
+assign [class="Slack"] 3
 assign [class="Boxes"] 0
