@@ -44,7 +44,7 @@ M.setup = function()
   })
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-local workspace_dir = '/home/greg/Code/' .. project_name
+local workspace_dir = '/home/greg/Code/' .. project_name .. '/jdtls-data'
 Jdtls_config = {
   cmd = {
     'java', -- or '/path/to/java11_or_newer/bin/java'

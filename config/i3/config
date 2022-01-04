@@ -12,7 +12,7 @@ bindsym $mod+shift+d exec --no-startup-id dmenu_run
 bindsym $mod+z exec --no-startup-id ~/.bin/display.sh
 exec_always --no-startup-id picom --experimental-backends
 exec_always --no-startup-id nitrogen --restore
-exec --no-startup-id /usr/bin/setxkbmap -option "caps:escape"
+exec_always --no-startup-id /usr/bin/setxkbmap -option "caps:escape"
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -66,11 +66,11 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 
-hide_edge_borders both
+hide_edge_borders none
 focus_on_window_activation focus
 
 exec --no-startup-id nm-applet
-exec --no-startup-id pasystray
+exec_always --no-startup-id pasystray
 exec_always --no-startup-id feh --bg-fill ~/.background.jpg
 exec_always --no-startup-id picom
 
@@ -84,7 +84,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 mode "focus" {
-  bindsym b [class="(?i)chromium"] focus; mode "default"
+  bindsym b [class="(?i)Firefox"] focus; mode "default"
   bindsym s [class="(?i)slack"] focus; mode "default"
   bindsym m [class="(?i)spotify"] focus; mode "default"
   bindsym Escape mode "default"
@@ -124,21 +124,23 @@ bar {
     tray_padding 0
 }
 
+default_border pixel 3
+
 # green gruvbox
 # class                 border|backgr|text|indicator|child_border
-# client.focused          $red $red $red $red $red
+client.focused          $red $red $red $red $red
 # client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
 # client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
 # client.urgent           $red $red $white $red $red
 
 # blue gruvbox
 # class                 border|backgr|text|indicator|child_border
-client.focused          $blue $blue $darkgray $purple $darkgray
+# client.focused          $blue $blue $darkgray $purple $darkgray
 client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
 client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
 client.urgent           $red $red $white $red $red
 
-for_window [class=".*"] border pixel 2
+# for_window [class=".*"] border pixel 2
 
 # gaps inner 10
 # gaps outer 10
