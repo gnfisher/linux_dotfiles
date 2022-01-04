@@ -176,7 +176,6 @@ cmd([[autocmd!]])
  -- cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
  cmd([[autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)]])
 -- cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach({})]])
---cmd([[autocmd FileType dap-repl lua require("dap.ext.autocompl").attatch()]])
 cmd([[augroup END]])
 
 -- used in textDocument/hightlight
@@ -197,12 +196,15 @@ cmd([[hi! DiagnosticUnderlineInfo cterm=NONE gui=underline guifg=NONE]])
 cmd([[hi! DiagnosticUnderlineHint cterm=NONE gui=underline guifg=NONE]])
 
 -- Statusline specific highlights
--- cmd([[hi! StatusLine guifg=#5C6370 guibg=#282c34]])
+cmd([[hi! StatusLine guifg=#cf684c guibg=#3b3b3b]])
+cmd([[hi! StatusLineNC guifg=#a89984 guibg=#3b3b3b]])
 -- cmd([[hi! link StatusError DiagnosticError]])
 -- cmd([[hi! link StatusWarn DiagnosticWarn]])
 
 -- Transparent backgrounds
 cmd([[hi! Normal ctermbg=none guibg=none]])
+cmd([[hi! SignColumn ctermbg=none guibg=none]])
+
 
 -- cmd([[hi! TelescopeTitle guifg=#e5c07b]])
 
