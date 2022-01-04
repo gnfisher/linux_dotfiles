@@ -1,5 +1,5 @@
-# set $mod Mod4
-set $mod Mod1
+set $mod Mod4
+# set $mod Mod1
 
 floating_modifier $mod
 
@@ -75,8 +75,6 @@ focus_on_window_activation focus
 # bindsym $mod+shift+w move workspace to output left
 # bindsym $mod+shift+e move workspace to output right
 
-bindsym $mod+x exec --no-startup-id "$HOME/.bin/update-xrandr"
-
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -91,6 +89,21 @@ mode "focus" {
 }
 
 bindsym $mod+apostrophe mode "focus"
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id /home/greg/.bin/i3-power lock, mode "default"
+    bindsym e exec --no-startup-id /home/greg/.bin/i3-power logout, mode "default"
+    bindsym s exec --no-startup-id /home/greg/.bin/i3-power suspend, mode "default"
+    bindsym h exec --no-startup-id /home/greg/.bin/i3-power hibernate, mode "default"
+    bindsym r exec --no-startup-id /home/greg/.bin/i3-power reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+x mode "$mode_system"
 
 # theme
 
