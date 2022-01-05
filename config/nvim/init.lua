@@ -158,6 +158,13 @@ map("n", "<leader>gb", ":Gblame<CR>")
 map("n", "<leader>gf", ":diffget //3><CR>")
 map("n", "<leader>gj", ":diffget //2><CR>")
 
+-- Test
+g["test#strategy"] = "dispatch"
+map("n", "<leader>tn", ":TestNearest<CR>")
+map("n", "<leader>T", ":TestFile<CR>")
+map("n", "<leader>ta", ":TestSuite<CR>")
+map("n", "<leader>tl", ":TestLast<CR>")
+
 -- Commands
 cmd([[autocmd FileType markdown setlocal textwidth=80]])
 cmd(
@@ -168,7 +175,7 @@ cmd([[autocmd TermOpen * startinsert]])
 cmd([[autocmd BufWritePre * lua require('settings.functions').trim_whitespace()]])
 cmd([[autocmd BufReadPost * lua require('settings.functions').jump_to_last_line()]])
 
--- LSP
+-- LSP atuocmd
 cmd([[augroup lsp]])
 cmd([[autocmd!]])
  cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])

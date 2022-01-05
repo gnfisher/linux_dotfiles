@@ -26,6 +26,7 @@ return require('packer').startup(function(use)
   })
   use({ 'scalameta/nvim-metals' })
   use({ 'mfussenegger/nvim-jdtls' })
+  use({ 'vim-test/vim-test' })
   -- Dispatch
   use({ 'tpope/vim-dispatch' })
   -- Git(Hub)

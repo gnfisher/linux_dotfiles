@@ -73,10 +73,35 @@ Jdtls_config = {
         -- Here you can configure eclipse.jdt.ls specific settings
         -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
         -- for a list of options
-        -- settings = {
-        --   java = {
-        --   }
-        -- },
+        settings = {
+          java = {
+            format = { tabSize = 4 };
+            signatureHelp = { enabled = true };
+            -- contentProvider = { preferred = 'fernflower' };
+            completion = {
+              favoriteStaticMembers = {
+                "org.hamcrest.MatcherAssert.assertThat",
+                "org.hamcrest.Matchers.*",
+                "org.hamcrest.CoreMatchers.*",
+                "org.junit.jupiter.api.Assertions.*",
+                "java.util.Objects.requireNonNull",
+                "java.util.Objects.requireNonNullElse",
+                "org.mockito.Mockito.*"
+              }
+            };
+            sources = {
+              organizeImports = {
+                starThreshold = 9999;
+                staticStarThreshold = 9999;
+              };
+            };
+            codeGeneration = {
+              toString = {
+                template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
+              }
+            }
+          };
+        },
 
         -- Language server `initializationOptions`
         -- You need to extend the `bundles` with paths to jar files
