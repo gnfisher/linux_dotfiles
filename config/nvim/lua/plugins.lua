@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
     },
   })
   use({ 'nvim-treesitter/nvim-treesitter' })
+  use({ 'plasticboy/vim-markdown' })
   -- LSP/Lint
   use({ 'neovim/nvim-lspconfig' })
   use({ 'mfussenegger/nvim-lint' })
@@ -24,6 +25,7 @@ return require('packer').startup(function(use)
       { 'hrsh7th/vim-vsnip' },
     },
   })
+  use({ 'rafamadriz/friendly-snippets' })
   use({ 'scalameta/nvim-metals' })
   use({ 'mfussenegger/nvim-jdtls' })
   use({ 'vim-test/vim-test' })

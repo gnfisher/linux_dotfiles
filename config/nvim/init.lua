@@ -128,7 +128,7 @@ map("n", "K", [[<cmd>lua vim.lsp.buf.hover()<CR>]])
 map("n", "gr", [[<cmd>lua vim.lsp.buf.references()<CR>]])
 map("n", "<leader>rn", [[<cmd>lua vim.lsp.buf.rename()<CR>]])
 map("n", "gds", [[<cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>]])
-map("n", "gws", [[<cmd>lua require"telescope.builtin".lsp_workspace_symbols()<CR>]])
+map("n", "gws", [[<cmd>lua require"telescope.builtin".lsp_workspace_symbols({query = "*"})<CR>]])
 map("n", "<leader>ca", [[<cmd>lua vim.lsp.buf.code_action()<CR>]])
 map("n", "<leader>d", [[<cmd>lua vim.diagnostic.setloclist()<CR>]]) -- buffer diagnostics only
 map("n", "<leader>nd", [[<cmd>lua vim.diagnostic.goto_next()<CR>]])
