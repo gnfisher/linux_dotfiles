@@ -23,12 +23,13 @@ return require('packer').startup(function(use)
       { 'hrsh7th/cmp-path' },
       { 'hrsh7th/cmp-vsnip' },
       { 'hrsh7th/vim-vsnip' },
+      { 'hrsh7th/cmp-nvim-lua' },
     },
   })
   use({ 'rafamadriz/friendly-snippets' })
   use({ 'scalameta/nvim-metals' })
   use({ 'mfussenegger/nvim-jdtls' })
-  use({ 'vim-test/vim-test' })
+  use({ 'mfussenegger/nvim-dap' })
   -- Dispatch
   use({ 'tpope/vim-dispatch' })
   -- Git(Hub)

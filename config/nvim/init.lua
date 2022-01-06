@@ -13,6 +13,7 @@ require("settings.cmp").setup()
 require("settings.telescope").setup()
 require("settings.lsp").setup()
 require("settings.statusline")
+require("gitsigns")
 
 require("nvim-treesitter.configs").setup({
   query_linter = {
@@ -76,7 +77,9 @@ opt.writebackup = false
 opt.undodir = vim.env.HOME .. '/.vim/undodir'
 opt.undofile = true
 opt.autoread = true
-opt.background = 'light'
+opt.foldmethod = "manual"
+opt.foldlevelstart = 0
+opt.foldlevel = 99
 
 -- statusline
 -- opt.statusline = "%!luaeval('Super_custom_status_line()')"
@@ -109,10 +112,10 @@ map("n", "<C-h>", "<C-w>h")
 map("n", "<C-l>", "<C-w>l")
 
 -- Create new files with relative paths to open buffer
-map("n", "<leader>e", ":e <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
-map("n", "<leader>te", ":tabe <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
-map("n", "<leader>se", ":sp <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
-map("n", "<leader>ve", ":vsp <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
+map("n", "<leader>ee", ":e <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
+map("n", "<leader>et", ":tabe <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
+map("n", "<leader>es", ":sp <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
+map("n", "<leader>ev", ":vsp <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
 
 -- LSP
 g.completion_matching_strategy_list = {
@@ -123,19 +126,25 @@ g.completion_matching_strategy_list = {
 map("n", "gD", [[<cmd>lua vim.lsp.buf.definition()<CR>]])
 map("n", "gi", [[<cmd>lua vim.lsp.buf.implementation()<CR>]])
 map("n", "<leader>sh", [[<cmd>lua vim.lsp.buf.signature_help()<CR>]])
-map("n", "gds", [[<cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>]])
 map("n", "K", [[<cmd>lua vim.lsp.buf.hover()<CR>]])
 map("n", "gr", [[<cmd>lua vim.lsp.buf.references()<CR>]])
 map("n", "<leader>rn", [[<cmd>lua vim.lsp.buf.rename()<CR>]])
 map("n", "gds", [[<cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>]])
 map("n", "gws", [[<cmd>lua require"telescope.builtin".lsp_workspace_symbols({query = "*"})<CR>]])
 map("n", "<leader>ca", [[<cmd>lua vim.lsp.buf.code_action()<CR>]])
-map("n", "<leader>d", [[<cmd>lua vim.diagnostic.setloclist()<CR>]]) -- buffer diagnostics only
-map("n", "<leader>nd", [[<cmd>lua vim.diagnostic.goto_next()<CR>]])
-map("n", "<leader>pd", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]])
-map("n", "<leader>ld", [[<cmd>lua vim.diagnostic.open_float(0, {scope = "line"})<CR>]])
+map("n", "<leader>ds", [[<cmd>lua vim.diagnostic.setloclist()<CR>]]) -- buffer diagnostics only
+map("n", "<leader>dn", [[<cmd>lua vim.diagnostic.goto_next()<CR>]])
+map("n", "<leader>dp", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]])
+map("n", "<leader>dl", [[<cmd>lua vim.diagnostic.open_float(0, {scope = "line"})<CR>]])
 map("n", "<leader>cl", [[<cmd>lua vim.lsp.codelens.run()<CR>]])
 map("n", "<leader>fr", [[<cmd>lua vim.lsp.buf.formatting()<CR>]])
+
+map("n", "<leader>uo", "<Cmd>lua require'jdtls'.organize_imports()<CR>")
+map("n", "<leader>ut", "<Cmd>lua require'jdtls'.test_class()<CR>")
+map("n", "<leader>uT", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>")
+map("v", "<leader>ue", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>")
+map("n", "<leader>ue", "<Cmd>lua require('jdtls').extract_variable()<CR>")
+map("v", "<leader>um", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>")
 
 -- map("n", "<leader>ws", [[<cmd>lua require"metals".hover_worksheet()<CR>]])
 -- map("n", "<leader>a", [[<cmd>lua require("metals").open_all_diagnostics()<CR>]])
@@ -143,13 +152,13 @@ map("n", "<leader>fr", [[<cmd>lua vim.lsp.buf.formatting()<CR>]])
 -- map("n", "<leader>tr", [[<cmd>lua require("metals.tvp").reveal_in_tree()<CR>]])
 
 -- Telescope
-map("n", "<leader>ff", [[<cmd>lua require"telescope.builtin".find_files({layout_strategy="vertical"})<CR>]])
-map("n", "<leader>lg", [[<cmd>lua require"telescope.builtin".live_grep({layout_strategy="vertical"})<CR>]])
-map("n", "<leader>fb", [[<cmd>lua require"telescope.builtin".file_browser({layout_strategy="vertical"})<CR>]])
-map("n", "<leader>pd", [[<cmd>lua require"telescope.builtin".diagnostics{prompt_prefix=" "}<CR>]])
+map("n", "<leader>tf", [[<cmd>lua require"telescope.builtin".find_files({layout_strategy="vertical"})<CR>]])
+map("n", "<leader>tg", [[<cmd>lua require"telescope.builtin".live_grep({layout_strategy="vertical"})<CR>]])
+map("n", "<leader>tw", [[<cmd>lua require"telescope.builtin".file_browser({layout_strategy="vertical"})<CR>]])
+map("n", "<leader>td", [[<cmd>lua require"telescope.builtin".diagnostics{prompt_prefix=" "}<CR>]])
+map("n", "<leader>tb", [[<cmd>lua require("telescope.builtin").buffers({layout_strategy="vertical"})<CR>]])
+map("n", "<leader>tz", [[<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find({layout_strategy="vertical"})<CR>]])
 -- map("n", "<leader>mc", [[<cmd>lua require("telescope").extensions.metals.commands()<CR>]])
-map("n", "<leader>ob", [[<cmd>lua require("telescope.builtin").buffers({layout_strategy="vertical"})<CR>]])
-map("n", "<leader>fb", [[<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find({layout_strategy="vertical"})<CR>]])
 
 -- Fugitive
 map("n", "<leader>gs", ":G<CR>")
@@ -157,13 +166,6 @@ map("n", "<leader>ga", ":Git fetch --all<CR>")
 map("n", "<leader>gb", ":Gblame<CR>")
 map("n", "<leader>gf", ":diffget //3><CR>")
 map("n", "<leader>gj", ":diffget //2><CR>")
-
--- Test
-g["test#strategy"] = "dispatch"
-map("n", "<leader>tn", ":TestNearest<CR>")
-map("n", "<leader>T", ":TestFile<CR>")
-map("n", "<leader>ta", ":TestSuite<CR>")
-map("n", "<leader>tl", ":TestLast<CR>")
 
 -- Commands
 cmd([[autocmd FileType markdown setlocal textwidth=80]])
@@ -175,12 +177,12 @@ cmd([[autocmd TermOpen * startinsert]])
 cmd([[autocmd BufWritePre * lua require('settings.functions').trim_whitespace()]])
 cmd([[autocmd BufReadPost * lua require('settings.functions').jump_to_last_line()]])
 
--- LSP atuocmd
+-- LSP autocmd
 cmd([[augroup lsp]])
 cmd([[autocmd!]])
- cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
- -- cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
  cmd([[autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)]])
+ cmd([[autocmd FileType scala java lua setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
+ -- cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
 -- cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach({})]])
 cmd([[augroup END]])
 
@@ -204,8 +206,8 @@ cmd([[hi! DiagnosticUnderlineHint cterm=NONE gui=underline guifg=NONE]])
 -- Statusline specific highlights
 cmd([[hi! StatusLine guifg=#cf684c guibg=#3b3b3b]])
 cmd([[hi! StatusLineNC guifg=#a89984 guibg=#3b3b3b]])
--- cmd([[hi! link StatusError DiagnosticError]])
--- cmd([[hi! link StatusWarn DiagnosticWarn]])
+cmd([[hi! link StatusError DiagnosticError]])
+cmd([[hi! link StatusWarn DiagnosticWarn]])
 
 -- Transparent backgrounds
 cmd([[hi! Normal ctermbg=none guibg=none]])
@@ -215,6 +217,7 @@ cmd([[hi! SignColumn ctermbg=none guibg=none]])
 -- cmd([[hi! TelescopeTitle guifg=#e5c07b]])
 
 cmd([[autocmd TextYankPost * silent! lua vim.highlight.on_yank {}]])
+
 
 fn.sign_define("DiagnosticSignError", { text = "▬", texthl = "DiagnosticError" })
 fn.sign_define("DiagnosticSignWarn", { text = "▬", texthl = "DiagnosticWarn" })
