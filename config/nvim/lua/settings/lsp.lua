@@ -75,7 +75,10 @@ M.setup = function()
       -- for a list of options
       settings = {
         java = {
-          format = { tabSize = 4 },
+          -- format = {
+          --   insertSpaces = vim.api.nvim_buf_get_option(bufnr, 'expandtab'),
+          --   tabSize = vim.lsp.util.get_effective_tabstop(bufnr)
+          -- },
           signatureHelp = { enabled = true },
           -- contentProvider = { preferred = 'fernflower' },
           completion = {

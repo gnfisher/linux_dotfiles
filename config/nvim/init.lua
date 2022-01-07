@@ -29,7 +29,7 @@ require("nvim-treesitter.configs").setup({
 })
 
 cmd([[syntax enable]])
-cmd([[colorscheme jellybeans-nvim ]])
+-- cmd([[colorscheme jellybeans-nvim ]])
 
 g["mapleader"] = " "
 
@@ -37,6 +37,7 @@ local indent = 2
 
 global_opt.shortmess:remove("F"):append("c")
 global_opt.termguicolors = true
+global_opt.background = "light"
 global_opt.hidden = true
 global_opt.showtabline = 1
 global_opt.updatetime = 10
@@ -51,9 +52,9 @@ global_opt.scrolloff = 5
 opt.wrap = false
 opt.cursorline = true
 opt.signcolumn = "yes"
-opt.tabstop = indent
-opt.shiftwidth = indent
-opt.softtabstop = indent
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
 opt.expandtab = true
 opt.fileformat = "unix"
 opt.cmdheight = 2
@@ -80,9 +81,6 @@ opt.autoread = true
 opt.foldmethod = "manual"
 opt.foldlevelstart = 0
 opt.foldlevel = 99
-
--- statusline
--- opt.statusline = "%!luaeval('Super_custom_status_line()')"
 
 --Mappings-
 map("n", "<Leader>;", ":")
@@ -198,19 +196,19 @@ cmd([[hi! DiagnosticInfo guifg=#56b6c2]]) -- cyan
 cmd([[hi! link DiagnosticHint DiagnosticInfo]])
 
 -- _Maybe_ try underline for a bit
-cmd([[hi! DiagnosticUnderlineError cterm=NONE gui=underline guifg=NONE]])
-cmd([[hi! DiagnosticUnderlineWarn cterm=NONE gui=underline guifg=NONE]])
-cmd([[hi! DiagnosticUnderlineInfo cterm=NONE gui=underline guifg=NONE]])
-cmd([[hi! DiagnosticUnderlineHint cterm=NONE gui=underline guifg=NONE]])
+-- cmd([[hi! DiagnosticUnderlineError cterm=NONE gui=underline guifg=NONE]])
+-- cmd([[hi! DiagnosticUnderlineWarn cterm=NONE gui=underline guifg=NONE]])
+-- cmd([[hi! DiagnosticUnderlineInfo cterm=NONE gui=underline guifg=NONE]])
+-- cmd([[hi! DiagnosticUnderlineHint cterm=NONE gui=underline guifg=NONE]])
 
 -- Statusline specific highlights
-cmd([[hi! StatusLine guifg=#cf684c guibg=#3b3b3b]])
-cmd([[hi! StatusLineNC guifg=#a89984 guibg=#3b3b3b]])
-cmd([[hi! link StatusError DiagnosticError]])
-cmd([[hi! link StatusWarn DiagnosticWarn]])
+cmd([[hi! StatusLine guifg=#cccccc guibg=#000000]])
+cmd([[hi! StatusLineNC guifg=#000000 guibg=#cccccc]])
+-- cmd([[hi! link StatusError DiagnosticError]])
+-- cmd([[hi! link StatusWarn DiagnosticWarn]])
 
 -- Transparent backgrounds
-cmd([[hi! Normal ctermbg=none guibg=none]])
+-- cmd([[hi! Normal ctermbg=none guibg=none]])
 cmd([[hi! SignColumn ctermbg=none guibg=none]])
 
 
