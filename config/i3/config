@@ -34,6 +34,8 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
+bindsym $mod+v split v
+bindsym $mod+shift+v split h
 
 bindsym $mod+Shift+space floating toggle
 
@@ -161,3 +163,4 @@ client.urgent           $red $red $white $red $red
 assign [class="Firefox"] 2
 assign [class="Slack"] 3
 assign [class="Boxes"] 0
+for_window [class="Gnome-calculator"] floating enable
