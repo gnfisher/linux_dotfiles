@@ -134,6 +134,7 @@ map("n", "<leader>ds", [[<cmd>lua vim.diagnostic.setloclist()<CR>]]) -- buffer d
 map("n", "<leader>dn", [[<cmd>lua vim.diagnostic.goto_next()<CR>]])
 map("n", "<leader>dp", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]])
 map("n", "<leader>dl", [[<cmd>lua vim.diagnostic.open_float(0, {scope = "line"})<CR>]])
+map("n", "<leader>dw", [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics{prompt_prefix=" "}<CR>]])
 map("n", "<leader>cl", [[<cmd>lua vim.lsp.codelens.run()<CR>]])
 map("n", "<leader>fr", [[<cmd>lua vim.lsp.buf.formatting()<CR>]])
 
@@ -162,11 +163,13 @@ map("n", "<leader>tz", [[<cmd>lua require("telescope.builtin").current_buffer_fu
 map("n", "<leader>gs", ":G<CR>")
 map("n", "<leader>ga", ":Git fetch --all<CR>")
 map("n", "<leader>gb", ":Gblame<CR>")
+map("n", "<leader>gd", ":Gdiff<CR>")
 map("n", "<leader>gf", ":diffget //3><CR>")
 map("n", "<leader>gj", ":diffget //2><CR>")
 
 -- Commands
 cmd([[autocmd FileType markdown setlocal textwidth=80]])
+cmd([[autocmd FileType text setlocal textwidth=80]])
 cmd(
   [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
 )

@@ -1,5 +1,5 @@
 [init]
-  defaultBranch = main
+	defaultBranch = main
   templatedir = ~/.git_template
 [alias]
   aa = add --all

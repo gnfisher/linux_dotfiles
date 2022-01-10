@@ -112,7 +112,7 @@ M.setup = function()
     local bundles = {
       vim.fn.glob("/home/greg/.local/share/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
     };
-    -- -- vim.list_extend(bundles, vim.split(vim.fn.glob("/home/greg/.local/share/vscode-java-test/server/*.jar"), "\n"))
+    vim.list_extend(bundles, vim.split(vim.fn.glob("/home/greg/.local/share/vscode-java-test/server/*.jar"), "\n"))
     Jdtls_config['init_options'] = {
       bundles = bundles;
     }
