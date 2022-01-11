@@ -13,6 +13,7 @@ require("settings.cmp").setup()
 require("settings.telescope").setup()
 require("settings.lsp").setup()
 require("settings.statusline")
+-- require("settings.lualine")
 require("gitsigns")
 
 require("nvim-treesitter.configs").setup({
@@ -29,6 +30,14 @@ require("nvim-treesitter.configs").setup({
 })
 
 cmd([[syntax enable]])
+g.vscode_style = "dark"
+-- g.vscode_style = "light"
+-- Enable transparent background.
+g.vscode_transparent = 1
+-- Enable italic comment
+g.vscode_italic_comment = 1
+vim.cmd[[colorscheme vscode]]
+
 -- cmd([[colorscheme jellybeans-nvim ]])
 
 g["mapleader"] = " "
@@ -37,7 +46,7 @@ local indent = 2
 
 global_opt.shortmess:remove("F"):append("c")
 global_opt.termguicolors = true
-global_opt.background = "light"
+-- global_opt.background = "dark"
 global_opt.hidden = true
 global_opt.showtabline = 1
 global_opt.updatetime = 10
@@ -211,7 +220,7 @@ cmd([[hi! StatusLineNC guifg=#000000 guibg=#cccccc]])
 -- cmd([[hi! link StatusWarn DiagnosticWarn]])
 
 -- Transparent backgrounds
--- cmd([[hi! Normal ctermbg=none guibg=none]])
+cmd([[hi! Normal ctermbg=none guibg=none]])
 cmd([[hi! SignColumn ctermbg=none guibg=none]])
 
 
