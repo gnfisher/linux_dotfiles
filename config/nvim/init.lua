@@ -30,15 +30,15 @@ require("nvim-treesitter.configs").setup({
 })
 
 cmd([[syntax enable]])
-g.vscode_style = "dark"
+-- g.vscode_style = "dark"
 -- g.vscode_style = "light"
 -- Enable transparent background.
-g.vscode_transparent = 1
--- Enable italic comment
-g.vscode_italic_comment = 1
-vim.cmd[[colorscheme vscode]]
+-- g.vscode_transparent = 1
+-- -- Enable italic comment
+-- g.vscode_italic_comment = 1
+-- vim.cmd[[colorscheme vscode]]
 
--- cmd([[colorscheme jellybeans-nvim ]])
+cmd([[colorscheme gruvbox]])
 
 g["mapleader"] = " "
 
