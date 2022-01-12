@@ -19,3 +19,7 @@ brew "java11"
 
 tap "homebrew/cask"
 cask "kitty"
+
+tap "homebrew/cask-fonts"
+cask "font-ubuntu-mono-nerd-font"
+
