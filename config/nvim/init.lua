@@ -175,6 +175,7 @@ map("n", "<leader>gb", ":Gblame<CR>")
 map("n", "<leader>gd", ":Gdiff<CR>")
 map("n", "<leader>gf", ":diffget //3><CR>")
 map("n", "<leader>gj", ":diffget //2><CR>")
+map("n", "<leader>gp", ":Git push<CR>")
 
 -- Commands
 cmd([[autocmd FileType markdown setlocal textwidth=80]])
