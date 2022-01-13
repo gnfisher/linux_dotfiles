@@ -12,7 +12,7 @@ require("plugins")
 require("settings.cmp").setup()
 require("settings.telescope").setup()
 require("settings.lsp").setup()
-require("gitsigns")
+require("gitsigns").setup()
 
 require("nvim-treesitter.configs").setup({
   query_linter = {
@@ -31,8 +31,6 @@ cmd([[syntax enable]])
 cmd([[colorscheme gruvbox]])
 
 g["mapleader"] = " "
-
-local indent = 2
 
 global_opt.shortmess:remove("F"):append("c")
 global_opt.termguicolors = true
