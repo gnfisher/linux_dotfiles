@@ -38,6 +38,7 @@
   autocrlf = input
   editor = nvim
   pager = diff-so-fancy | less --tabs=2 -RFX
+	hooksPath = /Users/gfisher/.git_hooks
 [merge]
   ff = only
   tool = fugitive
@@ -54,7 +55,7 @@
   prompt = "\n%D %c(%b%#)%w $ "
 [user]
   name = Greg Fisher
-  email = me@gnfisher.com
+	email = gfisher@hubspot.com
 [github]
   user = gnfisher
 [filesystem "AdoptOpenJDK|1.8.0_242|/dev/disk1s1"]

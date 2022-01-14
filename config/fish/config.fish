@@ -6,8 +6,11 @@ switch (uname)
     case Linux
       set JAVA_HOME "/usr/bin/java"
       source ~/.config/fish/linux.fish
+      source ~/.asdf/asdf.fish
     case Darwin
       set HOMEBREW_NO_AUTO_UPDATE 1
+      source ~/.hubspot/config.fish
+      source /usr/local/opt/asdf/libexec/asdf.fish
 end
 
 set PATH $HOME/.cargo/bin $PATH
@@ -16,8 +19,6 @@ set PATH $PATH "$PATH:$HOME/.bin:/usr/local/bin"
 set PATH $HOME/.local/share/coursier/bin $PATH
 set PATH $HOME/.local/share/idea/bin $PATH
 
-
-source ~/.asdf/asdf.fish
 source ~/.aliasrc
 
 function mcd

@@ -22,4 +22,3 @@ cask "kitty"
 
 tap "homebrew/cask-fonts"
 cask "font-ubuntu-mono-nerd-font"
-
