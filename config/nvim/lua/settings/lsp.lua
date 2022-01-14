@@ -4,6 +4,8 @@ M.setup = function()
   local lsp_config = require("lspconfig")
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+  lsp_config.tsserver.setup({})
+
   lsp_config.util.default_config = vim.tbl_extend("force", lsp_config.util.default_config, {
       capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities),
     })
@@ -76,8 +78,8 @@ M.setup = function()
       settings = {
         java = {
           -- format = {
-          --   insertSpaces = vim.api.nvim_buf_get_option(bufnr, 'expandtab'),
-          --   tabSize = vim.lsp.util.get_effective_tabstop(bufnr)
+            --   insertSpaces = vim.api.nvim_buf_get_option(bufnr, 'expandtab'),
+            --   tabSize = vim.lsp.util.get_effective_tabstop(bufnr)
           -- },
           signatureHelp = { enabled = true },
           -- contentProvider = { preferred = 'fernflower' },

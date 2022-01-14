@@ -12,6 +12,7 @@ return require('packer').startup(function(use)
   use({ 'nvim-treesitter/nvim-treesitter' })
   use({ 'plasticboy/vim-markdown' })
   -- LSP/Lint
+  use({ 'sbdchd/neoformat' })
   use({ 'neovim/nvim-lspconfig' })
   use({ 'mfussenegger/nvim-lint' })
   use({

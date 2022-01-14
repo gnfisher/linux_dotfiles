@@ -113,6 +113,7 @@ map("n", "<leader>es", ":sp <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
 map("n", "<leader>ev", ":vsp <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
 
 -- LSP
+g.neoformat_try_node_exe = 1
 g.completion_matching_strategy_list = {
   "exact",
   "substring",
@@ -166,6 +167,7 @@ map("n", "<leader>gj", ":diffget //2><CR>")
 map("n", "<leader>gp", ":Git push<CR>")
 
 -- Commands
+cmd([[autocmd BufWritePre *.lua,*.ts,*.js,*.tsx,*.jsx Neoformat]])
 cmd([[autocmd FileType markdown setlocal textwidth=80]])
 cmd([[autocmd FileType text setlocal textwidth=80]])
 cmd(
