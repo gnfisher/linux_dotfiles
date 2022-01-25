@@ -28,13 +28,13 @@ require("nvim-treesitter.configs").setup({
 })
 
 cmd([[syntax enable]])
-cmd([[colorscheme gruvbox]])
+-- cmd([[colorscheme gruvbox]])
 
 g["mapleader"] = " "
 
 global_opt.shortmess:remove("F"):append("c")
 global_opt.termguicolors = true
--- global_opt.background = "dark"
+global_opt.background = "light"
 global_opt.hidden = true
 global_opt.showtabline = 1
 global_opt.updatetime = 10

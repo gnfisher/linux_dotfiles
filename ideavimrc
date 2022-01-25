@@ -5,6 +5,9 @@ set relativenumber
 set ideajoin
 set surround
 set commentary
+set noerrorbells
+set visualbell
+
 
 let mapleader = " "
 noremap <leader>; :
@@ -42,6 +45,9 @@ nnoremap <C-l> <C-w>l
 
 nnoremap j gj
 nnoremap k gk
+
+nmap <C-o> :action Back<CR>
+nmap <C-i> :action Forward<CR>
 
 set easymotion
 

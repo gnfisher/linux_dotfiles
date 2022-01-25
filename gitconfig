@@ -65,3 +65,5 @@
   cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[commit]
+  template=~/.gitmessage

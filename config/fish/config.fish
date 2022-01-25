@@ -26,6 +26,6 @@ function mcd
 end
 
 # Ensure tmux is running
-if not set -q TMUX
-  command tat
-end
+# if not set -q TMUX
+#   command tat
+# end
