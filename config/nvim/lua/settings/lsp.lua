@@ -49,7 +49,7 @@ M.setup = function()
   -- workspace dir needs to be an actual directory, not the directory where your project lives.
   -- you don't want ../your/code_dir/<project_name>/<jdtls configs>
   -- but instead .../your/workspaces/<project_name>/<jdtls_configs>
-  local workspace_dir = '/home/greg/workspaces' .. project_name
+  local workspace_dir = '/home/greg/workspaces/' .. project_name
   Jdtls_config = {
     cmd = {
       'java', -- or '/path/to/java11_or_newer/bin/java'
