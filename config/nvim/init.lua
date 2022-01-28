@@ -167,7 +167,7 @@ map("n", "<leader>gj", ":diffget //2><CR>")
 map("n", "<leader>gp", ":Git push<CR>")
 
 -- Commands
-cmd([[autocmd BufWritePre *.lua,*.ts,*.js,*.tsx,*.jsx Neoformat]])
+-- cmd([[autocmd BufWritePre *.lua,*.ts,*.js,*.tsx,*.jsx Neoformat]])
 cmd([[autocmd FileType markdown setlocal textwidth=80]])
 cmd([[autocmd FileType text setlocal textwidth=80]])
 cmd(
@@ -182,7 +182,7 @@ cmd([[autocmd BufReadPost * lua require('settings.functions').jump_to_last_line(
 cmd([[augroup lsp]])
 cmd([[autocmd!]])
  cmd([[autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)]])
- cmd([[autocmd FileType scala java lua setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
+ cmd([[autocmd FileType scala,java,lua setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
  -- cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
 -- cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach({})]])
 cmd([[augroup END]])

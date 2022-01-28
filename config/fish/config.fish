@@ -18,6 +18,7 @@ set PATH $HOME/.local/bin $PATH
 set PATH $PATH "$PATH:$HOME/.bin:/usr/local/bin"
 set PATH $HOME/.local/share/coursier/bin $PATH
 set PATH $HOME/.local/share/idea/bin $PATH
+set PATH $HOME/.local/share/lua-language-server/bin $PATH
 
 source ~/.aliasrc
 
