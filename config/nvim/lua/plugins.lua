@@ -9,6 +9,7 @@ return require('packer').startup(function(use)
       { 'nvim-telescope/telescope-fzy-native.nvim' },
     },
   })
+  use({ 'nvim-telescope/telescope-ui-select.nvim' })
   use({ 'nvim-treesitter/nvim-treesitter' })
   use({ 'plasticboy/vim-markdown' })
   -- LSP/Lint

@@ -1,6 +1,7 @@
 local M = {}
 
 M.setup = function()
+  local home = os.getenv('HOME')
   local lsp_config = require("lspconfig")
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -45,11 +46,32 @@ M.setup = function()
       },
     })
 
+  -- Need to inject these lines into .classpath files so that generated sources are understood
+  local inject_classpath = function()
+    local line_a = '<classpathentry kind="src" output="target/classes" path="target/generated-sources/annotations"/><!--GF-->'
+    local line_c = '<classpathentry kind="src" output="target/classes" path="target/generated-sources/config"/><!--GF-->'
+
+    for _, file in pairs(vim.fn.glob('*/.classpath', 0, 1)) do
+      local new_file = {}
+      for line in io.lines(file) do
+        if not string.find(line, "--GF--") then
+          table.insert(new_file, line)
+        end
+      end
+      table.insert(new_file, 3, line_a)
+      table.insert(new_file, 4, line_c)
+      local next = io.open(file, 'w')
+      for _, line in pairs(new_file) do
+        next:write(line, "\n")
+      end
+    end
+  end
+  inject_classpath() -- so we can find generated annotations, etc.
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
   -- workspace dir needs to be an actual directory, not the directory where your project lives.
   -- you don't want ../your/code_dir/<project_name>/<jdtls configs>
   -- but instead .../your/workspaces/<project_name>/<jdtls_configs>
-  local workspace_dir = '/home/greg/workspaces/' .. project_name
+  local workspace_dir = home .. '/workspaces/' .. project_name
   Jdtls_config = {
     cmd = {
       'java', -- or '/path/to/java11_or_newer/bin/java'
@@ -62,8 +84,8 @@ M.setup = function()
       '--add-modules=ALL-SYSTEM',
       '--add-opens', 'java.base/java.util=ALL-UNNAMED',
       '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-      '-jar', '/home/greg/.local/share/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
-      '-configuration', '/home/greg/.local/share/jdtls/config_linux',
+      '-jar', '/Users/gfisher/.local/share/jdt-language-server-1.9.0-202201270134/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
+      '-configuration', home .. '/.local/share/jdt-language-server-1.9.0-202201270134/config_mac',
       '-data', workspace_dir,
     },
 
@@ -77,12 +99,11 @@ M.setup = function()
       -- for a list of options
       settings = {
         java = {
-          -- format = {
-            --   insertSpaces = vim.api.nvim_buf_get_option(bufnr, 'expandtab'),
-            --   tabSize = vim.lsp.util.get_effective_tabstop(bufnr)
-          -- },
+          format = {
+            settings = { url = home .. '/.local/share/eclipse_format_pref.xml' } -- expects xml settings placed here
+          },
           signatureHelp = { enabled = true },
-          -- contentProvider = { preferred = 'fernflower' },
+          contentProvider = { preferred = 'fernflower' },
           completion = {
             favoriteStaticMembers = {
               "org.hamcrest.MatcherAssert.assertThat",

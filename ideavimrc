@@ -7,6 +7,7 @@ set surround
 set commentary
 set noerrorbells
 set visualbell
+set NERDTree
 
 
 let mapleader = " "
