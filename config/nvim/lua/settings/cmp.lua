@@ -36,7 +36,7 @@ M.setup = function()
         end,
       },
       experimental = {
-        -- native_menu = false,
+        -- native_menu = true,
       },
     }
   }
