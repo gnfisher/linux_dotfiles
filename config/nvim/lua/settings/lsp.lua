@@ -67,6 +67,7 @@ M.setup = function()
     end
   end
   inject_classpath() -- so we can find generated annotations, etc.
+
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
   -- workspace dir needs to be an actual directory, not the directory where your project lives.
   -- you don't want ../your/code_dir/<project_name>/<jdtls configs>
@@ -100,7 +101,10 @@ M.setup = function()
       settings = {
         java = {
           format = {
-            settings = { url = home .. '/.local/share/eclipse_format_pref.xml' } -- expects xml settings placed here
+            settings = {
+              url = home .. '/.local/share/eclipse_format_pref.xml', -- expects xml settings placed here
+              profile = 'hubspot'
+            }
           },
           signatureHelp = { enabled = true },
           contentProvider = { preferred = 'fernflower' },
@@ -132,17 +136,17 @@ M.setup = function()
       },
     }
 
-    local bundles = {
-      vim.fn.glob("/home/greg/.local/share/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
-    };
-    vim.list_extend(bundles, vim.split(vim.fn.glob("/home/greg/.local/share/vscode-java-test/server/*.jar"), "\n"))
-    Jdtls_config['init_options'] = {
-      bundles = bundles;
-    }
+    -- local bundles = {
+    --   vim.fn.glob("/home/greg/.local/share/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
+    -- };
+    -- vim.list_extend(bundles, vim.split(vim.fn.glob("/home/greg/.local/share/vscode-java-test/server/*.jar"), "\n"))
+    -- Jdtls_config['init_options'] = {
+    --   bundles = bundles;
+    -- }
 
     Jdtls_config['on_attach'] = function(client, bufnr)
       local jdtls = require('jdtls');
-      jdtls.setup_dap({ hotcodereplace = 'auto' });
+      -- jdtls.setup_dap({ hotcodereplace = 'auto' });
       jdtls.setup.add_commands();
     end
 

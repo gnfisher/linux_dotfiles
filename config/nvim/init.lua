@@ -28,13 +28,13 @@ require("nvim-treesitter.configs").setup({
 })
 
 cmd([[syntax enable]])
--- cmd([[colorscheme gruvbox]])
+cmd([[colorscheme Gruvbox]])
 
 g["mapleader"] = " "
 
 global_opt.shortmess:remove("F"):append("c")
 global_opt.termguicolors = true
-global_opt.background = "light"
+global_opt.background = "dark"
 global_opt.hidden = true
 global_opt.showtabline = 1
 global_opt.updatetime = 10
@@ -113,6 +113,7 @@ map("n", "<leader>es", ":sp <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
 map("n", "<leader>ev", ":vsp <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
 
 -- LSP
+g['prettier#config#print_width'] = 90
 g.neoformat_try_node_exe = 1
 g.completion_matching_strategy_list = {
   "exact",
@@ -134,7 +135,7 @@ map("n", "<leader>dp", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]])
 map("n", "<leader>dl", [[<cmd>lua vim.diagnostic.open_float(0, {scope = "line"})<CR>]])
 map("n", "<leader>dw", [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics{prompt_prefix=" "}<CR>]])
 map("n", "<leader>cl", [[<cmd>lua vim.lsp.codelens.run()<CR>]])
-map("n", "<leader>fr", [[<cmd>lua vim.lsp.buf.formatting()<CR>]])
+map("n", "<leader>fr", [[<cmd>lua vim.lsp.buf.formatting({ tabSize = 2 })<CR>]])
 
 map("n", "<leader>uo", "<Cmd>lua require'jdtls'.organize_imports()<CR>")
 map("n", "<leader>ut", "<Cmd>lua require'jdtls'.test_class()<CR>")
@@ -158,6 +159,8 @@ map("n", "<leader>tz", [[<cmd>lua require("telescope.builtin").current_buffer_fu
 -- map("n", "<leader>mc", [[<cmd>lua require("telescope").extensions.metals.commands()<CR>]])
 
 -- Fugitive
+-- let g:github_enterprise_urls = ['https://example.com']
+g.github_enterprise_urls = {'https://git.hubteam.com'}
 map("n", "<leader>gs", ":G<CR>")
 map("n", "<leader>ga", ":Git fetch --all<CR>")
 map("n", "<leader>gb", ":Gblame<CR>")
@@ -177,6 +180,7 @@ cmd([[autocmd BufReadPost,BufNewFile .html,*.txt,*.md,*.adoc set spell spelllang
 cmd([[autocmd TermOpen * startinsert]])
 cmd([[autocmd BufWritePre * lua require('settings.functions').trim_whitespace()]])
 cmd([[autocmd BufReadPost * lua require('settings.functions').jump_to_last_line()]])
+cmd([[autocmd BufWritePre *.java PrettierAsync ]])
 
 -- LSP autocmd
 cmd([[augroup lsp]])

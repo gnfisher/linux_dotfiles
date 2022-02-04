@@ -1,6 +1,7 @@
 return require('packer').startup(function(use)
   use({ 'rktjmp/lush.nvim' })
   use({ 'metalelf0/jellybeans-nvim' })
+  use({ 'overcache/NeoSolarized' })
   use({
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -13,7 +14,7 @@ return require('packer').startup(function(use)
   use({ 'nvim-treesitter/nvim-treesitter' })
   use({ 'plasticboy/vim-markdown' })
   -- LSP/Lint
-  use({ 'sbdchd/neoformat' })
+  use({ 'prettier/vim-prettier' })
   use({ 'neovim/nvim-lspconfig' })
   use({ 'mfussenegger/nvim-lint' })
   use({
