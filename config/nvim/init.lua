@@ -202,6 +202,10 @@ cmd([[hi! DiagnosticWarn guifg=#e5c07b]]) -- light yellow
 cmd([[hi! DiagnosticInfo guifg=#56b6c2]]) -- cyan
 cmd([[hi! link DiagnosticHint DiagnosticInfo]])
 
+-- Colors that shouldn't live here but do
+cmd([[hi! CursorLineNR guibg=None]])
+cmd([[hi! LineNR guifg=#5eacd3]])
+cmd([[hi! SignColumn guibg=none]])
 -- _Maybe_ try underline for a bit
 -- cmd([[hi! DiagnosticUnderlineError cterm=NONE gui=underline guifg=NONE]])
 -- cmd([[hi! DiagnosticUnderlineWarn cterm=NONE gui=underline guifg=NONE]])
