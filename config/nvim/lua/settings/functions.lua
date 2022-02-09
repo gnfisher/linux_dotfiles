@@ -37,16 +37,9 @@ local function jump_to_last_line()
   end
 end
 
-local function java_prettier()
-  local path = vim.fn.expand('%')
-  print(path)
-  os.execute("prettier --write " .. path)
-end
-
 return {
   map = map,
   split_on = split_on,
   trim_whitespace = trim_whitespace,
   jump_to_last_line = jump_to_last_line,
-  java_prettier = java_prettier,
 }

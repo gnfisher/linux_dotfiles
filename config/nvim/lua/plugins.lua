@@ -57,4 +57,13 @@ return require('packer').startup(function(use)
   use({ 'morhetz/gruvbox' })
   use({ 'kyazdani42/nvim-web-devicons' })
   use({ 'wbthomason/packer.nvim', opt = true })
+  -- org mode
+  use({
+    "nvim-neorg/neorg",
+    tag = "latest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-neorg/neorg-telescope"
+    }
+})
 end)

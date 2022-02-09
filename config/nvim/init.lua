@@ -12,29 +12,18 @@ require("plugins")
 require("settings.cmp").setup()
 require("settings.telescope").setup()
 require("settings.lsp").setup()
+require("settings.treesitter").setup()
 require("gitsigns").setup()
 
-require("nvim-treesitter.configs").setup({
-  query_linter = {
-    enable = true,
-    use_virtual_text = true,
-    lint_events = { "BufWrite", "CursorHold" },
-  },
-  ensure_installed = "maintained",
-  highlight = {
-    enable = true,
-    disable = { "scala" },
-  },
-})
-
 cmd([[syntax enable]])
-cmd([[colorscheme Gruvbox]])
+-- cmd([[colorscheme Gruvbox]])
+-- g['gruvbox_contrast_dark'] = 'hard'
 
 g["mapleader"] = " "
 
 global_opt.shortmess:remove("F"):append("c")
 global_opt.termguicolors = true
-global_opt.background = "dark"
+global_opt.background = "light"
 global_opt.hidden = true
 global_opt.showtabline = 1
 global_opt.updatetime = 10
@@ -46,6 +35,7 @@ global_opt.smartcase = true
 -- global_opt.clipboard = "unnamed"
 global_opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
 global_opt.scrolloff = 5
+opt.path:append('**')
 opt.wrap = false
 opt.cursorline = true
 opt.signcolumn = "yes"
@@ -101,10 +91,10 @@ map("n", "j", "gj")
 map("n", "k", "gk")
 
 -- Better window navigation.
-map("n", "<C-j>", "<C-w>j")
-map("n", "<C-k>", "<C-w>k")
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-l>", "<C-w>l")
+-- map("n", "<C-j>", "<C-w>j")
+-- map("n", "<C-k>", "<C-w>k")
+-- map("n", "<C-h>", "<C-w>h")
+-- map("n", "<C-l>", "<C-w>l")
 
 -- Create new files with relative paths to open buffer
 map("n", "<leader>ee", ":e <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
@@ -172,6 +162,7 @@ map("n", "<leader>gp", ":Git push<CR>")
 -- Commands
 -- cmd([[autocmd BufWritePre *.lua,*.ts,*.js,*.tsx,*.jsx Neoformat]])
 cmd([[autocmd FileType markdown setlocal textwidth=80]])
+cmd([[autocmd FileType norg setlocal textwidth=80]])
 cmd([[autocmd FileType text setlocal textwidth=80]])
 cmd(
   [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
@@ -206,6 +197,7 @@ cmd([[hi! link DiagnosticHint DiagnosticInfo]])
 cmd([[hi! CursorLineNR guibg=None]])
 cmd([[hi! LineNR guifg=#5eacd3]])
 cmd([[hi! SignColumn guibg=none]])
+
 -- _Maybe_ try underline for a bit
 -- cmd([[hi! DiagnosticUnderlineError cterm=NONE gui=underline guifg=NONE]])
 -- cmd([[hi! DiagnosticUnderlineWarn cterm=NONE gui=underline guifg=NONE]])
@@ -219,8 +211,8 @@ cmd([[hi! StatusLineNC guifg=#000000 guibg=#cccccc]])
 -- cmd([[hi! link StatusWarn DiagnosticWarn]])
 
 -- Transparent backgrounds
-cmd([[hi! Normal ctermbg=none guibg=none]])
-cmd([[hi! SignColumn ctermbg=none guibg=none]])
+-- cmd([[hi! Normal ctermbg=none guibg=none]])
+-- cmd([[hi! SignColumn ctermbg=none guibg=none]])
 
 
 -- cmd([[hi! TelescopeTitle guifg=#e5c07b]])
