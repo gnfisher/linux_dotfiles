@@ -4,8 +4,9 @@ M.setup = function()
   local actions = require("telescope.actions")
   require("telescope").setup({
     defaults = {
+      path_display = { "tail" },
       file_ignore_patterns = { "target", "node_modules", "parser.c", "out", "*.min.js" },
-      prompt_prefix = "❯",
+      prompt_prefix = "❯ ",
       file_previewer = require("telescope.previewers").vim_buffer_cat.new,
       grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
       mappings = {

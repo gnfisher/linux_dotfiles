@@ -1,6 +1,10 @@
+local f = require("settings.functions")
+local map = f.map
+
 local M = {}
 
 M.setup = function()
+
   local home = os.getenv('HOME')
   local lsp_config = require("lspconfig")
   local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -136,17 +140,17 @@ M.setup = function()
       },
     }
 
-    -- local bundles = {
-    --   vim.fn.glob("/home/greg/.local/share/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
-    -- };
-    -- vim.list_extend(bundles, vim.split(vim.fn.glob("/home/greg/.local/share/vscode-java-test/server/*.jar"), "\n"))
-    -- Jdtls_config['init_options'] = {
-    --   bundles = bundles;
-    -- }
+    local bundles = {
+      vim.fn.glob(home .. "/.local/share/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"),
+    };
+    vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/vscode-java-test/server/*.jar"), "\n"))
+    Jdtls_config['init_options'] = {
+      bundles = bundles;
+    }
 
     Jdtls_config['on_attach'] = function(client, bufnr)
       local jdtls = require('jdtls');
-      -- jdtls.setup_dap({ hotcodereplace = 'auto' });
+      jdtls.setup_dap({ hotcodereplace = 'auto' });
       jdtls.setup.add_commands();
     end
 
@@ -159,6 +163,7 @@ M.setup = function()
     -- This starts a new client & server,
     -- or attaches to an existing client & server depending on the `root_dir`.
     -- require('jdtls').start_or_attach(jdtls_config)
+
   end
 
   return M

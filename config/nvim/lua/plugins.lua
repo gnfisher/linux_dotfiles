@@ -1,7 +1,4 @@
 return require('packer').startup(function(use)
-  use({ 'rktjmp/lush.nvim' })
-  use({ 'metalelf0/jellybeans-nvim' })
-  use({ 'overcache/NeoSolarized' })
   use({
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -54,7 +51,9 @@ return require('packer').startup(function(use)
   use({ 'nelstrom/vim-textobj-rubyblock' })
   use({ 'tpope/vim-commentary' })
   -- Colors
+  use({ 'metalelf0/jellybeans-nvim' })
   use({ 'morhetz/gruvbox' })
+  use({'folke/tokyonight.nvim'})
   use({ 'kyazdani42/nvim-web-devicons' })
   use({ 'wbthomason/packer.nvim', opt = true })
   -- org mode

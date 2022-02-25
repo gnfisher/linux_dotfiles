@@ -6,6 +6,13 @@ local global_opt = vim.opt_global
 local f = require("settings.functions")
 local map = f.map
 
+-- Find the highlight group under cursor
+cmd([[
+nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+  ]])
+
 cmd([[packadd packer.nvim]])
 
 require("plugins")
@@ -16,14 +23,14 @@ require("settings.treesitter").setup()
 require("gitsigns").setup()
 
 cmd([[syntax enable]])
--- cmd([[colorscheme Gruvbox]])
--- g['gruvbox_contrast_dark'] = 'hard'
+cmd([[colorscheme gruvbox]])
+g['gruvbox_contrast_dark'] = 'hard'
 
 g["mapleader"] = " "
 
 global_opt.shortmess:remove("F"):append("c")
 global_opt.termguicolors = true
-global_opt.background = "light"
+global_opt.background = "dark"
 global_opt.hidden = true
 global_opt.showtabline = 1
 global_opt.updatetime = 10
@@ -90,12 +97,6 @@ map("i", "<C-Space>", "<Esc>")
 map("n", "j", "gj")
 map("n", "k", "gk")
 
--- Better window navigation.
--- map("n", "<C-j>", "<C-w>j")
--- map("n", "<C-k>", "<C-w>k")
--- map("n", "<C-h>", "<C-w>h")
--- map("n", "<C-l>", "<C-w>l")
-
 -- Create new files with relative paths to open buffer
 map("n", "<leader>ee", ":e <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
 map("n", "<leader>et", ":tabe <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
@@ -103,41 +104,51 @@ map("n", "<leader>es", ":sp <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
 map("n", "<leader>ev", ":vsp <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
 
 -- LSP
-g['prettier#config#print_width'] = 90
+g['prettier#config#print_width'] = 90 -- Java
 g.neoformat_try_node_exe = 1
 g.completion_matching_strategy_list = {
   "exact",
   "substring",
   "fuzzy",
 }
-map("n", "gD", [[<cmd>lua vim.lsp.buf.definition()<CR>]])
+
+map("n", "gD", [[<cmd>lua vim.lsp.buf.declaration()<CR>]])
+map("n", "gd", [[<cmd>lua vim.lsp.buf.definition()<CR>]])
 map("n", "gi", [[<cmd>lua vim.lsp.buf.implementation()<CR>]])
-map("n", "<leader>sh", [[<cmd>lua vim.lsp.buf.signature_help()<CR>]])
+map("n", "<C-k>", [[<cmd>lua vim.lsp.buf.signature_help()<CR>]])
 map("n", "K", [[<cmd>lua vim.lsp.buf.hover()<CR>]])
-map("n", "gr", [[<cmd>lua require"telescope.builtin".lsp_references()<CR>]])
 map("n", "<leader>rn", [[<cmd>lua vim.lsp.buf.rename()<CR>]])
-map("n", "gds", [[<cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>]])
-map("n", "gws", [[<cmd>lua require"telescope.builtin".lsp_workspace_symbols({query = "*"})<CR>]])
 map("n", "<leader>ca", [[<cmd>lua vim.lsp.buf.code_action()<CR>]])
 map("n", "<leader>ds", [[<cmd>lua vim.diagnostic.setloclist()<CR>]]) -- buffer diagnostics only
 map("n", "<leader>dn", [[<cmd>lua vim.diagnostic.goto_next()<CR>]])
 map("n", "<leader>dp", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]])
 map("n", "<leader>dl", [[<cmd>lua vim.diagnostic.open_float(0, {scope = "line"})<CR>]])
-map("n", "<leader>dw", [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics{prompt_prefix=" "}<CR>]])
 map("n", "<leader>cl", [[<cmd>lua vim.lsp.codelens.run()<CR>]])
 map("n", "<leader>fr", [[<cmd>lua vim.lsp.buf.formatting({ tabSize = 2 })<CR>]])
 
+map("n", "gr", [[<cmd>lua require"telescope.builtin".lsp_references()<CR>]])
+map("n", "gds", [[<cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>]])
+map("n", "gws", [[<cmd>lua require"telescope.builtin".lsp_workspace_symbols({query = "*"})<CR>]])
+map("n", "<leader>dw", [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics{prompt_prefix=" "}<CR>]])
+
 map("n", "<leader>uo", "<Cmd>lua require'jdtls'.organize_imports()<CR>")
-map("n", "<leader>ut", "<Cmd>lua require'jdtls'.test_class()<CR>")
-map("n", "<leader>uT", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>")
 map("v", "<leader>ue", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>")
 map("n", "<leader>ue", "<Cmd>lua require('jdtls').extract_variable()<CR>")
 map("v", "<leader>um", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>")
 
--- map("n", "<leader>ws", [[<cmd>lua require"metals".hover_worksheet()<CR>]])
--- map("n", "<leader>a", [[<cmd>lua require("metals").open_all_diagnostics()<CR>]])
--- map("n", "<leader>tt", [[<cmd>lua require("metals.tvp").toggle_tree_view()<CR>]])
--- map("n", "<leader>tr", [[<cmd>lua require("metals.tvp").reveal_in_tree()<CR>]])
+map("n", "<leader>ro", "<cmd>lua require'dap'.repl.open()<CR>")
+map("n", "<leader>rc", "<cmd>lua require'dap'.repl.close()<CR>")
+map("n", "<leader>rl", "<cmd>lua require'dap'.run_last()<CR>")
+map("n", "<leader>rt", "<Cmd>lua require'jdtls'.test_class({ config = { console = 'console' } })<CR>")
+map("n", "<leader>rT", "<Cmd>lua require'jdtls'.test_nearest_method({ config = { console = 'console' } })<CR>")
+
+map("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>")
+map("n", "<F10>", "<cmd>lua require'dap'.step_over()<CR>")
+map("n", "<F11>", "<cmd>lua require'dap'.step_into()<CR>")
+map("n", "<F12>", "<cmd>lua require'dap'.step_out()<CR>")
+map("n", "<leader>rb", "<cmd>lua require'dap'.toggle_breakpoint()<CR>")
+map("n", "<leader>rB", "require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+map("n", "<leader>rL", "require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
 
 -- Telescope
 map("n", "<leader>tf", [[<cmd>lua require"telescope.builtin".find_files({layout_strategy="vertical"})<CR>]])
@@ -153,10 +164,10 @@ map("n", "<leader>tz", [[<cmd>lua require("telescope.builtin").current_buffer_fu
 g.github_enterprise_urls = {'https://git.hubteam.com'}
 map("n", "<leader>gs", ":G<CR>")
 map("n", "<leader>ga", ":Git fetch --all<CR>")
-map("n", "<leader>gb", ":Gblame<CR>")
+map("n", "<leader>gb", ":Git blame<CR>")
 map("n", "<leader>gd", ":Gdiff<CR>")
-map("n", "<leader>gf", ":diffget //3><CR>")
-map("n", "<leader>gj", ":diffget //2><CR>")
+map("n", "<leader>gj", ":diffget //3><CR>")
+map("n", "<leader>gf", ":diffget //2><CR>")
 map("n", "<leader>gp", ":Git push<CR>")
 
 -- Commands
@@ -199,10 +210,10 @@ cmd([[hi! LineNR guifg=#5eacd3]])
 cmd([[hi! SignColumn guibg=none]])
 
 -- _Maybe_ try underline for a bit
--- cmd([[hi! DiagnosticUnderlineError cterm=NONE gui=underline guifg=NONE]])
--- cmd([[hi! DiagnosticUnderlineWarn cterm=NONE gui=underline guifg=NONE]])
--- cmd([[hi! DiagnosticUnderlineInfo cterm=NONE gui=underline guifg=NONE]])
--- cmd([[hi! DiagnosticUnderlineHint cterm=NONE gui=underline guifg=NONE]])
+cmd([[hi! DiagnosticUnderlineError cterm=NONE gui=none guifg=NONE]])
+cmd([[hi! DiagnosticUnderlineWarn cterm=NONE gui=none guifg=NONE]])
+cmd([[hi! DiagnosticUnderlineInfo cterm=NONE gui=none guifg=NONE]])
+cmd([[hi! DiagnosticUnderlineHint cterm=NONE gui=none guifg=NONE]])
 
 -- Statusline specific highlights
 cmd([[hi! StatusLine guifg=#cccccc guibg=#000000]])
@@ -232,5 +243,5 @@ fn.sign_define("DiagnosticSignHint", { text = "▬", texthl = "DiagnosticHint" }
 --   return string.format("%s: %s", diagnostic.source, f.split_on(diagnostic.message, "\n")[1])
 -- end
 
---vim.diagnostic.config({ virtual_text = { format = diagnostic_foramt }, severity_sort = true })
+--vim.diagnostic.config({ virtual_text = { format = diagnostic_format }, severity_sort = true })
 --vim.diagnostic.config({ virtual_text = false })
