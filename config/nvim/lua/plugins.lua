@@ -10,6 +10,7 @@ return require('packer').startup(function(use)
   use({ 'nvim-telescope/telescope-ui-select.nvim' })
   use({ 'nvim-treesitter/nvim-treesitter' })
   use({ 'plasticboy/vim-markdown' })
+  use({  'tpope/vim-projectionist' })
   -- LSP/Lint
   use({ 'prettier/vim-prettier' })
   use({ 'neovim/nvim-lspconfig' })
