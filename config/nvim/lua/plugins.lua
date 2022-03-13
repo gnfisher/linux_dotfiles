@@ -54,6 +54,7 @@ return require('packer').startup(function(use)
   -- Colors
   use({ 'metalelf0/jellybeans-nvim' })
   use({ 'morhetz/gruvbox' })
+  use({ 'yasukotelin/shirotelin' })
   use({'folke/tokyonight.nvim'})
   use({ 'kyazdani42/nvim-web-devicons' })
   use({ 'wbthomason/packer.nvim', opt = true })

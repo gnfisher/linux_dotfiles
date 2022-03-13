@@ -13,6 +13,8 @@ switch (uname)
       source /usr/local/opt/asdf/libexec/asdf.fish
 end
 
+set LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN 1
+
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.local/bin $PATH
 set PATH $PATH "$PATH:$HOME/.bin:/usr/local/bin"

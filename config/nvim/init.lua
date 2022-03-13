@@ -23,14 +23,14 @@ require("settings.treesitter").setup()
 require("gitsigns").setup()
 
 cmd([[syntax enable]])
-cmd([[colorscheme gruvbox]])
-g['gruvbox_contrast_dark'] = 'hard'
+cmd([[colorscheme shirotelin]])
+-- g['gruvbox_contrast_dark'] = 'hard'
 
 g["mapleader"] = " "
 
 global_opt.shortmess:remove("F"):append("c")
 global_opt.termguicolors = true
-global_opt.background = "dark"
+global_opt.background = "light"
 global_opt.hidden = true
 global_opt.showtabline = 1
 global_opt.updatetime = 10
