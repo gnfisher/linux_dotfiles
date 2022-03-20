@@ -67,4 +67,5 @@ return require('packer').startup(function(use)
       "nvim-neorg/neorg-telescope"
     }
 })
+  use({ 'vim-test/vim-test'})
 end)

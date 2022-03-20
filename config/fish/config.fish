@@ -9,11 +9,14 @@ switch (uname)
       source ~/.asdf/asdf.fish
     case Darwin
       set HOMEBREW_NO_AUTO_UPDATE 1
-      source ~/.hubspot/config.fish
-      source /usr/local/opt/asdf/libexec/asdf.fish
-end
 
-set LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN 1
+      switch (hostname)
+        case igloo
+          # Todo: make config special for M1 mac
+        case '*'
+          source ~/.config/fish/hubble.fish
+      end
+end
 
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.local/bin $PATH

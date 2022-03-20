@@ -141,6 +141,8 @@ map("v", "<leader>um", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>"
 
 map("n", "<leader>ro", "<cmd>lua require'dap'.repl.open()<CR>")
 map("n", "<leader>rc", "<cmd>lua require'dap'.repl.close()<CR>")
+-- map("n", "<leader>rt", ":TestFile")
+-- map("n", "<leader>rT", ":TestNearest")
 map("n", "<leader>rl", "<cmd>lua require'dap'.run_last()<CR>")
 map("n", "<leader>rt", "<Cmd>lua require'jdtls'.test_class({ config = { console = 'console' } })<CR>")
 map("n", "<leader>rT", "<Cmd>lua require'jdtls'.test_nearest_method({ config = { console = 'console' } })<CR>")
