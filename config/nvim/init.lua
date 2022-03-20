@@ -23,14 +23,15 @@ require("settings.treesitter").setup()
 require("gitsigns").setup()
 
 cmd([[syntax enable]])
-cmd([[colorscheme shirotelin]])
+-- cmd([[colorscheme shirotelin]])
+cmd([[colorscheme gruvbox]])
 -- g['gruvbox_contrast_dark'] = 'hard'
 
 g["mapleader"] = " "
 
 global_opt.shortmess:remove("F"):append("c")
 global_opt.termguicolors = true
-global_opt.background = "light"
+global_opt.background = "dark"
 global_opt.hidden = true
 global_opt.showtabline = 1
 global_opt.updatetime = 10
@@ -129,7 +130,9 @@ map("n", "<leader>fr", [[<cmd>lua vim.lsp.buf.formatting({ tabSize = 2 })<CR>]])
 map("n", "gr", [[<cmd>lua require"telescope.builtin".lsp_references()<CR>]])
 map("n", "gds", [[<cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>]])
 map("n", "gws", [[<cmd>lua require"telescope.builtin".lsp_workspace_symbols({query = "*"})<CR>]])
-map("n", "<leader>dw", [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics{prompt_prefix=" "}<CR>]])
+map("n", "<leader>dw", [[<cmd>lua vim.lsp.diagnostic.set_loclist({workspace = true})<CR>]])
+
+  -- require('telescope.builtin').diagnostics{prompt_prefix=" "}<CR>]])
 
 map("n", "<leader>uo", "<Cmd>lua require'jdtls'.organize_imports()<CR>")
 map("v", "<leader>ue", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>")
