@@ -10,6 +10,7 @@ brew "fd"
 brew "graphviz"
 brew "imagemagick"
 brew "neovim"
+brew "gh"
 brew "reattach-to-user-namespace"
 
 tap "homebrew/cask-versions"
@@ -22,3 +23,4 @@ cask "kitty"
 
 tap "homebrew/cask-fonts"
 cask "font-ubuntu-mono-nerd-font"
+cask "font-caskaydia-cove-nerd-font"
