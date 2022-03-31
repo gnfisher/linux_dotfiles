@@ -1,5 +1,5 @@
 [init]
-	defaultBranch = main
+  defaultBranch = main
   templatedir = ~/.git_template
 [alias]
   aa = add --all
@@ -8,9 +8,9 @@
   car = commit --amend --no-edit
   co = checkout
   copysha = !git rev-parse HEAD | xclip
-  df = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd $GIT_PREFIX; git diff -U10 --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
+  df = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd $GIT_PREFIX; git diff -U10 --color $@ | less --tabs=4 -RFX; }; f"
   dfw = !git df -w
-  dc = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd $GIT_PREFIX; git diff --color --cached $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
+  dc = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd $GIT_PREFIX; git diff --color --cached $@ | less --tabs=4 -RFX; }; f"
   dcw = !git dc -w
   fall = fetch --all
   glog = log -E -i --grep
@@ -37,8 +37,7 @@
   excludesfile = ~/.gitignore_global
   autocrlf = input
   editor = nvim
-  pager = diff-so-fancy | less --tabs=2 -RFX
-	hooksPath = /Users/gfisher/.git_hooks
+  hooksPath = /Users/gfisher/.git_hooks
 [merge]
   ff = only
   tool = fugitive

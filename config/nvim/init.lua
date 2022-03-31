@@ -24,14 +24,13 @@ require("gitsigns").setup()
 
 cmd([[syntax enable]])
 -- cmd([[colorscheme shirotelin]])
-cmd([[colorscheme gruvbox]])
 -- g['gruvbox_contrast_dark'] = 'hard'
 
 g["mapleader"] = " "
 
 global_opt.shortmess:remove("F"):append("c")
 global_opt.termguicolors = true
-global_opt.background = "dark"
+global_opt.background = "light"
 global_opt.hidden = true
 global_opt.showtabline = 1
 global_opt.updatetime = 10
@@ -221,8 +220,8 @@ cmd([[hi! DiagnosticUnderlineInfo cterm=NONE gui=none guifg=NONE]])
 cmd([[hi! DiagnosticUnderlineHint cterm=NONE gui=none guifg=NONE]])
 
 -- Statusline specific highlights
-cmd([[hi! StatusLine guifg=#cccccc guibg=#000000]])
-cmd([[hi! StatusLineNC guifg=#000000 guibg=#cccccc]])
+-- cmd([[hi! StatusLine guifg=#cccccc guibg=#000000]])
+-- cmd([[hi! StatusLineNC guifg=#000000 guibg=#cccccc]])
 -- cmd([[hi! link StatusError DiagnosticError]])
 -- cmd([[hi! link StatusWarn DiagnosticWarn]])
 
