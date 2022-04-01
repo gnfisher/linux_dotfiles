@@ -5,12 +5,13 @@ return require('packer').startup(function(use)
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-fzy-native.nvim' },
+      { 'nvim-telescope/telescope-file-browser.nvim' }
     },
   })
   use({ 'nvim-telescope/telescope-ui-select.nvim' })
   use({ 'nvim-treesitter/nvim-treesitter' })
   use({ 'plasticboy/vim-markdown' })
-  use({  'tpope/vim-projectionist' })
+  use({ 'tpope/vim-projectionist' })
   -- LSP/Lint
   use({ 'prettier/vim-prettier' })
   use({ 'neovim/nvim-lspconfig' })

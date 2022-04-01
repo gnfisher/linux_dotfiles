@@ -210,7 +210,7 @@ cmd([[hi! link DiagnosticHint DiagnosticInfo]])
 
 -- Colors that shouldn't live here but do
 cmd([[hi! CursorLineNR guibg=None]])
-cmd([[hi! LineNR guifg=#5eacd3]])
+cmd([[hi! LineNR guifg=#cccccc]])
 cmd([[hi! SignColumn guibg=none]])
 
 -- _Maybe_ try underline for a bit

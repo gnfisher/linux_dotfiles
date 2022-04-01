@@ -37,7 +37,7 @@
   excludesfile = ~/.gitignore_global
   autocrlf = input
   editor = nvim
-  hooksPath = /Users/gfisher/.git_hooks
+	hooksPath = /Users/gfisher/.git_hooks
 [merge]
   ff = only
   tool = fugitive
