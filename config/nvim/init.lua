@@ -16,12 +16,12 @@ require("settings.treesitter").setup()
 require("gitsigns").setup()
 
 cmd([[syntax enable]])
-cmd([[colorscheme dim]])
+-- cmd([[colorscheme dim]])
 
 g["mapleader"] = " "
 
 global_opt.shortmess:remove("F"):append("c")
-global_opt.termguicolors = false
+global_opt.termguicolors = true
 global_opt.background = "light"
 global_opt.hidden = true
 global_opt.showtabline = 1
