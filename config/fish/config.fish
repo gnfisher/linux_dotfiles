@@ -11,7 +11,10 @@ switch (uname)
       set HOMEBREW_NO_AUTO_UPDATE 1
 
       switch (hostname)
-        case igloo
+        case igloo.local
+          set PATH /opt/homebrew/bin $PATH
+          set paTH /opt/homebrew/sbin $PATH
+          source (brew --prefix asdf)/libexec/asdf.fish
           # Todo: make config special for M1 mac
         case '*'
           source ~/.config/fish/hubble.fish
