@@ -6,13 +6,6 @@ local global_opt = vim.opt_global
 local f = require("settings.functions")
 local map = f.map
 
--- Find the highlight group under cursor
-cmd([[
-nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-  ]])
-
 cmd([[packadd packer.nvim]])
 
 require("plugins")
@@ -23,13 +16,12 @@ require("settings.treesitter").setup()
 require("gitsigns").setup()
 
 cmd([[syntax enable]])
--- cmd([[colorscheme shirotelin]])
--- g['gruvbox_contrast_dark'] = 'hard'
+cmd([[colorscheme dim]])
 
 g["mapleader"] = " "
 
 global_opt.shortmess:remove("F"):append("c")
-global_opt.termguicolors = true
+global_opt.termguicolors = false
 global_opt.background = "light"
 global_opt.hidden = true
 global_opt.showtabline = 1
@@ -39,7 +31,6 @@ global_opt.laststatus = 2
 global_opt.wildignore = { ".git", "*/node_modules/*", "*/target/*", ".metals", ".bloop", ".ammonite" }
 global_opt.ignorecase = true
 global_opt.smartcase = true
--- global_opt.clipboard = "unnamed"
 global_opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
 global_opt.scrolloff = 5
 opt.path:append('**')
@@ -76,7 +67,7 @@ opt.foldmethod = "manual"
 opt.foldlevelstart = 0
 opt.foldlevel = 99
 
---Mappings-
+-- Convenience
 map("n", "<Leader>;", ":")
 map("n", "<Leader>vr", ":luafile ~/.config/nvim/init.lua<CR>")
 
@@ -133,27 +124,6 @@ map("n", "<leader>dw", [[<cmd>lua vim.lsp.diagnostic.set_loclist({workspace = tr
 
   -- require('telescope.builtin').diagnostics{prompt_prefix=" "}<CR>]])
 
-map("n", "<leader>uo", "<Cmd>lua require'jdtls'.organize_imports()<CR>")
-map("v", "<leader>ue", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>")
-map("n", "<leader>ue", "<Cmd>lua require('jdtls').extract_variable()<CR>")
-map("v", "<leader>um", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>")
-
-map("n", "<leader>ro", "<cmd>lua require'dap'.repl.open()<CR>")
-map("n", "<leader>rc", "<cmd>lua require'dap'.repl.close()<CR>")
--- map("n", "<leader>rt", ":TestFile")
--- map("n", "<leader>rT", ":TestNearest")
-map("n", "<leader>rl", "<cmd>lua require'dap'.run_last()<CR>")
-map("n", "<leader>rt", "<Cmd>lua require'jdtls'.test_class({ config = { console = 'console' } })<CR>")
-map("n", "<leader>rT", "<Cmd>lua require'jdtls'.test_nearest_method({ config = { console = 'console' } })<CR>")
-
-map("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>")
-map("n", "<F10>", "<cmd>lua require'dap'.step_over()<CR>")
-map("n", "<F11>", "<cmd>lua require'dap'.step_into()<CR>")
-map("n", "<F12>", "<cmd>lua require'dap'.step_out()<CR>")
-map("n", "<leader>rb", "<cmd>lua require'dap'.toggle_breakpoint()<CR>")
-map("n", "<leader>rB", "require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
-map("n", "<leader>rL", "require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
-
 -- Telescope
 map("n", "<leader>tf", [[<cmd>lua require"telescope.builtin".find_files({layout_strategy="vertical"})<CR>]])
 map("n", "<leader>tg", [[<cmd>lua require"telescope.builtin".live_grep({layout_strategy="vertical"})<CR>]])
@@ -164,7 +134,6 @@ map("n", "<leader>tz", [[<cmd>lua require("telescope.builtin").current_buffer_fu
 -- map("n", "<leader>mc", [[<cmd>lua require("telescope").extensions.metals.commands()<CR>]])
 
 -- Fugitive
--- let g:github_enterprise_urls = ['https://example.com']
 g.github_enterprise_urls = {'https://git.hubteam.com'}
 map("n", "<leader>gs", ":G<CR>")
 map("n", "<leader>ga", ":Git fetch --all<CR>")
@@ -191,16 +160,16 @@ cmd([[autocmd BufWritePre *.java PrettierAsync ]])
 -- LSP autocmd
 cmd([[augroup lsp]])
 cmd([[autocmd!]])
- cmd([[autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)]])
- cmd([[autocmd FileType scala,java,lua setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
- -- cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
+cmd([[autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)]])
+cmd([[autocmd FileType java lua require('settings.java').setup_java()]])
+cmd([[autocmd FileType scala,java,lua setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
 -- cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach({})]])
 cmd([[augroup END]])
 
 -- used in textDocument/hightlight
-cmd([[hi! link LspReferenceText CursorColumn]])
-cmd([[hi! link LspReferenceRead CursorColumn]])
-cmd([[hi! link LspReferenceWrite CursorColumn]])
+-- cmd([[hi! link LspReferenceText CursorColumn]])
+-- cmd([[hi! link LspReferenceRead CursorColumn]])
+-- cmd([[hi! link LspReferenceWrite CursorColumn]])
 
 -- Diagnostic specific colors
 cmd([[hi! DiagnosticError guifg=#e06c75]]) -- light red
@@ -209,15 +178,9 @@ cmd([[hi! DiagnosticInfo guifg=#56b6c2]]) -- cyan
 cmd([[hi! link DiagnosticHint DiagnosticInfo]])
 
 -- Colors that shouldn't live here but do
-cmd([[hi! CursorLineNR guibg=None]])
-cmd([[hi! LineNR guifg=#cccccc]])
-cmd([[hi! SignColumn guibg=none]])
-
--- _Maybe_ try underline for a bit
-cmd([[hi! DiagnosticUnderlineError cterm=NONE gui=none guifg=NONE]])
-cmd([[hi! DiagnosticUnderlineWarn cterm=NONE gui=none guifg=NONE]])
-cmd([[hi! DiagnosticUnderlineInfo cterm=NONE gui=none guifg=NONE]])
-cmd([[hi! DiagnosticUnderlineHint cterm=NONE gui=none guifg=NONE]])
+-- cmd([[hi! CursorLineNR guibg=None]])
+-- cmd([[hi! LineNR guifg=#cccccc]])
+-- cmd([[hi! SignColumn guibg=none]])
 
 -- Statusline specific highlights
 -- cmd([[hi! StatusLine guifg=#cccccc guibg=#000000]])
@@ -226,12 +189,10 @@ cmd([[hi! DiagnosticUnderlineHint cterm=NONE gui=none guifg=NONE]])
 -- cmd([[hi! link StatusWarn DiagnosticWarn]])
 
 -- Transparent backgrounds
--- cmd([[hi! Normal ctermbg=none guibg=none]])
--- cmd([[hi! SignColumn ctermbg=none guibg=none]])
+cmd([[hi! Normal ctermbg=none guibg=none]])
+cmd([[hi! SignColumn ctermbg=none guibg=none]])
 
-
--- cmd([[hi! TelescopeTitle guifg=#e5c07b]])
-
+-- Highlight yanked text
 cmd([[autocmd TextYankPost * silent! lua vim.highlight.on_yank {}]])
 
 
