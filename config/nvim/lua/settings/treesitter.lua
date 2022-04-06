@@ -1,8 +1,6 @@
 local M = {}
 
 M.setup = function()
-  local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
-
   require("nvim-treesitter.configs").setup({
       query_linter = {
         enable = true,
