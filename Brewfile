@@ -12,6 +12,9 @@ brew "imagemagick"
 brew "neovim"
 brew "gh"
 brew "reattach-to-user-namespace"
+brew "lua-language-server"
+brew "asdf"
+brew "sbt"
 
 tap "homebrew/cask-versions"
 # Install Java 11, you'll still need to symlink the system wrappers.
