@@ -14,7 +14,9 @@ brew "gh"
 brew "reattach-to-user-namespace"
 brew "lua-language-server"
 brew "asdf"
-brew "sbt"
+brew "postgresql"
+brew "jenv"
+brew "coursier/formulas/coursier"
 
 tap "homebrew/cask-versions"
 # Install Java 11, you'll still need to symlink the system wrappers.

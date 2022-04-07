@@ -14,6 +14,7 @@ switch (uname)
         case igloo.local
           set PATH /opt/homebrew/bin $PATH
           set paTH /opt/homebrew/sbin $PATH
+          set JAVA_HOME (/usr/libexec/java_home -v 1.8)
           source (brew --prefix asdf)/libexec/asdf.fish
           # Todo: make config special for M1 mac
         case '*'
@@ -21,10 +22,10 @@ switch (uname)
       end
 end
 
+set PATH $HOME/Library/Application\ Support/Coursier/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.local/bin $PATH
 set PATH $PATH "$PATH:$HOME/.bin:/usr/local/bin"
-set PATH $HOME/.local/share/coursier/bin $PATH
 set PATH $HOME/.local/share/idea/bin $PATH
 set PATH $HOME/.local/share/lua-language-server/bin $PATH
 
@@ -38,3 +39,4 @@ end
 # if not set -q TMUX
 #   command tat
 # end
+# status --is-interactive; and source (jenv init -|psub)

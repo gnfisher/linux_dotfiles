@@ -131,7 +131,7 @@ map("n", "<leader>tw", [[<cmd>lua require"telescope.builtin".file_browser({layou
 map("n", "<leader>td", [[<cmd>lua require"telescope.builtin".diagnostics{prompt_prefix=" "}<CR>]])
 map("n", "<leader>tb", [[<cmd>lua require("telescope.builtin").buffers({layout_strategy="vertical"})<CR>]])
 map("n", "<leader>tz", [[<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find({layout_strategy="vertical"})<CR>]])
--- map("n", "<leader>mc", [[<cmd>lua require("telescope").extensions.metals.commands()<CR>]])
+map("n", "<leader>mc", [[<cmd>lua require("telescope").extensions.metals.commands()<CR>]])
 
 -- Fugitive
 g.github_enterprise_urls = {'https://git.hubteam.com'}
@@ -163,7 +163,7 @@ cmd([[autocmd!]])
 cmd([[autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)]])
 cmd([[autocmd FileType java lua require('settings.java').setup_java()]])
 cmd([[autocmd FileType scala,java,lua setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
--- cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach({})]])
+cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach({})]])
 cmd([[augroup END]])
 
 -- used in textDocument/hightlight
