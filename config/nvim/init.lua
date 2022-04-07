@@ -33,6 +33,7 @@ global_opt.ignorecase = true
 global_opt.smartcase = true
 global_opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
 global_opt.scrolloff = 5
+opt.spell = false
 opt.path:append('**')
 opt.wrap = false
 opt.cursorline = true
