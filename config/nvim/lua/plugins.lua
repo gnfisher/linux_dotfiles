@@ -31,6 +31,7 @@ return require('packer').startup(function(use)
   use({ 'scalameta/nvim-metals' })
   use({ 'mfussenegger/nvim-jdtls' })
   use({ 'mfussenegger/nvim-dap' })
+  use({ 'mfussenegger/nvim-lint' })
   -- Dispatch
   use({ 'tpope/vim-dispatch' })
   -- Git(Hub)

@@ -152,6 +152,7 @@ cmd(
   [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
 )
 cmd([[autocmd BufReadPost,BufNewFile .html,*.txt,*.md,*.adoc set spell spelllang=en_us]])
+cmd([[autocmd BufWritePost .rb lua require('lint').try_lint()]])
 cmd([[autocmd TermOpen * startinsert]])
 cmd([[autocmd BufWritePre * lua require('settings.functions').trim_whitespace()]])
 cmd([[autocmd BufReadPost * lua require('settings.functions').jump_to_last_line()]])

@@ -18,6 +18,9 @@ brew "postgresql"
 brew "jenv"
 brew "coursier/formulas/coursier"
 
+tap "heroku/brew"
+brew "heroku"
+
 tap "homebrew/cask-versions"
 # Install Java 11, you'll still need to symlink the system wrappers.
 # Run `brew info java11` after installation for how-tos.
