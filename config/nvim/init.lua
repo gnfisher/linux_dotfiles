@@ -166,6 +166,7 @@ cmd([[autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)]]
 cmd([[autocmd FileType java lua require('settings.java').setup_java()]])
 cmd([[autocmd FileType scala,java,lua setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
 cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach({})]])
+cmd([[autocmd FileType ruby let b:dispatch = 'ruby %']])
 cmd([[augroup END]])
 
 -- used in textDocument/hightlight
