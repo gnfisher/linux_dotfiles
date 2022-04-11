@@ -71,6 +71,7 @@ opt.foldlevel = 99
 -- Convenience
 map("n", "<Leader>;", ":")
 map("n", "<Leader>vr", ":luafile ~/.config/nvim/init.lua<CR>")
+map("n", "<Leader>d", ":Dispatch<CR>")
 
 -- Copy paste helpers
 map("n", "cp", "\"+y")
@@ -147,7 +148,7 @@ map("n", "<leader>gp", ":Git push<CR>")
 -- Commands
 -- cmd([[autocmd BufWritePre *.lua,*.ts,*.js,*.tsx,*.jsx Neoformat]])
 cmd([[autocmd FileType markdown setlocal textwidth=80]])
-cmd([[autocmd FileType norg setlocal textwidth=80]])
+cmd([[autocmd FileType ruby setlocal textwidth=80]])
 cmd([[autocmd FileType text setlocal textwidth=80]])
 cmd(
   [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
@@ -213,3 +214,4 @@ fn.sign_define("DiagnosticSignHint", { text = "▬", texthl = "DiagnosticHint" }
 
 --vim.diagnostic.config({ virtual_text = { format = diagnostic_format }, severity_sort = true })
 --vim.diagnostic.config({ virtual_text = false })
+
