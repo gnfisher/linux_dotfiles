@@ -16,7 +16,6 @@ require("settings.treesitter").setup()
 require("gitsigns").setup()
 
 cmd([[syntax enable]])
--- cmd([[colorscheme dim]])
 
 g["mapleader"] = " "
 
