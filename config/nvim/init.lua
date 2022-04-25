@@ -13,7 +13,6 @@ require("settings.cmp").setup()
 require("settings.telescope").setup()
 require("settings.lsp").setup()
 require("settings.treesitter").setup()
-require("gitsigns").setup()
 
 cmd([[syntax enable]])
 
@@ -32,6 +31,7 @@ global_opt.ignorecase = true
 global_opt.smartcase = true
 global_opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
 global_opt.scrolloff = 5
+global_opt.textwidth = 80
 opt.spell = false
 opt.path:append('**')
 opt.wrap = false
@@ -145,10 +145,6 @@ map("n", "<leader>gf", ":diffget //2><CR>")
 map("n", "<leader>gp", ":Git push<CR>")
 
 -- Commands
--- cmd([[autocmd BufWritePre *.lua,*.ts,*.js,*.tsx,*.jsx Neoformat]])
-cmd([[autocmd FileType markdown setlocal textwidth=80]])
-cmd([[autocmd FileType ruby setlocal textwidth=80]])
-cmd([[autocmd FileType text setlocal textwidth=80]])
 cmd(
   [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
 )
@@ -157,60 +153,11 @@ cmd([[autocmd BufWritePost .rb lua require('lint').try_lint()]])
 cmd([[autocmd TermOpen * startinsert]])
 cmd([[autocmd BufWritePre * lua require('settings.functions').trim_whitespace()]])
 cmd([[autocmd BufReadPost * lua require('settings.functions').jump_to_last_line()]])
-cmd([[autocmd BufWritePre *.java PrettierAsync ]])
 
 -- LSP autocmd
 cmd([[augroup lsp]])
 cmd([[autocmd!]])
-cmd([[autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)]])
-cmd([[autocmd FileType java lua require('settings.java').setup_java()]])
 cmd([[autocmd FileType scala,java,lua setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
 cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach({})]])
 cmd([[autocmd FileType ruby let b:dispatch = 'ruby %']])
 cmd([[augroup END]])
-
--- used in textDocument/hightlight
--- cmd([[hi! link LspReferenceText CursorColumn]])
--- cmd([[hi! link LspReferenceRead CursorColumn]])
--- cmd([[hi! link LspReferenceWrite CursorColumn]])
-
--- Diagnostic specific colors
-cmd([[hi! DiagnosticError guifg=#e06c75]]) -- light red
-cmd([[hi! DiagnosticWarn guifg=#e5c07b]]) -- light yellow
-cmd([[hi! DiagnosticInfo guifg=#56b6c2]]) -- cyan
-cmd([[hi! link DiagnosticHint DiagnosticInfo]])
-
--- Colors that shouldn't live here but do
--- cmd([[hi! CursorLineNR guibg=None]])
--- cmd([[hi! LineNR guifg=#cccccc]])
--- cmd([[hi! SignColumn guibg=none]])
-
--- Statusline specific highlights
--- cmd([[hi! StatusLine guifg=#cccccc guibg=#000000]])
--- cmd([[hi! StatusLineNC guifg=#000000 guibg=#cccccc]])
--- cmd([[hi! link StatusError DiagnosticError]])
--- cmd([[hi! link StatusWarn DiagnosticWarn]])
-
--- Transparent backgrounds
-cmd([[hi! Normal ctermbg=none guibg=none]])
-cmd([[hi! SignColumn ctermbg=none guibg=none]])
-
--- Highlight yanked text
-cmd([[autocmd TextYankPost * silent! lua vim.highlight.on_yank {}]])
-
-
-fn.sign_define("DiagnosticSignError", { text = "▬", texthl = "DiagnosticError" })
-fn.sign_define("DiagnosticSignWarn", { text = "▬", texthl = "DiagnosticWarn" })
-fn.sign_define("DiagnosticSignInfo", { text = "▬", texthl = "DiagnosticInfo" })
-fn.sign_define("DiagnosticSignHint", { text = "▬", texthl = "DiagnosticHint" })
-
--- Since a lot of errors can be super long and multiple lines in Scala, I use
--- this to split on the first new line and only dispaly the first line as the
--- virtual text... that is when I actually use virtual text for diagnsostics
--- local diagnostic_foramt = function(diagnostic)
---   return string.format("%s: %s", diagnostic.source, f.split_on(diagnostic.message, "\n")[1])
--- end
-
---vim.diagnostic.config({ virtual_text = { format = diagnostic_format }, severity_sort = true })
---vim.diagnostic.config({ virtual_text = false })
-

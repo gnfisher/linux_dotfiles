@@ -27,7 +27,6 @@ return require('packer').startup(function(use)
   })
   use({ 'rafamadriz/friendly-snippets' })
   use({ 'scalameta/nvim-metals' })
-  use({ 'mfussenegger/nvim-jdtls' })
   use({ 'mfussenegger/nvim-dap' })
   use({ 'mfussenegger/nvim-lint' })
   -- Dispatch
@@ -35,12 +34,6 @@ return require('packer').startup(function(use)
   -- Git(Hub)
   use({ 'tpope/vim-fugitive' })
   use({ 'tpope/vim-rhubarb' })
-  use({
-    'lewis6991/gitsigns.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim'
-    },
-  })
   -- Unix
   use({ 'tpope/vim-vinegar' })
   use({ 'tpope/vim-eunuch' })
