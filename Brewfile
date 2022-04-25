@@ -17,6 +17,8 @@ brew "asdf"
 brew "postgresql"
 brew "jenv"
 brew "coursier/formulas/coursier"
+brew "rg"
+brew "fzf"
 
 tap "heroku/brew"
 brew "heroku"
@@ -26,8 +28,8 @@ tap "homebrew/cask-versions"
 # Run `brew info java11` after installation for how-tos.
 brew "java11"
 
-tap "homebrew/cask"
-cask "kitty"
+tap "thoughtbot/formulae"
+brew "gitsh"
 
 tap "homebrew/cask-fonts"
 cask "font-ubuntu-mono-nerd-font"

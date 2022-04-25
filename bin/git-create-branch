@@ -1,6 +1,5 @@
 #!/bin/sh
 
-set -e
 
 git push origin "HEAD:refs/heads/$1"
 git fetch origin
