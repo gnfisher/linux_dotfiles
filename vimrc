@@ -42,7 +42,6 @@ set splitright
 set splitbelow
 set foldmethod=manual
 set nofoldenable
-set signcolumn=no
 set completeopt=menu,preview
 set spellfile=$HOME/.vim-spell-en.utf-8.add
 set complete=.,w,b,u,t,i
@@ -70,6 +69,7 @@ augroup END
 
 call plug#begin()
   Plug 'arcticicestudio/nord-vim'
+  Plug 'lifepillar/vim-solarized8'
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-commentary'
@@ -82,7 +82,7 @@ call plug#end()
 syntax on
 
 set background=dark
-color nord
+color solarized8
 
 " Ruby configuration
 let g:ruby_indent_block_style = 'do'
@@ -105,7 +105,7 @@ if executable("rg")
 endif
 
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\.git\|node_modules$'
+    \ 'dir': '\.git\|node_modules\|target$'
 \ }
 
 let g:elm_setup_keybindings = 0
@@ -116,6 +116,8 @@ let g:ale_open_list = 0
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
+let g:ale_completion_autoimport = 0
+let g:ale_completion_enabled = 1
 
 nmap K :ALEHover<CR>
 nmap gd :ALEGoToDefinition<CR>
