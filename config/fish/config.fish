@@ -1,6 +1,6 @@
 set -U fish_greeting
 set TERM "xterm-256color"
-set EDITOR nvim
+set EDITOR vim
 
 switch (uname)
     case Linux
