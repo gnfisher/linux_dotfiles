@@ -129,10 +129,18 @@ set omnifunc=ale#completion#OmniFunc
 
 map <C-j> :cnext<CR>
 map <C-k> :cprev<CR>
+map <F6> :call ToggleBackground()<CR>
 
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>g :silent !gitsh<CR>:redraw!<CR>
 map <leader>ct :silent !ctags -R .<CR>:redraw!<CR>
 map <leader>cT :CtrlPTag<CR>
-
 map <leader>r :!ruby %:p<CR>
+
+function! ToggleBackground()
+    if &background == "light"
+        set background=dark
+    else
+        set background=light
+    endif
+endfunction
