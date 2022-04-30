@@ -68,7 +68,6 @@ augroup gnfisher
 augroup END
 
 call plug#begin()
-  Plug 'arcticicestudio/nord-vim'
   Plug 'lifepillar/vim-solarized8'
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-endwise'
