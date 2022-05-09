@@ -128,6 +128,7 @@ set omnifunc=ale#completion#OmniFunc
 
 map <C-j> :cnext<CR>
 map <C-k> :cprev<CR>
+map <F2>> :cnext<CR>
 map <F6> :call ToggleBackground()<CR>
 
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
