@@ -69,6 +69,7 @@ augroup END
 
 call plug#begin()
   Plug 'lifepillar/vim-solarized8'
+  Plug 'tomasr/molokai'
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-commentary'
@@ -81,7 +82,7 @@ call plug#end()
 syntax on
 
 set background=dark
-color solarized8
+color molokai
 
 " Ruby configuration
 let g:ruby_indent_block_style = 'do'
@@ -91,6 +92,9 @@ let g:ruby_indent_assignment_style = 'variable'
 nmap cp "+y
 nmap cv "+p
 nmap cV "+P
+vmap cp "+y
+vmap cv "+p
+vmap cV "+P
 
 inoremap <C-@> <esc>
 nnoremap <C-@> <esc>:nohlsearch<CR>
