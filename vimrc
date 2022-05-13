@@ -2,6 +2,7 @@ set encoding=utf-8
 
 let mapleader = " "
 
+set shell=/bin/sh
 set nocompatible
 set termguicolors
 set list listchars=tab:▸\ ,trail:·,nbsp:·
@@ -101,13 +102,15 @@ nnoremap <C-@> <esc>:nohlsearch<CR>
 
 cnoremap <expr> %% expand('%:h').'/'
 
-" Silent grep
-cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() =~# '^grep')  ? 'silent grep'  : 'grep'
-cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() =~# '^lgrep') ? 'silent
 if executable("rg")
     set grepprg=rg\ --vimgrep\ --no-heading
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
+
+command -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
+nmap \ :Rg<SPACE>
+nmap K :grep "\b<C-R><C-W>\b"<CR>:cw<CR>:redraw!<CR>
+au FileType scala,elm nmap K :ALEHover<CR>
 
 let g:ctrlp_custom_ignore = {
     \ 'dir': '\.git\|node_modules\|target$'
@@ -124,7 +127,6 @@ let g:ale_lint_on_enter = 0
 let g:ale_completion_autoimport = 0
 let g:ale_completion_enabled = 1
 
-nmap K :ALEHover<CR>
 nmap gd :ALEGoToDefinition<CR>
 nmap gr :ALEFindReferences -quickfix<CR>
 
