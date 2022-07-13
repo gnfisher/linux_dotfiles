@@ -83,7 +83,7 @@ call plug#end()
 syntax on
 
 set background=dark
-color molokai
+color solarized8
 
 " Ruby configuration
 let g:ruby_indent_block_style = 'do'
