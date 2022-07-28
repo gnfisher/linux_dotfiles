@@ -9,17 +9,10 @@ switch (uname)
       source ~/.asdf/asdf.fish
     case Darwin
       set HOMEBREW_NO_AUTO_UPDATE 1
-
-      switch (hostname)
-        case igloo.local
-          set PATH /opt/homebrew/bin $PATH
-          set paTH /opt/homebrew/sbin $PATH
-          set JAVA_HOME (/usr/libexec/java_home -v 1.8)
-          source (brew --prefix asdf)/libexec/asdf.fish
-          # Todo: make config special for M1 mac
-        case '*'
-          source ~/.config/fish/hubble.fish
-      end
+      set PATH /opt/homebrew/bin $PATH
+      set paTH /opt/homebrew/sbin $PATH
+      set JAVA_HOME (/usr/libexec/java_home -v 1.8)
+      source (brew --prefix asdf)/libexec/asdf.fish
 end
 
 set PATH $HOME/Library/Application\ Support/Coursier/bin $PATH

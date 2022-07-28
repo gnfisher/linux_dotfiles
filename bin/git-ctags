@@ -1,5 +1,0 @@
-#!/bin/sh
-
-
-[ -f .git/hooks/ctags ] || git init
-.git/hooks/ctags >/dev/null 2>&1 &
