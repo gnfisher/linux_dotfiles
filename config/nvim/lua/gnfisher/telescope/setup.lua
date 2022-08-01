@@ -1,6 +1,11 @@
+local status_ok, telescope = pcall(require, "telescope")
+if not status_ok then
+  return
+end
+
 local actions = require "telescope.actions"
 local action_layout = require "telescope.actions.layout"
-require('telescope').setup{
+telescope.setup{
   defaults = {
     path_display = { "smart" },
     file_ignore_patterns = { "target", "node_modules", "parser.c", "out", "*.min.js" },
