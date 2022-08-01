@@ -1,0 +1,2 @@
+- [ ] CTags and auto generation
+- [ ] Telescope setup and customization (how much of git can go in there?)
