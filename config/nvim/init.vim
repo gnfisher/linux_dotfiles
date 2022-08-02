@@ -89,7 +89,7 @@ call plug#begin()
   Plug 'scalameta/nvim-metals'
 call plug#end()
 
-" syntax on
+syntax on
 set omnifunc=syntaxcomplete#Complete
 
 set background=dark
@@ -151,6 +151,6 @@ function! ToggleBackground()
     endif
 endfunction
 
-
 lua require('gnfisher.telescope.setup')
 lua require('gnfisher.treesitter.setup')
+lua require('gnfisher.lsp.setup')

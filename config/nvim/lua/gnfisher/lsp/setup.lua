@@ -8,8 +8,6 @@ if not status_ok then
   return
 end
 
-local helpers = require('gnfisher.helpers')
-
 -- Mappings.
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
@@ -26,11 +24,10 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  map('n', 'gd', telescope.lsp_definitions, bufopts)
-  map('n', 'gi', telescope.lsp_implementations, bufopts)
-  map('n', 'gR', telescope.lsp_references, bufopts)
-  map('n', 'gh', vim.lsp.buf.hover, bufopts)
-
+  vim.keymap.set('n', 'gd', telescope.lsp_definitions, bufopts)
+  vim.keymap.set('n', 'gi', telescope.lsp_implementations, bufopts)
+  vim.keymap.set('n', 'gR', telescope.lsp_references, bufopts)
+  vim.keymap.set('n', 'gh', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '==', vim.lsp.buf.formatting, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
@@ -41,5 +38,25 @@ end
 config.elmls.setup{
   on_attach = on_attach
 }
+
+local status_ok, metals = pcall(require, "metals")
+if not status_ok then
+  return
+end
+metals_config = metals.bare_config()
+metals_config.init_options.statusBarProvider = "on"
+metals_config.settings = {
+  showImplicitArguments = true,
+}
+metals_config.on_attach = on_attach
+
+local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "scala", "sbt", "java" },
+    callback = function()
+      metals.initialize_or_attach(metals_config)
+    end,
+    group = nvim_metals_group,
+  })
 
 -- TODO: solargraph, html (with snippet completion), etc.
