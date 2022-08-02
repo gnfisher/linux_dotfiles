@@ -98,6 +98,11 @@ call plug#begin()
   Plug 'saadparwaiz1/cmp_luasnip'
   Plug 'onsails/lspkind.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'yamatsum/nvim-web-nonicons'
+  Plug 'j-hui/fidget.nvim'
+  Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'norcalli/nvim-terminal.lua'
+  Plug 'mkitt/tabline.vim'
 call plug#end()
 
 " syntax on
@@ -144,7 +149,7 @@ map <leader>r :!ruby %:p<CR>
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap K <cmd>lua require('telescope.builtin').grep_string()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({ previewer = false}))<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <leader>fm <cmd>lua require('telescope.builtin').marks()<cr>
@@ -163,6 +168,9 @@ lua require('gnfisher.telescope.setup')
 lua require('gnfisher.treesitter.setup')
 lua require('gnfisher.lsp.completion')
 lua require('gnfisher.lsp.setup')
+lua require('fidget').setup{}
+lua require('colorizer').setup()
+lua require('terminal').setup()
 
 function! ToggleBackground()
     if &background == "light"

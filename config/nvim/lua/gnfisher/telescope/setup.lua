@@ -7,7 +7,7 @@ local actions = require "telescope.actions"
 local action_layout = require "telescope.actions.layout"
 telescope.setup{
   defaults = {
-    path_display = { "smart" },
+    path_display = { "shorten" },
     file_ignore_patterns = { "target", "node_modules", "parser.c", "out", "*.min.js" },
     mappings = {
       i = {
