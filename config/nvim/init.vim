@@ -25,7 +25,7 @@ set cursorline
 set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
-set hlsearch      " highlight the current search term
+set hlsearch      " highlight the current search term 
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set autoread      " If a file is changed outside of vim automatically reload it without asking
@@ -138,13 +138,12 @@ nnoremap <leader>fm <cmd>lua require('telescope.builtin').marks()<cr>
 nnoremap <leader>fq <cmd>lua require('telescope.builtin').quickfix()<cr>
 nnoremap <leader>fl <cmd>lua require('telescope.builtin').loclist()<cr>
 
-nnoremap <leader>gst <cmd>lua require('telescope.builtin').git_status()<cr>
-nnoremap <leader>gsh <cmd>lua require('telescope.builtin').git_stash()<cr>
-nnoremap <leader>gcm <cmd>lua require('telescope.builtin').git_commits()<cr>
-nnoremap <leader>gcb <cmd>lua require('telescope.builtin').git_buffer_commits()<cr>
-nnoremap <leader>ghi <cmd>lua require('telescope').extensions.gh.issues()<cr>
-nnoremap <leader>ghr <cmd>lua require('telescope').extensions.gh.pull_request()<cr>
-nnoremap <leader>ghg <cmd>lua require('telescope').extensions.gh.gist()<cr>
+nnoremap <leader>gs <cmd>lua require('telescope.builtin').git_status()<cr>
+nnoremap <leader>gS <cmd>lua require('telescope.builtin').git_stash()<cr>
+nnoremap <leader>gc <cmd>lua require('telescope.builtin').git_commits()<cr>
+nnoremap <leader>gC <cmd>lua require('telescope.builtin').git_buffer_commits()<cr>
+nnoremap <leader>gi <cmd>lua require('telescope').extensions.gh.issues()<cr>
+nnoremap <leader>gp <cmd>lua require('telescope').extensions.gh.pull_request()<cr>
 
 function! ToggleBackground()
     if &background == "light"
