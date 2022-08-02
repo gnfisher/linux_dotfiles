@@ -85,6 +85,8 @@ call plug#begin()
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-github.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'scalameta/nvim-metals'
 call plug#end()
 
 " syntax on
