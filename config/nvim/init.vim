@@ -138,10 +138,6 @@ nnoremap <leader>fm <cmd>lua require('telescope.builtin').marks()<cr>
 nnoremap <leader>fq <cmd>lua require('telescope.builtin').quickfix()<cr>
 nnoremap <leader>fl <cmd>lua require('telescope.builtin').loclist()<cr>
 
-nnoremap <leader>gs <cmd>lua require('telescope.builtin').git_status()<cr>
-nnoremap <leader>gS <cmd>lua require('telescope.builtin').git_stash()<cr>
-nnoremap <leader>gc <cmd>lua require('telescope.builtin').git_commits()<cr>
-nnoremap <leader>gC <cmd>lua require('telescope.builtin').git_buffer_commits()<cr>
 nnoremap <leader>gi <cmd>lua require('telescope').extensions.gh.issues()<cr>
 nnoremap <leader>gp <cmd>lua require('telescope').extensions.gh.pull_request()<cr>
 
