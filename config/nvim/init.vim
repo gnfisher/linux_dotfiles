@@ -49,7 +49,7 @@ set splitright
 set splitbelow
 set foldmethod=manual
 set nofoldenable
-set completeopt=menu,preview
+set completeopt=menu,menuone,noselect
 set spellfile=$HOME/.vim-spell-en.utf-8.add
 set complete=.,w,b,u,t,i
 set complete+=kspell
@@ -69,6 +69,7 @@ augroup gnfisher
 
   autocmd Filetype markdown setlocal spell textwidth=80
   autocmd Filetype gitcommit setlocal spell textwidth=76 colorcolumn=77
+  autocmd FileType elm setlocal shiftwidth=4 tabstop=4
 
   autocmd QuickFixCmdPost [^l]* cwindow
   autocmd QuickFixCmdPost l* lwindow
@@ -87,9 +88,19 @@ call plug#begin()
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'neovim/nvim-lspconfig'
   Plug 'scalameta/nvim-metals'
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'L3MON4D3/LuaSnip'
+  Plug 'saadparwaiz1/cmp_luasnip'
+  Plug 'onsails/lspkind.nvim'
+  Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 
-syntax on
+" syntax on
 set omnifunc=syntaxcomplete#Complete
 
 set background=dark
@@ -143,6 +154,16 @@ nnoremap <leader>fl <cmd>lua require('telescope.builtin').loclist()<cr>
 nnoremap <leader>gi <cmd>lua require('telescope').extensions.gh.issues()<cr>
 nnoremap <leader>gp <cmd>lua require('telescope').extensions.gh.pull_request()<cr>
 
+imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
+snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
+snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
+
+lua require('gnfisher.telescope.setup')
+lua require('gnfisher.treesitter.setup')
+lua require('gnfisher.lsp.completion')
+lua require('gnfisher.lsp.setup')
+
 function! ToggleBackground()
     if &background == "light"
         set background=dark
@@ -150,7 +171,3 @@ function! ToggleBackground()
         set background=light
     endif
 endfunction
-
-lua require('gnfisher.telescope.setup')
-lua require('gnfisher.treesitter.setup')
-lua require('gnfisher.lsp.setup')

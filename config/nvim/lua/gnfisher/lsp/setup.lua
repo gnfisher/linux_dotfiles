@@ -35,8 +35,12 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
 end
 
+-- Setup lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 config.elmls.setup{
-  on_attach = on_attach
+  on_attach = on_attach,
+  capabilities = capabilities
 }
 
 local status_ok, metals = pcall(require, "metals")
@@ -49,6 +53,7 @@ metals_config.settings = {
   showImplicitArguments = true,
 }
 metals_config.on_attach = on_attach
+metals_config.capabilities = capabilities
 
 local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
@@ -58,5 +63,3 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
     group = nvim_metals_group,
   })
-
--- TODO: solargraph, html (with snippet completion), etc.
