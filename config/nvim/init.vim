@@ -77,6 +77,8 @@ augroup END
 
 call plug#begin()
   Plug 'lifepillar/vim-solarized8'
+  Plug 'Shatur/neovim-ayu'
+  Plug 'nvim-lualine/lualine.nvim'
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
@@ -108,7 +110,7 @@ call plug#end()
 set omnifunc=syntaxcomplete#Complete
 
 set background=dark
-" color solarized8
+color ayu
 map <F6> :call ToggleBackground()<CR>
 
 " Ruby configuration
@@ -170,6 +172,8 @@ lua require('gnfisher.lsp.setup')
 lua require('fidget').setup{}
 lua require('colorizer').setup()
 lua require('terminal').setup()
+lua require('ayu').setup({ mirage = false, })
+lua require('lualine').setup({ options = { theme = 'ayu' }})
 
 function! ToggleBackground()
     if &background == "light"
@@ -178,3 +182,5 @@ function! ToggleBackground()
         set background=light
     endif
 endfunction
+
+highlight! BorderBG guibg=#ffffff guifg=#ffffff
