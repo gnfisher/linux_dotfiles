@@ -1,6 +1,6 @@
 set -U fish_greeting
 set TERM "xterm-256color"
-set EDITOR vim
+set EDITOR nvim
 
 switch (uname)
     case Linux
@@ -10,7 +10,7 @@ switch (uname)
     case Darwin
       set HOMEBREW_NO_AUTO_UPDATE 1
       set PATH /opt/homebrew/bin $PATH
-      set paTH /opt/homebrew/sbin $PATH
+      set PATH /opt/homebrew/sbin $PATH
       set JAVA_HOME (/usr/libexec/java_home -v 1.8)
       source (brew --prefix asdf)/libexec/asdf.fish
 end
