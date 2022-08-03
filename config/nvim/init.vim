@@ -4,7 +4,6 @@ let mapleader = " "
 
 map <leader>s :so ~/.config/nvim/init.vim<CR>
 
-set shell=/bin/sh
 set nocompatible
 set termguicolors
 set list listchars=tab:▸\ ,trail:·,nbsp:·
@@ -77,7 +76,7 @@ augroup gnfisher
   " These make it nice to switch open a command line app in term then exit
   " with ctrl+d without extra key strokes.
   autocmd TermOpen * startinsert          " switch to insert mode when entering term
-  autocmd TermClose * call feedkeys("i")  " close term when exit code recv'd
+  " autocmd TermClose * call feedkeys("i")  " close term when exit code recv'd
 augroup END
 
 call plug#begin()
@@ -109,9 +108,9 @@ call plug#begin()
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'norcalli/nvim-terminal.lua'
   Plug 'mkitt/tabline.vim'
+  Plug 'klen/nvim-test'
 call plug#end()
 
-" syntax on
 set omnifunc=syntaxcomplete#Complete
 
 set background=dark
@@ -146,12 +145,12 @@ nmap K :grep "\b<C-R><C-W>\b"<CR>:cw<CR>:redraw!<CR>
 map <C-j> :cnext<CR>
 map <C-k> :cprev<CR>
 
-map <leader>gg :terminal gitsh<CR>
-
 map <leader>ct :silent !ctags -R .<CR>:redraw!<CR>
 
-map <leader>ru :TS irb<CR>
-map <leader>rf :TS irb -r %:p<CR>
+map <leader>gg :terminal gitsh<CR>
+map <leader>ru :TSCall irb<CR>
+map <leader>rf :TSCall irb -r %:p<CR>
+map <leader>t :TSOpen<CR>
 
 " Telescope
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
@@ -175,6 +174,7 @@ lua require('gnfisher.telescope.setup')
 lua require('gnfisher.treesitter.setup')
 lua require('gnfisher.lsp.completion')
 lua require('gnfisher.lsp.setup')
+lua require('gnfisher.test.setup')
 lua require('fidget').setup{}
 lua require('colorizer').setup()
 lua require('terminal').setup()
@@ -189,5 +189,6 @@ function! ToggleBackground()
     endif
 endfunction
 
-command! -nargs=* TS split | terminal <args> " send terminal command to split
+command! -nargs=* TSOpen plit | terminal         " open terminal in split
+command! -nargs=* TSCall split | terminal <args>  " send terminal command to split
 
