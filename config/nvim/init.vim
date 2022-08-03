@@ -73,6 +73,11 @@ augroup gnfisher
 
   autocmd QuickFixCmdPost [^l]* cwindow
   autocmd QuickFixCmdPost l* lwindow
+
+  " These make it nice to switch open a command line app in term then exit
+  " with ctrl+d without extra key strokes.
+  autocmd TermOpen * startinsert          " switch to insert mode when entering term
+  autocmd TermClose * call feedkeys("i")  " close term when exit code recv'd
 augroup END
 
 call plug#begin()
