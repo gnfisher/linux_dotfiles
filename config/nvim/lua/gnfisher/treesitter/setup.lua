@@ -4,6 +4,8 @@ if not status_ok then
 end
 
 configs.setup {
+
+  endwise = { enable = true, },
   -- A list of parser names, or "all"
   ensure_installed = { "lua", "ruby", "elm", "scala", "javascript", "typescript" , "vim" },
 

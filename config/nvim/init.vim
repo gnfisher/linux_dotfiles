@@ -78,7 +78,6 @@ augroup END
 call plug#begin()
   Plug 'lifepillar/vim-solarized8'
   Plug 'tpope/vim-vinegar'
-  Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   Plug 'nvim-lua/plenary.nvim'
@@ -86,6 +85,7 @@ call plug#begin()
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-github.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'RRethy/nvim-treesitter-endwise'
   Plug 'neovim/nvim-lspconfig'
   Plug 'scalameta/nvim-metals'
   Plug 'neovim/nvim-lspconfig'
@@ -108,7 +108,7 @@ call plug#end()
 set omnifunc=syntaxcomplete#Complete
 
 set background=dark
-color solarized8
+" color solarized8
 map <F6> :call ToggleBackground()<CR>
 
 " Ruby configuration
@@ -134,6 +134,7 @@ nnoremap <C-Space> <Esc>:noh<cr>
 
 command -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
 nmap \ :Rg<SPACE>
+nmap K :grep "\b<C-R><C-W>\b"<CR>:cw<CR>:redraw!<CR>
 
 map <C-j> :cnext<CR>
 map <C-k> :cprev<CR>
@@ -147,7 +148,6 @@ map <leader>r :!ruby %:p<CR>
 " Telescope
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap K <cmd>lua require('telescope.builtin').grep_string()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({ previewer = false}))<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<cr>
