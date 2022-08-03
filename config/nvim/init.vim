@@ -150,7 +150,8 @@ map <leader>gg :terminal gitsh<CR>
 
 map <leader>ct :silent !ctags -R .<CR>:redraw!<CR>
 
-map <leader>r :!ruby %:p<CR>
+map <leader>ru :TS irb<CR>
+map <leader>rf :TS irb -r %:p<CR>
 
 " Telescope
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
@@ -188,4 +189,5 @@ function! ToggleBackground()
     endif
 endfunction
 
-highlight! BorderBG guibg=#ffffff guifg=#ffffff
+command! -nargs=* TS split | terminal <args> " send terminal command to split
+
