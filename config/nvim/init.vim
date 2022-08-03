@@ -189,6 +189,7 @@ function! ToggleBackground()
     endif
 endfunction
 
-command! -nargs=* TSOpen plit | terminal         " open terminal in split
-command! -nargs=* TSCall split | terminal <args>  " send terminal command to split
+" Some of this terminal integration setup might make a decent plugin?
+command! -nargs=0 TSOpen exec winheight(0)/3."split" | terminal
+command! -nargs=* TSCall exec winheight(0)/3."split" | terminal <args>  " send terminal command to split
 
