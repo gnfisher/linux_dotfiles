@@ -98,7 +98,6 @@ call plug#begin()
   Plug 'saadparwaiz1/cmp_luasnip'
   Plug 'onsails/lspkind.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
-  Plug 'yamatsum/nvim-web-nonicons'
   Plug 'j-hui/fidget.nvim'
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'norcalli/nvim-terminal.lua'
