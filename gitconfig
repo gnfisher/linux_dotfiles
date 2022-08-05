@@ -57,8 +57,6 @@
 	email = greg@gnfisher.com
 [github]
   user = gnfisher
-[mergetool "fugitive"]
-  cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [commit]
