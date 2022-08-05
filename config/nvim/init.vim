@@ -107,6 +107,7 @@ call plug#begin()
   Plug 'norcalli/nvim-terminal.lua'
   Plug 'mkitt/tabline.vim'
   Plug 'klen/nvim-test'
+  Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " If we aren't using lsp, then do things the old way.
@@ -128,7 +129,7 @@ endif
 cnoremap <expr> %% expand('%:h').'/'
 
 nnoremap <C-Space> <Esc>:noh<cr>
-tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>                       " Esc exits imode in terminal
 
 command -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
 nmap \ :Rg<SPACE>
@@ -145,7 +146,6 @@ vmap cV "+P
 " Navigate quickfix window items
 map <M-j> :cnext<CR>
 map <M-k> :cprev<CR>
-
 
 map <leader>ct :silent !ctags -R .<CR>:redraw!<CR>
 
@@ -202,7 +202,6 @@ endfunction
 
 " Terminal
 " ========
-
 " Some of this terminal integration setup might make a decent plugin?
 command! -nargs=0 TSOpen exec winheight(0)/3."split" | terminal
 command! -nargs=* TSCall exec winheight(0)/3."split" | terminal <args>  " send terminal command to split
