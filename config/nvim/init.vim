@@ -73,10 +73,7 @@ augroup gnfisher
   autocmd QuickFixCmdPost [^l]* cwindow
   autocmd QuickFixCmdPost l* lwindow
 
-  " These make it nice to switch open a command line app in term then exit
-  " with ctrl+d without extra key strokes.
-  autocmd TermOpen * startinsert          " switch to insert mode when entering term
-  " autocmd TermClose * call feedkeys("i")  " close term when exit code recv'd
+  autocmd TermOpen * startinsert  " switch to insert mode when entering term
 augroup END
 
 call plug#begin()
@@ -111,6 +108,7 @@ call plug#begin()
   Plug 'klen/nvim-test'
 call plug#end()
 
+" If we aren't using lsp, then do things the old way.
 set omnifunc=syntaxcomplete#Complete
 
 set background=dark
@@ -121,14 +119,6 @@ map <F6> :call ToggleBackground()<CR>
 let g:ruby_indent_block_style = 'do'
 let g:ruby_indent_assignment_style = 'variable'
 
-" Easier than "+
-nmap cp "+y
-nmap cv "+p
-nmap cV "+P
-vmap cp "+y
-vmap cv "+p
-vmap cV "+P
-
 if executable("rg")
     set grepprg=rg\ --vimgrep\ --no-heading
     set grepformat=%f:%l:%c:%m,%f:%l:%m
@@ -137,20 +127,38 @@ endif
 cnoremap <expr> %% expand('%:h').'/'
 
 nnoremap <C-Space> <Esc>:noh<cr>
+tnoremap <Esc> <C-\><C-n>
 
 command -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
 nmap \ :Rg<SPACE>
 nmap K :grep "\b<C-R><C-W>\b"<CR>:cw<CR>:redraw!<CR>
 
-map <C-j> :cnext<CR>
-map <C-k> :cprev<CR>
+" Easier than "+
+nmap cp "+y
+nmap cv "+p
+nmap cV "+P
+vmap cp "+y
+vmap cv "+p
+vmap cV "+P
+
+" Navigate quickfix window items
+map <M-j> :cnext<CR>
+map <M-k> :cprev<CR>
+
 
 map <leader>ct :silent !ctags -R .<CR>:redraw!<CR>
 
+" Terminal helpers
 map <leader>gg :terminal gitsh<CR>
 map <leader>ru :TSCall irb<CR>
-map <leader>rf :TSCall irb -r %:p<CR>
-map <leader>t :TSOpen<CR>
+map <leader>rf :TSCall irb -r %:p<CR> " load irb and require current file
+map <leader>oo :TSOpen<CR>
+
+" Tests
+map <leader>tn :TestNearest<CR>
+map <leader>tl :TestLast<CR>
+map <leader>tf :TestFile<CR>
+map <leader>ta :TestSuite<CR>
 
 " Telescope
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
@@ -189,7 +197,9 @@ function! ToggleBackground()
     endif
 endfunction
 
+" Terminal
+" ========
+
 " Some of this terminal integration setup might make a decent plugin?
 command! -nargs=0 TSOpen exec winheight(0)/3."split" | terminal
 command! -nargs=* TSCall exec winheight(0)/3."split" | terminal <args>  " send terminal command to split
-
