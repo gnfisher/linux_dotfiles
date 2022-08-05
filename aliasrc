@@ -1,7 +1,6 @@
 alias ..="cd ../"
 alias ...="cd ../.."
 alias ....="cd ../../.."
-alias cat=bat
 alias n=nvim
 alias ls="ls -G"
 alias mkdir="mkdir -p"
@@ -11,7 +10,7 @@ alias ga="git add"
 alias gb="git branch"
 alias gco="git checkout"
 alias gcb="git checkout -b"
-alias gm="git checkout master"
+alias gcm="git checkout master"
 alias gp="git push"
 alias grb="git rebase -i"
 alias gd="git diff -U 10"

@@ -1,35 +1,25 @@
 set -U fish_greeting
+
 set TERM "xterm-256color"
 set EDITOR nvim
 
+set -U fish_pager_color_selected_background --background=124476
+
 switch (uname)
     case Linux
-      set JAVA_HOME "/usr/bin/java"
-      source ~/.config/fish/linux.fish
-      source ~/.asdf/asdf.fish
+      source $HOME/.config/fish/linux.fish
     case Darwin
-      set HOMEBREW_NO_AUTO_UPDATE 1
-      set PATH /opt/homebrew/bin $PATH
-      set PATH /opt/homebrew/sbin $PATH
-      set JAVA_HOME (/usr/libexec/java_home -v 1.8)
-      source (brew --prefix asdf)/libexec/asdf.fish
+      source $HOME/.config/fish/macos.fish
 end
 
-set PATH $HOME/Library/Application\ Support/Coursier/bin $PATH
-set PATH $HOME/.cargo/bin $PATH
-set PATH $HOME/.local/bin $PATH
-set PATH $PATH "$PATH:$HOME/.bin:/usr/local/bin"
-set PATH $HOME/.local/share/idea/bin $PATH
-set PATH $HOME/.local/share/lua-language-server/bin $PATH
+fish_add_path -pP $HOME/.cargo/bin \
+  $HOME/.local/bin \
+  $HOME/.bin /usr/local/bin \
+  $HOME/.local/share/lua-language-server/bin
 
 source ~/.aliasrc
 
-function mcd
-  command mkdir $argv[1] && cd $argv[1]
-end
-
 # Ensure tmux is running
-# if not set -q TMUX
-#   command tat
-# end
-# status --is-interactive; and source (jenv init -|psub)
+if not set -q TMUX
+  command tat
+end
