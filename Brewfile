@@ -18,6 +18,7 @@ brew "postgresql"
 brew "coursier/formulas/coursier"
 brew "rg"
 brew "fzf"
+brew "universal-ctags"
 
 tap "heroku/brew"
 brew "heroku"

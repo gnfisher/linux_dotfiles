@@ -54,7 +54,8 @@ set complete=.,w,b,u,t,i
 set complete+=kspell
 set path+=**
 set diffopt+=vertical
-set shortmess=c     " Try not showing any messages
+set shortmess=c         " Try not showing any messages
+set tags=./.tags;$HOME  " Look for .tags in all directories, like .git
 
 filetype plugin indent on
 
@@ -161,14 +162,16 @@ map <leader>tf :TestFile<CR>
 map <leader>ta :TestSuite<CR>
 
 " Telescope
+lua dropdown = require('telescope.themes').get_dropdown({ previewer = false})
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({ previewer = false}))<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers(dropdown)<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <leader>fm <cmd>lua require('telescope.builtin').marks()<cr>
 nnoremap <leader>fq <cmd>lua require('telescope.builtin').quickfix()<cr>
 nnoremap <leader>fl <cmd>lua require('telescope.builtin').loclist()<cr>
+nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags(dropdown)<cr>
 
 nnoremap <leader>gi <cmd>lua require('telescope').extensions.gh.issues()<cr>
 nnoremap <leader>gp <cmd>lua require('telescope').extensions.gh.pull_request()<cr>

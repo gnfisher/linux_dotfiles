@@ -5,6 +5,11 @@ set EDITOR nvim
 
 set -U fish_pager_color_selected_background --background=124476
 
+fish_add_path $HOME/.cargo/bin \
+  $HOME/.local/bin \
+  $HOME/.bin /usr/local/bin \
+  $HOME/.local/share/lua-language-server/bin
+
 switch (uname)
     case Linux
       source $HOME/.config/fish/linux.fish
@@ -12,10 +17,6 @@ switch (uname)
       source $HOME/.config/fish/macos.fish
 end
 
-fish_add_path -pP $HOME/.cargo/bin \
-  $HOME/.local/bin \
-  $HOME/.bin /usr/local/bin \
-  $HOME/.local/share/lua-language-server/bin
 
 source ~/.aliasrc
 
