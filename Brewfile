@@ -19,6 +19,8 @@ brew "coursier/formulas/coursier"
 brew "rg"
 brew "fzf"
 brew "universal-ctags"
+brew "tmux"
+brew "fish"
 
 tap "heroku/brew"
 brew "heroku"
