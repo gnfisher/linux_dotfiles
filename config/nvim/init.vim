@@ -143,12 +143,6 @@ vmap cp "+y
 vmap cv "+p
 vmap cV "+P
 
-" Navigate quickfix window items
-map <M-j> :cnext<CR>
-map <M-k> :cprev<CR>
-
-map <leader>ct :silent !ctags -R .<CR>:redraw!<CR>
-
 " Terminal helpers
 map <leader>gg :terminal gitsh<CR>
 map <leader>ru :TSCall irb<CR>
@@ -176,10 +170,16 @@ nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags(dropdown)<cr>
 nnoremap <leader>gi <cmd>lua require('telescope').extensions.gh.issues()<cr>
 nnoremap <leader>gp <cmd>lua require('telescope').extensions.gh.pull_request()<cr>
 
+" Lua snip expansion
 imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
 inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
 snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
 snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
+
+" Personal lazy things
+nnoremap <leader>; :
+map <M-j> :cnext<CR>
+map <M-k> :cprev<CR>
 
 lua require('gnfisher.telescope.setup')
 lua require('gnfisher.treesitter.setup')
