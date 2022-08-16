@@ -7,7 +7,7 @@ set -x
 echo 'Installing dotfiles, maybe'
 
 if [[ "$CODESPACES" = "true" ]]; then
-  sudo apt-get install -y rcm tmux universal-ctags rip-grep bat jq fzf fish
+  sudo apt-get install -y rcm tmux universal-ctags ripgrep bat jq fzf fish
   rcup -f -v -d .
   nvim +PluginInstall +qa
 
