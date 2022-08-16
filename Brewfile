@@ -3,7 +3,6 @@ brew "bat"
 brew "jq"
 brew "curl"
 brew "ripgrep"
-brew "the_silver_searcher"
 brew "tree"
 brew "fzf"
 brew "fd"
@@ -21,14 +20,6 @@ brew "fzf"
 brew "universal-ctags"
 brew "tmux"
 brew "fish"
-
-tap "heroku/brew"
-brew "heroku"
-
-tap "homebrew/cask-versions"
-# Install Java 11, you'll still need to symlink the system wrappers.
-# Run `brew info java11` after installation for how-tos.
-brew "java11"
 
 tap "thoughtbot/formulae"
 brew "gitsh"
