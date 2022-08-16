@@ -4,6 +4,7 @@ exec > >(tee -i $HOME/dotfiles_install.log)
 exec 2>&1
 set -x
 
+echo 'Installing dotfiles, maybe'
 
 if [[ "$CODESPACES" = "true" ]]; then
   sudo apt-get install -y rcm tmux universal-ctags rip-grep bat jq fzf fish
