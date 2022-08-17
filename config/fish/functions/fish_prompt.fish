@@ -8,7 +8,7 @@ function _git_branch_name
 end
 
 function _is_git_dirty
-  set -l show_untracked (git config --bool bash.showUntrackedFiles)
+  set -l show_untracked (git config --bool status.showUntrackedFiles)
   set -l untracked
   if [ "$theme_display_git_untracked" = 'no' -o "$show_untracked" = 'false' ]
     set untracked '--untracked-files=no'

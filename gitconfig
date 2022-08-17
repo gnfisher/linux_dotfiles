@@ -45,6 +45,8 @@
   default = upstream
 [fetch]
   prune = true
+[status]
+  showUntrackedFiles = no
 [gitsh "color"]
   default = cyan
 [gitsh]
