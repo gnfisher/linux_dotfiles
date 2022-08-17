@@ -28,7 +28,7 @@ if [[ "$CODESPACES" = "true" ]]; then
   nvim +PluginInstall +qa
 
   # Default to HTTPS for GitHub access
-  # git config --global url.https://github.com/.insteadOf git@github.com:
+  git config --global url.https://github.com/.insteadOf git@github.com:
 
   sudo chsh -s $(which fish) $(whoami)
 
