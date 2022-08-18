@@ -17,7 +17,6 @@ switch (uname)
       source $HOME/.config/fish/macos.fish
 end
 
-
 source ~/.aliasrc
 
 # Ensure tmux is running
