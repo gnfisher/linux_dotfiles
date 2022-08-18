@@ -146,7 +146,7 @@ vmap cV "+P
 " Terminal helpers
 map <leader>gg :terminal gitsh<CR>
 map <leader>ru :TSCall irb<CR>
-map <leader>rf :TSCall irb -r %:p<CR> " load irb and require current file
+map <leader>rf :TSCall irb -r %:p<CR>
 map <leader>oo :TSOpen<CR>
 
 " Tests
@@ -204,4 +204,4 @@ endfunction
 " ========
 " Some of this terminal integration setup might make a decent plugin?
 command! -nargs=0 TSOpen exec winheight(0)/3."split" | terminal
-command! -nargs=* TSCall exec winheight(0)/3."split" | terminal <args>  " send terminal command to split
+command! -nargs=* TSCall exec winheight(0)/3."split" | terminal <args>
