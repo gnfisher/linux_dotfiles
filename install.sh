@@ -12,7 +12,7 @@ function fancy_echo() {
 
 if [[ "$CODESPACES" = "true" ]]; then
   fancy_echo "Installing apt packages..." 
-  sudo apt-get install -y rcm tmux universal-ctags ripgrep bat jq fzf fish
+  sudo apt-get install -y rcm tmux universal-ctags ripgrep bat jq fzf
 
   fancy_echo "Installing neovim..."
   curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
