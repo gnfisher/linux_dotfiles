@@ -30,7 +30,5 @@ if [[ "$CODESPACES" = "true" ]]; then
   # Default to HTTPS for GitHub access
   git config --global url.https://github.com/.insteadOf git@github.com:
 
-  sudo chsh -s $(which fish) $(whoami)
-
   fancy_echo "Done."
 fi
