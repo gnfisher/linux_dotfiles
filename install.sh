@@ -21,7 +21,9 @@ if [[ "$CODESPACES" = "true" ]]; then
   ./squashfs-root/AppRun --version
   sudo mv squashfs-root / && ln -s /squashfs-root/AppRun $HOME/.local/bin/nvim
 
+
   fancy_echo "Installing dotfiles..."
+  mv $HOME/.zshrc $HOME/.zshrc.old
   rcup -f -v -d -U install.sh .
 
   fancy_echo "Setting up neovim..."
