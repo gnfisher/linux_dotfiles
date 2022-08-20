@@ -28,9 +28,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.history
 
-# Load completion functions
-fpath=(/usr/local/share/zsh/site-functions $fpath)
-
 unsetopt BANG_HIST            # This allows usage of ! without escaping, eg: `git commit -m "yes!"`
 unsetopt nomatch              # Allow [ or ] whereever you want
 setopt extendedglob           # Enable extended globbing
