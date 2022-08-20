@@ -22,7 +22,7 @@ if [[ "$CODESPACES" = "true" ]]; then
   sudo mv squashfs-root / && ln -s /squashfs-root/AppRun $HOME/.local/bin/nvim
 
   fancy_echo "Installing dotfiles..."
-  rcup -f -v -d .
+  rcup -f -v -d -U install.sh .
 
   fancy_echo "Setting up neovim..."
   nvim +PluginInstall +qa
