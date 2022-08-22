@@ -25,13 +25,15 @@ if [[ "$CODESPACES" = "true" ]]; then
 
   fancy_echo "Installing dotfiles..."
   mv $HOME/.zshrc $HOME/.zshrc.old
-  rcup -v -d .
+  rcup -v -d -f .
 
   fancy_echo "Setting up neovim..."
   nvim +PluginInstall +qa
 
   # Default to HTTPS for GitHub access
   git config --global url.https://github.com/.insteadOf git@github.com:
+
+  sudo chsh -s $(which zsh) $(whoami)
 
   fancy_echo "Done."
 fi
