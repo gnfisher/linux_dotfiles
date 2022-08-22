@@ -20,6 +20,7 @@ if [[ "$CODESPACES" = "true" ]]; then
     chmod u+x nvim.appimage
     ./nvim.appimage --appimage-extract
     ./squashfs-root/AppRun --version
+    sudo mkdir $HOME/.local/bin
     sudo mv squashfs-root / && ln -s /squashfs-root/AppRun $HOME/.local/bin/nvim
   fi
 
