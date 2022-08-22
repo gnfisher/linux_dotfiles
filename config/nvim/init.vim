@@ -191,8 +191,7 @@ lua require('gnfisher.test.setup')
 lua require('fidget').setup{}
 lua require('colorizer').setup()
 lua require('terminal').setup()
-lua require('ayu').setup({ mirage = false, })
-lua require('lualine').setup({ options = { theme = 'adwaita' }})
+lua require('lualine').setup({ options = { theme = 'auto' }})
 
 function! ToggleBackground()
     if &background == "light"
