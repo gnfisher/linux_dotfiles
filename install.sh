@@ -21,7 +21,7 @@ if [[ "$CODESPACES" = "true" ]]; then
     ./nvim.appimage --appimage-extract
     ./squashfs-root/AppRun --version
     sudo mkdir $HOME/.local/bin
-    sudo mv squashfs-root / && ln -s /squashfs-root/AppRun $HOME/.local/bin/nvim
+    sudo mv squashfs-root / && sudo ln -s /squashfs-root/AppRun $HOME/.local/bin/nvim
   fi
 
   fancy_echo "Installing dotfiles..."
