@@ -79,7 +79,6 @@ augroup END
 
 call plug#begin()
   Plug 'lifepillar/vim-solarized8'
-  Plug 'Shatur/neovim-ayu'
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-commentary'
@@ -109,7 +108,6 @@ call plug#begin()
   Plug 'norcalli/nvim-terminal.lua'
   Plug 'mkitt/tabline.vim'
   Plug 'klen/nvim-test'
-  Plug 'christoomey/vim-tmux-navigator'
   Plug 'Mofiqul/adwaita.nvim'
 call plug#end()
 
