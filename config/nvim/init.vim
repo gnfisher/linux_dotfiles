@@ -107,15 +107,15 @@ call plug#begin()
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'norcalli/nvim-terminal.lua'
   Plug 'mkitt/tabline.vim'
-  Plug 'klen/nvim-test'
   Plug 'Mofiqul/adwaita.nvim'
+  Plug 'vim-test/vim-test'
 call plug#end()
 
 " If we aren't using lsp, then do things the old way.
 set omnifunc=syntaxcomplete#Complete
 
 set background=light
-" color adwaita
+color solarized8
 map <F6> :call ToggleBackground()<CR>
 
 " Ruby configuration
