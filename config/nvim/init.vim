@@ -108,13 +108,14 @@ call plug#begin()
   Plug 'mkitt/tabline.vim'
   Plug 'klen/nvim-test'
   Plug 'christoomey/vim-tmux-navigator'
+  Plug 'Mofiqul/adwaita.nvim'
 call plug#end()
 
 " If we aren't using lsp, then do things the old way.
 set omnifunc=syntaxcomplete#Complete
 
-set background=dark
-color ayu
+set background=light
+color adwaita
 map <F6> :call ToggleBackground()<CR>
 
 " Ruby configuration
@@ -191,7 +192,7 @@ lua require('fidget').setup{}
 lua require('colorizer').setup()
 lua require('terminal').setup()
 lua require('ayu').setup({ mirage = false, })
-lua require('lualine').setup({ options = { theme = 'ayu' }})
+lua require('lualine').setup({ options = { theme = 'adwaita' }})
 
 function! ToggleBackground()
     if &background == "light"
