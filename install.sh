@@ -25,7 +25,7 @@ if [[ "$CODESPACES" = "true" ]]; then
 
   fancy_echo "Installing dotfiles..."
   mv $HOME/.zshrc $HOME/.zshrc.old
-  rcup -v -d -f .
+  rcup -f -v -d .
 
   fancy_echo "Setting up neovim..."
   nvim +PluginInstall +qa
