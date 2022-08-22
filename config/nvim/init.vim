@@ -85,6 +85,7 @@ call plug#begin()
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-fugitive'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Plug 'nvim-telescope/telescope.nvim'
@@ -116,7 +117,7 @@ call plug#end()
 set omnifunc=syntaxcomplete#Complete
 
 set background=light
-color adwaita
+" color adwaita
 map <F6> :call ToggleBackground()<CR>
 
 " Ruby configuration
