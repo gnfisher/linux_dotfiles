@@ -187,7 +187,6 @@ lua require('gnfisher.telescope.setup')
 lua require('gnfisher.treesitter.setup')
 lua require('gnfisher.lsp.completion')
 lua require('gnfisher.lsp.setup')
-lua require('gnfisher.test.setup')
 lua require('fidget').setup{}
 lua require('colorizer').setup()
 lua require('terminal').setup()

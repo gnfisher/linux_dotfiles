@@ -28,6 +28,13 @@ if [[ "$CODESPACES" = "true" ]]; then
   mv $HOME/.zshrc $HOME/.zshrc.old
   rcup -f -v -d .
 
+  # Use RDM for copy/paste and open support
+  wget https://github.com/BlakeWilliams/remote-development-manager/releases/download/v0.0.3/rdm-linux-amd64
+  sudo mv rdm-linux-amd64 /usr/bin/local/rdm
+  chmod +x /usr/bin/local/rdm
+
+  gh config set browser "rdm open"
+
   fancy_echo "Setting up neovim..."
   nvim +PluginInstall +qa
 

@@ -19,7 +19,7 @@ brew "rg"
 brew "fzf"
 brew "universal-ctags"
 brew "tmux"
-brew "fish"
+brew "wget"
 
 tap "thoughtbot/formulae"
 brew "gitsh"
