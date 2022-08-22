@@ -59,7 +59,5 @@
 	email = greg@gnfisher.com
 [github]
   user = gnfisher
-[url "git@github.com:"]
-	insteadOf = https://github.com/
 [commit]
   template=~/.gitmessage
