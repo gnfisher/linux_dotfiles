@@ -1,13 +1,12 @@
-set encoding=utf-8
+syntax on
 
 let mapleader = " "
 
+set encoding=utf-8
 set shell=/bin/sh
 set nocompatible
-set termguicolors
 set list listchars=tab:▸\ ,trail:·,nbsp:·
 set mouse=a
-set belloff=all
 set expandtab
 set backspace=2   " Backspace deletes like most programs in insert mode
 set tabstop=2 softtabstop=2 shiftwidth=2 " Default tab size
@@ -23,26 +22,18 @@ set hlsearch      " highlight the current search term
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set autoread      " If a file is changed outside of vim automatically reload it without asking
-set modelines=0   " Disable modelines as a security precaution
-set nomodeline
 set number
 set relativenumber
-set ruler
 set colorcolumn=80
 set signcolumn=number
 set hidden
 set showtabline=2 " Always show tabline
 set ignorecase smartcase
-set cmdheight=2
-set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-set scrolloff=3
-set wildmode=longest,list
 set wildmenu
+set wildmode=longest,list
 set nojoinspaces
 set splitright
 set splitbelow
-set foldmethod=manual
-set nofoldenable
 set completeopt=menu,preview
 set spellfile=$HOME/.vim-spell-en.utf-8.add
 set complete=.,w,b,u,t,i
@@ -50,6 +41,7 @@ set complete+=kspell
 set path+=**
 set diffopt+=vertical
 set shortmess=c     " Try not showing any messages
+
 
 filetype plugin indent on
 
@@ -70,17 +62,17 @@ augroup END
 
 call plug#begin()
   Plug 'lifepillar/vim-solarized8'
-  Plug 'tomasr/molokai'
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-rails'
+  Plug 'leafgarland/typescript-vim'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'dense-analysis/ale'
-  Plug 'ElmCast/elm-vim'
+  Plug 'tpope/vim-dispatch'
+  Plug 'vim-test/vim-test'
 call plug#end()
-
-syntax on
 
 set background=dark
 color solarized8
@@ -110,13 +102,10 @@ endif
 command -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
 nmap \ :Rg<SPACE>
 nmap K :grep "\b<C-R><C-W>\b"<CR>:cw<CR>:redraw!<CR>
-au FileType scala,elm nmap K :ALEHover<CR>
 
 let g:ctrlp_custom_ignore = {
     \ 'dir': '\.git\|node_modules\|target$'
 \ }
-
-let g:elm_setup_keybindings = 0
 
 nmap <silent> [r <Plug>(ale_previous_wrap)
 nmap <silent> ]r <Plug>(ale_next_wrap)
@@ -131,6 +120,8 @@ nmap gd :ALEGoToDefinition<CR>
 nmap gr :ALEFindReferences -quickfix<CR>
 
 set omnifunc=ale#completion#OmniFunc
+
+let test#strategy = "dispatch"
 
 map <C-j> :cnext<CR>
 map <C-k> :cprev<CR>
