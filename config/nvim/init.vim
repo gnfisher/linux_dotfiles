@@ -109,6 +109,7 @@ call plug#begin()
   Plug 'mkitt/tabline.vim'
   Plug 'Mofiqul/adwaita.nvim'
   Plug 'vim-test/vim-test'
+  Plug 'mfussenegger/nvim-lint'
 call plug#end()
 
 " If we aren't using lsp, then do things the old way.
@@ -157,10 +158,10 @@ map <leader>tf :TestFile<CR>
 map <leader>ta :TestSuite<CR>
 
 " Telescope
-lua dropdown = require('telescope.themes').get_dropdown({ previewer = false})
+lua quickview = require('telescope.themes').get_dropdown({ previewer = false})
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers(dropdown)<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers(quickview)<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <leader>fm <cmd>lua require('telescope.builtin').marks()<cr>
@@ -201,7 +202,5 @@ function! ToggleBackground()
 endfunction
 
 " Terminal
-" ========
-" Some of this terminal integration setup might make a decent plugin?
 command! -nargs=0 TSOpen exec winheight(0)/3."split" | terminal
 command! -nargs=* TSCall exec winheight(0)/3."split" | terminal <args>

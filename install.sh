@@ -14,29 +14,22 @@ if [[ "$CODESPACES" = "true" ]]; then
   fancy_echo "Installing apt packages..." 
   sudo apt-get install -y rcm tmux universal-ctags ripgrep bat jq fzf
 
-  if ! command -v nvim &> /dev/null; then
-    fancy_echo "Installing neovim..."
-    curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-    chmod u+x nvim.appimage
-    ./nvim.appimage --appimage-extract
-    ./squashfs-root/AppRun --version
-    sudo mkdir $HOME/.local/bin
-    sudo mv squashfs-root / && sudo ln -s /squashfs-root/AppRun $HOME/.local/bin/nvim
-  fi
-
   fancy_echo "Installing dotfiles..."
   mv $HOME/.zshrc $HOME/.zshrc.old
   rcup -f -v -d .
 
   # Use RDM for copy/paste and open support
+  fancy_echo "Installing RDM..."
   wget https://github.com/BlakeWilliams/remote-development-manager/releases/download/v0.0.3/rdm-linux-amd64
   sudo mv rdm-linux-amd64 /usr/bin/local/rdm
   chmod +x /usr/bin/local/rdm
 
   gh config set browser "rdm open"
+  echo 'alias open="rdm open"' >> ~/.zshenv
+  echo 'alias xdg-open="rdm open"' >> ~/.zshenv
 
   fancy_echo "Setting up neovim..."
-  nvim +PluginInstall +qa
+  nvim --headless +PluginInstall +qall
 
   # Default to HTTPS for GitHub access
   git config --global url.https://github.com/.insteadOf git@github.com:

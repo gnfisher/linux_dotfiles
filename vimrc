@@ -42,6 +42,10 @@ set complete+=kspell
 set path+=**
 set diffopt+=vertical
 set shortmess=c     " Try not showing any messages
+set undofile
+set undodir=$HOME/.vim/undo
+set undolevels=1000
+set undoreload=10000
 
 
 filetype plugin indent on

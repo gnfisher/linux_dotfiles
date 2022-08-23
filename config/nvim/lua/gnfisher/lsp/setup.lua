@@ -48,13 +48,17 @@ config.elmls.setup{
   capabilities = capabilities
 }
 
+config.tsserver.setup{
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
 if vim.fn.executable('solargraph') == 1 then
 config.solargraph.setup{
   on_attach = on_attach,
   capabilities = capabilities
 }
 end
-
 
 local function metals_status_handler(_, status, ctx)
   -- https://github.com/scalameta/nvim-metals/blob/main/lua/metals/status.lua#L36-L50

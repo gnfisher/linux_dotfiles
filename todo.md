@@ -8,3 +8,4 @@
 - [ ] ~~Update fish prompt not to check for dirty (add flag)~~
 - [ ] fugitive setup
 - [x] vim-rails
+- [ ] better aliases/shortcuts, git/tests/etc
