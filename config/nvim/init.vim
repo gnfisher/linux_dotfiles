@@ -4,6 +4,8 @@ let mapleader = " "
 
 map <leader>s :so ~/.config/nvim/init.vim<CR>
 
+let g:netrw_liststyle = 3 " default to tree listing
+
 set nocompatible
 set termguicolors
 set list listchars=tab:▸\ ,trail:·,nbsp:·
@@ -115,7 +117,7 @@ call plug#end()
 " If we aren't using lsp, then do things the old way.
 set omnifunc=syntaxcomplete#Complete
 
-set background=light
+set background=dark
 color solarized8
 map <F6> :call ToggleBackground()<CR>
 
