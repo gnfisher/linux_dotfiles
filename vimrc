@@ -4,6 +4,7 @@ let mapleader = " "
 
 set encoding=utf-8
 set shell=/bin/sh
+set term=screen-256color
 set nocompatible
 set list listchars=tab:▸\ ,trail:·,nbsp:·
 set mouse=a
@@ -61,7 +62,7 @@ augroup gnfisher
 augroup END
 
 call plug#begin()
-  Plug 'lifepillar/vim-solarized8'
+  Plug 'altercation/vim-colors-solarized'
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-commentary'
@@ -75,7 +76,7 @@ call plug#begin()
 call plug#end()
 
 set background=dark
-color solarized8
+color solarized
 
 " Ruby configuration
 let g:ruby_indent_block_style = 'do'
