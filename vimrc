@@ -108,19 +108,16 @@ let g:ctrlp_custom_ignore = {
     \ 'dir': '\.git\|node_modules\|target$'
 \ }
 
+set omnifunc=ale#completion#OmniFunc
 nmap <silent> [r <Plug>(ale_previous_wrap)
 nmap <silent> ]r <Plug>(ale_next_wrap)
-let g:ale_open_list = 0
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_enter = 0
-let g:ale_completion_autoimport = 0
-let g:ale_completion_enabled = 1
-
 nmap gd :ALEGoToDefinition<CR>
 nmap gr :ALEFindReferences -quickfix<CR>
-
-set omnifunc=ale#completion#OmniFunc
+let g:ale_fixers = {
+      \  'javascript': ['prettier'],
+      \  'typescript': ['prettier'],
+      \}
+let g:ale_fix_on_save = 1
 
 let test#strategy = "dispatch"
 
