@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 config.linters_by_ft = {
-  ruby = { 'rubocop' }
+  ruby = { 'rubocop', 'ruby' }
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
