@@ -12,7 +12,7 @@ function fancy_echo() {
 
 if [[ "$CODESPACES" = "true" ]]; then
   fancy_echo "Installing apt packages..." 
-  sudo apt-get install -y rcm tmux universal-ctags ripgrep bat jq fzf
+  sudo apt-get install -y rcm tmux universal-ctags ripgrep bat jq fzf fuse libfuse2 # when we get to Ubuntu 21.04 fuse will blow things up, apparently.
 
   fancy_echo "Installing dotfiles..."
   mv $HOME/.zshrc $HOME/.zshrc.old
