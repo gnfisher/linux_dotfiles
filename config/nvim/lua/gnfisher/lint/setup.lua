@@ -7,3 +7,8 @@ config.linters_by_ft = {
   ruby = { 'rubocop' }
 }
 
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    config.try_lint()
+  end,
+})
