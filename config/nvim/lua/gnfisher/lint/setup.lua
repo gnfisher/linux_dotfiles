@@ -4,6 +4,6 @@ if not status_ok then
 end
 
 config.linters_by_ft = {
-  ruby = { 'robocop' }
+  ruby = { 'rubocop' }
 }
 
