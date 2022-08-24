@@ -170,7 +170,7 @@ nnoremap <leader>fm <cmd>lua require('telescope.builtin').marks()<cr>
 nnoremap <leader>fq <cmd>lua require('telescope.builtin').quickfix()<cr>
 nnoremap <leader>fl <cmd>lua require('telescope.builtin').loclist()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags(dropdown)<cr>
-nnoremap <leader>fG <cmd>lua require('telescope.builtin').git_status()<cr>
+nnoremap <leader>fG :call <SID>ToggleGstatus()<CR>
 
 nnoremap <leader>gi <cmd>lua require('telescope').extensions.gh.issues()<cr>
 nnoremap <leader>gp <cmd>lua require('telescope').extensions.gh.pull_request()<cr>
@@ -201,6 +201,16 @@ function! ToggleBackground()
     else
         set background=light
     endif
+endfunction
+
+function! s:ToggleGstatus() abort
+  for l:winnr in range(1, winnr('$'))
+    if !empty(getwinvar(l:winnr, 'fugitive_status'))
+      execute l:winnr.'close'
+    else
+      Git
+    endif
+  endfor
 endfunction
 
 " Terminal
