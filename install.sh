@@ -18,22 +18,20 @@ if [[ "$CODESPACES" = "true" ]]; then
   mv $HOME/.zshrc $HOME/.zshrc.old
   rcup -f -v -d .
 
-  if ! command -v nvim &> /dev/null; then
-    fancy_echo "Installing neovim..."
-    wget https://github.com/neovim/neovim/releases/download/v0.7.0/nvim.appimage
-    chmod u+x nvim.appimage
-    sudo mv nvim.appimage /usr/local/bin/nvim
-  fi
-
   # Use RDM for copy/paste and open support
   fancy_echo "Installing RDM..."
   wget https://github.com/BlakeWilliams/remote-development-manager/releases/download/v0.0.3/rdm-linux-amd64
-  mv rdm-linux-amd64 /usr/local/bin/rdm
+  sudo mv rdm-linux-amd64 /usr/local/bin/rdm
   chmod +x /usr/local/bin/rdm
 
   gh config set browser "rdm open"
   echo 'alias open="rdm open"' >> ~/.zshenv
   echo 'alias xdg-open="rdm open"' >> ~/.zshenv
+
+  fancy_echo "Installing neovim..."
+  wget https://github.com/neovim/neovim/releases/download/v0.7.0/nvim.appimage
+  chmod u+x nvim.appimage
+  sudo mv nvim.appimage /usr/local/bin/nvim
 
   fancy_echo "Setting up neovim..."
   nvim --headless +PluginInstall +qall
