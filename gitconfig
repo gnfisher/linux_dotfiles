@@ -62,3 +62,4 @@
   user = gnfisher
 [commit]
   template=~/.gitmessage
+	gpgsign = true
