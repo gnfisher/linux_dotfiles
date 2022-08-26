@@ -81,6 +81,7 @@ augroup END
 
 call plug#begin()
   Plug 'lifepillar/vim-solarized8'
+  Plug 'Shatur/neovim-ayu'
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-commentary'
@@ -118,7 +119,7 @@ call plug#end()
 set omnifunc=syntaxcomplete#Complete
 
 set background=dark
-color solarized8
+color ayu-mirage
 map <F6> :call ToggleBackground()<CR>
 
 " Ruby configuration

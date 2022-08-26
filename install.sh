@@ -27,6 +27,7 @@ if [[ "$CODESPACES" = "true" ]]; then
   gh config set browser "rdm open"
   echo 'alias open="rdm open"' >> ~/.zshenv
   echo 'alias xdg-open="rdm open"' >> ~/.zshenv
+  echo 'alias pbcopy="rdm copy"' >> ~/.zshenv
 
   fancy_echo "Installing neovim..."
   wget https://github.com/neovim/neovim/releases/download/v0.7.0/nvim.appimage
@@ -39,7 +40,12 @@ if [[ "$CODESPACES" = "true" ]]; then
   # Default to HTTPS for GitHub access
   git config --global url.https://github.com/.insteadOf git@github.com:
 
+  # Prefer zsh shell
   sudo chsh -s $(which zsh) $(whoami)
+
+  # Gems deserve ctags, too!
+  gem install gem-ctags
+  gem ctags
 
   fancy_echo "Done."
 fi
