@@ -40,6 +40,9 @@ if [[ "$CODESPACES" = "true" ]]; then
   # Default to HTTPS for GitHub access
   git config --global url.https://github.com/.insteadOf git@github.com:
 
+  # Use gh-gpgsign 
+  git config gpg.program /.codespaces/bin/gh-gpgsign
+
   # Prefer zsh shell
   sudo chsh -s $(which zsh) $(whoami)
 
