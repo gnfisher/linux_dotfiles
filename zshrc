@@ -89,3 +89,5 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
   export EDITOR=nvim
   export VISUAL="code --wait"
 fi
+
+export GPG_TTY=$(tty)
