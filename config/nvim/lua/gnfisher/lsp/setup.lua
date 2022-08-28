@@ -60,6 +60,27 @@ config.solargraph.setup{
 }
 end
 
+config.sumneko_lua.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        globals = {'vim'},
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+
 local function metals_status_handler(_, status, ctx)
   -- https://github.com/scalameta/nvim-metals/blob/main/lua/metals/status.lua#L36-L50
   local val = {}
