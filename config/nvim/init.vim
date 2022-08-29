@@ -88,6 +88,7 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-eunuch'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
