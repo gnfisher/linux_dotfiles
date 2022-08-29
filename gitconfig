@@ -46,7 +46,7 @@
 [fetch]
   prune = true
 [status]
-  showUntrackedFiles = no
+  showUntrackedFiles = normal
 [gitsh "color"]
   default = cyan
 [gitsh]
