@@ -5,7 +5,7 @@ codespace="$1"
 gh cs ports forward 80:80 -c "$codespace" &
 pid=$!
 
-gh cs ssh -- -R 127.0.0.1:7391:$(rdm socket) -c "$codespace"
+gh cs ssh  -c "$codespace" -- -R 127.0.0.1:7391:$(rdm socket)
 
 kill -s TERM "$pid"
 echo "Done."
