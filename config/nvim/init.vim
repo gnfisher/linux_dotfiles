@@ -4,8 +4,6 @@ let mapleader = " "
 
 map <leader>s :so ~/.config/nvim/init.vim<CR>
 
-let g:netrw_liststyle = 3 " default to tree listing
-
 set nocompatible
 set termguicolors
 set list listchars=tab:▸\ ,trail:·,nbsp:·
