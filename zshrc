@@ -4,6 +4,9 @@ export PATH=".git/safe/../../bin:$PATH"
 # Add dotfiles bin
 export PATH="$HOME/.bin:$PATH"
 
+# Add Coursier
+export PATH="$PATH:/Users/greg/Library/Application Support/Coursier/bin"
+
 # Load autocomplete
 autoload -U compinit
 compinit
