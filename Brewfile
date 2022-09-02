@@ -20,6 +20,8 @@ brew "fzf"
 brew "universal-ctags"
 brew "tmux"
 brew "wget"
+brew "gnupg"
+brew "pinentry-mac"
 
 tap "thoughtbot/formulae"
 brew "gitsh"
