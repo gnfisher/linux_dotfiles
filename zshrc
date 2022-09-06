@@ -69,7 +69,7 @@ for function in ~/.zsh/*.zsh; do
 done
 
 # aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/.aliasrc ]] && source ~/.aliasrc
 
 # modify the prompt to contain git branch name if applicable
 git_prompt_info() {
