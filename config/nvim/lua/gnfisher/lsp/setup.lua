@@ -53,8 +53,8 @@ config.tsserver.setup{
   capabilities = capabilities
 }
 
-if vim.fn.executable('solargraph') == 1 then
-config.solargraph.setup{
+if vim.fn.executable('sorbet') == 1 then
+config.sorbet.setup{
   on_attach = on_attach,
   capabilities = capabilities
 }
