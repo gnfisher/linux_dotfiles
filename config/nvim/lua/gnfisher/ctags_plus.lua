@@ -19,6 +19,7 @@ local flatten = vim.tbl_flatten
 
 local ctags_plus = {}
 
+
 ctags_plus.jump_to_tag = function(opts)
   opts = opts or {}
   -- Get the word under the cursor presently
@@ -41,39 +42,39 @@ ctags_plus.jump_to_tag = function(opts)
 
   pickers.new(opts, {
     prompt_title = "Matching Tags",
-    finder = finders.new_oneshot_job(flatten { "cat", tagfiles }, opts),
-      previewer = previewers.ctags.new(opts),
-      sorter = conf.generic_sorter(opts),
-      attach_mappings = function()
-        action_set.select:enhance {
-          post = function()
-            local selection = action_state.get_selected_entry()
-            if not selection then
-              return
-            end
+    finder = finders.new_oneshot_job(flatten { "readtags", "-t", "tags" }, opts), -- doesn't work yet
+    previewer = previewers.ctags.new(opts),
+    sorter = conf.generic_sorter(opts),
+    attach_mappings = function()
+      action_set.select:enhance {
+        post = function()
+          local selection = action_state.get_selected_entry()
+          if not selection then
+            return
+          end
 
-            if selection.scode then
-              -- un-escape / then escape required
-              -- special chars for vim.fn.search()
-              -- ] ~ *
-              local scode = selection.scode:gsub([[\/]], "/"):gsub("[%]~*]", function(x)
-                return "\\" .. x
-              end)
+          if selection.scode then
+            -- un-escape / then escape required
+            -- special chars for vim.fn.search()
+            -- ] ~ *
+            local scode = selection.scode:gsub([[\/]], "/"):gsub("[%]~*]", function(x)
+              return "\\" .. x
+            end)
 
-              vim.cmd "norm! gg"
-              vim.fn.search(scode)
-              vim.cmd "norm! zz"
-            else
-              vim.api.nvim_win_set_cursor(0, { selection.lnum, 0 })
-            end
-          end,
-        }
-        return true
-      end,
-    })
-    :find()
+            vim.cmd "norm! gg"
+            vim.fn.search(scode)
+            vim.cmd "norm! zz"
+          else
+            vim.api.nvim_win_set_cursor(0, { selection.lnum, 0 })
+          end
+        end,
+      }
+      return true
+    end,
+  })
+  :find()
 end
 
 -- to execute the function
+-- ctags_plus.jump_to_tag()
 return ctags_plus
-
