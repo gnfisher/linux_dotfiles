@@ -25,7 +25,7 @@ set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 set hlsearch      " highlight the current search term 
-set laststatus=2  " Always display the status line
+set laststatus=10  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set autoread      " If a file is changed outside of vim automatically reload it without asking
 set modelines=0   " Disable modelines as a security precaution
@@ -55,7 +55,7 @@ set complete+=kspell
 set path+=**
 set diffopt+=vertical
 set shortmess=c         " Try not showing any messages
-" set tags=./.tags;$HOME  " Look for .tags in all directories, like .git
+set tags=./tags;./.tags;$HOME  " Look for .tags in all directories, like .git
 
 filetype plugin indent on
 
@@ -80,6 +80,7 @@ augroup END
 call plug#begin()
   Plug 'lifepillar/vim-solarized8'
   Plug 'Shatur/neovim-ayu'
+  Plug 'lewpoly/sherbet.nvim'
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-commentary'
@@ -113,6 +114,8 @@ call plug#begin()
   Plug 'Mofiqul/adwaita.nvim'
   Plug 'vim-test/vim-test'
   Plug 'mfussenegger/nvim-lint'
+
+  Plug 'gnfisher/nvim-telescope-ctags-plus'
 call plug#end()
 
 " If we aren't using lsp, then do things the old way.
@@ -120,6 +123,7 @@ set omnifunc=syntaxcomplete#Complete
 
 set background=dark
 color ayu-mirage
+" color sherbet
 map <F6> :call ToggleBackground()<CR>
 
 " Ruby configuration
@@ -172,7 +176,7 @@ nnoremap <leader>fq <cmd>lua require('telescope.builtin').quickfix()<cr>
 nnoremap <leader>fl <cmd>lua require('telescope.builtin').loclist()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags(dropdown)<cr>
 nnoremap <leader>fG :call <SID>ToggleGstatus()<CR>
-nnoremap <leader>z <cmd>lua require('gnfisher.ctags_plus').jump_to_tag({ bufnr = vim.fn.bufnr() })<cr>
+nnoremap g] <cmd>lua require('telescope').extensions.ctags_plus.jump_to_tag()<cr>
 
 nnoremap <leader>gi <cmd>lua require('telescope').extensions.gh.issues()<cr>
 nnoremap <leader>gp <cmd>lua require('telescope').extensions.gh.pull_request()<cr>

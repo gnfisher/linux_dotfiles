@@ -48,6 +48,7 @@ telescope.setup{
   }
 }
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('ctags_plus')
 
 if vim.fn.executable "gh" == 1 then
   require('telescope').load_extension('gh')
