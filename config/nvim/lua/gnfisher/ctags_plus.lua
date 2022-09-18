@@ -38,12 +38,12 @@ ctags_plus.jump_to_tag = function(opts)
     return
   end
 
-  opts.entry_maker = vim.F.if_nil(opts.entry_maker, make_entry.gen_from_ctags(opts))
+  opts.entry_maker = vim.F.if_nil(opts.entry_maker, make_entry.gen_from_string(opts))
 
   pickers.new(opts, {
     prompt_title = "Matching Tags",
-    finder = finders.new_oneshot_job(flatten { "readtags", "-t", "tags" }, opts), -- doesn't work yet
-    previewer = previewers.ctags.new(opts),
+    finder = finders.new_oneshot_job({ "readtags", "-t", "tags", "-", word }, opts), -- doesn't work yet
+    previewer = previewers.cat.new(opts),
     sorter = conf.generic_sorter(opts),
     attach_mappings = function()
       action_set.select:enhance {
