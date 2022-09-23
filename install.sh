@@ -34,8 +34,8 @@ if [[ "$CODESPACES" = "true" ]]; then
   chmod u+x nvim.appimage
   sudo mv nvim.appimage /usr/local/bin/nvim
 
-  fancy_echo "Setting up neovim..."
-  nvim --headless +PluginInstall +qall
+  # fancy_echo "Setting up neovim..."
+  # nvim --headless +PluginInstall +qall
 
   # Default to HTTPS for GitHub access
   git config --global url.https://github.com/.insteadOf git@github.com:
