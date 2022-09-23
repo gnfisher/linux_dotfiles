@@ -121,9 +121,9 @@ call plug#end()
 " If we aren't using lsp, then do things the old way.
 set omnifunc=syntaxcomplete#Complete
 
-set background=dark
-color ayu-mirage
-" color sherbet
+set background=light
+color solarized8
+" color ayu-mirage
 map <F6> :call ToggleBackground()<CR>
 
 " Ruby configuration
