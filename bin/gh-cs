@@ -4,7 +4,7 @@ codespace="$1"
 
 gh cs ports forward 80:80 -c "$codespace" &
 pid=$!
-rdm start &
+rdm server &
 
 gh cs ssh  -c "$codespace" -- -R 127.0.0.1:7391:$(rdm socket)
 
