@@ -3,11 +3,24 @@ if not status_ok then
   return
 end
 
+local parser_configs = require'nvim-treesitter.parsers'.get_parser_configs()
+parser_configs.erb = {
+  install_info = {
+    url = "https://github.com/tree-sitter/tree-sitter-embedded-template", -- local path or git repo
+    files = {"src/parser.c"},
+    -- optional entries:
+    branch = "master", -- default branch in case of git repo if different from master
+    generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+    requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+  },
+  filetype = "html.erb", -- if filetype does not match the parser name
+}
+
 configs.setup {
 
   endwise = { enable = true, },
   -- A list of parser names, or "all"
-  ensure_installed = { "lua", "ruby", "elm", "scala", "javascript", "typescript" , "vim" },
+  ensure_installed = { "lua", "ruby", "elm", "scala", "javascript", "typescript" , "vim", "html", "json" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,

@@ -48,6 +48,16 @@ config.elmls.setup{
   capabilities = capabilities
 }
 
+config.html.setup{
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+config.jsonls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
 config.tsserver.setup{
   on_attach = on_attach,
   capabilities = capabilities
