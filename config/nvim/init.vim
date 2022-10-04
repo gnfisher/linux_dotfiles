@@ -78,6 +78,7 @@ augroup gnfisher
 augroup END
 
 call plug#begin()
+  Plug 'christianchiarulli/nvcode-color-schemes.vim'
   Plug 'lifepillar/vim-solarized8'
   Plug 'Shatur/neovim-ayu'
   Plug 'lewpoly/sherbet.nvim'
@@ -121,8 +122,10 @@ call plug#end()
 " If we aren't using lsp, then do things the old way.
 set omnifunc=syntaxcomplete#Complete
 
-set background=light
-color solarized8
+set background=dark
+color nvcode
+let g:nvcode_termcolors=256
+" hi LineNr ctermbg=NONE guibg=NONE
 " color ayu-mirage
 map <F6> :call ToggleBackground()<CR>
 
