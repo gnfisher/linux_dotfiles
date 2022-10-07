@@ -24,7 +24,7 @@ set cursorline
 set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
-set hlsearch      " highlight the current search term 
+set hlsearch      " highlight the current search term
 set laststatus=10  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set autoread      " If a file is changed outside of vim automatically reload it without asking
@@ -75,6 +75,9 @@ augroup gnfisher
   autocmd QuickFixCmdPost l* lwindow
 
   autocmd TermOpen * startinsert  " switch to insert mode when entering term
+
+  autocmd BufWritePre * lua require('gnfisher.helpers').trim_whitespace()
+  autocmd BufReadPost * lua require('gnfisher.helpers').jump_to_last_line()
 augroup END
 
 call plug#begin()
@@ -185,7 +188,7 @@ nnoremap <leader>gi <cmd>lua require('telescope').extensions.gh.issues()<cr>
 nnoremap <leader>gp <cmd>lua require('telescope').extensions.gh.pull_request()<cr>
 
 " Lua snip expansion
-imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
 inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
 snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
 snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
