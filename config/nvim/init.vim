@@ -97,7 +97,8 @@ call plug#begin()
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-github.nvim'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  " Treesitter changed how it does colorgroup things and it broke my colorscheme, so pinning to a good commit
+  Plug 'nvim-treesitter/nvim-treesitter', {'commit': '4cccb6f494eb255b32a290d37c35ca12584c74d0', 'do': ':TSUpdate'}
   Plug 'RRethy/nvim-treesitter-endwise'
   Plug 'neovim/nvim-lspconfig'
   Plug 'scalameta/nvim-metals'
