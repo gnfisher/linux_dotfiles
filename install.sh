@@ -11,7 +11,7 @@ function fancy_echo() {
 }
 
 if [[ "$CODESPACES" = "true" ]]; then
-  fancy_echo "Installing apt packages..." 
+  fancy_echo "Installing apt packages..."
   sudo apt-get install -y rcm tmux universal-ctags ripgrep bat jq fzf fuse libfuse2 # when we get to Ubuntu 21.04 fuse will blow things up, apparently.
 
   fancy_echo "Installing dotfiles..."
@@ -37,10 +37,12 @@ if [[ "$CODESPACES" = "true" ]]; then
   # fancy_echo "Setting up neovim..."
   # nvim --headless +PluginInstall +qall
 
+  sudo npm install -g typescript-language-server typescript
+
   # Default to HTTPS for GitHub access
   git config --global url.https://github.com/.insteadOf git@github.com:
 
-  # Use gh-gpgsign 
+  # Use gh-gpgsign
   git config gpg.program /.codespaces/bin/gh-gpgsign
 
   # Prefer zsh shell
