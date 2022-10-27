@@ -63,3 +63,5 @@
 [commit]
   template=~/.gitmessage
 	gpgsign = true
+[includeIf "gitdir:**/workspaces/**/.git"]
+  path = ~/.gitconfig-codespaces
