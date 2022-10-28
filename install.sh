@@ -40,9 +40,5 @@ if [[ "$CODESPACES" = "true" ]]; then
   # Prefer zsh shell
   sudo chsh -s $(which zsh) $(whoami)
 
-  if [ -f "/workspaces/github/bin/npm" ]; then
-    sudo ln -s /workspaces/github/bin/npm /usr/local/bin/npm
-  fi
-
   fancy_echo "Done."
 fi

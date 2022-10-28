@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# Not general to all Codespaces: must be configured in the repo's .devcontainer
-# setup.
-
-if [[ -x /workspaces/github/bin/build-ctags ]]; then
-  /workspaces/github/bin/build-ctags
-fi
