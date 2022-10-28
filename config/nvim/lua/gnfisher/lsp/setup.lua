@@ -43,31 +43,32 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "single",
 })
 
-config.elmls.setup{
+config.elmls.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
 
-config.html.setup{
+config.html.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
 
-config.jsonls.setup{
+config.jsonls.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
 
-config.tsserver.setup{
+config.tsserver.setup {
   on_attach = on_attach,
-  capabilities = capabilities
+  capabilities = capabilities,
 }
 
 if vim.fn.executable('sorbet') == 1 then
-config.sorbet.setup{
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+  config.sorbet.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = { "bin/srb", "tc", "--lsp" }
+  }
 end
 
 config.sumneko_lua.setup {
