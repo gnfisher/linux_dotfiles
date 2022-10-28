@@ -40,5 +40,8 @@ if [[ "$CODESPACES" = "true" ]]; then
   # Prefer zsh shell
   sudo chsh -s $(which zsh) $(whoami)
 
+  fancy_echo "Install typescript things.."
+  /workspaces/github/bin/npm install -g typescript typescript-language-server
+
   fancy_echo "Done."
 fi
