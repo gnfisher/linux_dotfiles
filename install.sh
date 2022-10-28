@@ -37,20 +37,12 @@ if [[ "$CODESPACES" = "true" ]]; then
   # fancy_echo "Setting up neovim..."
   # nvim --headless +PluginInstall +qall
 
-  sudo npm install -g typescript-language-server typescript
-
-  # Default to HTTPS for GitHub access
-  git config --global url.https://github.com/.insteadOf git@github.com:
-
-  # Use gh-gpgsign
-  git config gpg.program /.codespaces/bin/gh-gpgsign
-
   # Prefer zsh shell
   sudo chsh -s $(which zsh) $(whoami)
 
-  # Gems deserve ctags, too!
-  gem install gem-ctags
-  gem ctags
+  if [ -f "/workspaces/github/bin/npm" ]; then
+    sudo ln -s /workspaces/github/bin/npm /usr/local/bin/npm
+  fi
 
   fancy_echo "Done."
 fi

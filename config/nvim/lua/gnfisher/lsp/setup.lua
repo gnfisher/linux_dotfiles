@@ -9,7 +9,7 @@ if not status_ok then
 end
 
 -- Mappings.
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -23,7 +23,7 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gd', telescope.lsp_definitions, bufopts)
   vim.keymap.set('n', 'gi', telescope.lsp_implementations, bufopts)
   vim.keymap.set('n', 'gR', telescope.lsp_references, bufopts)
@@ -80,7 +80,7 @@ config.sumneko_lua.setup {
         version = 'LuaJIT',
       },
       diagnostics = {
-        globals = {'vim'},
+        globals = { 'vim' },
       },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
@@ -96,16 +96,16 @@ local function metals_status_handler(_, status, ctx)
   -- https://github.com/scalameta/nvim-metals/blob/main/lua/metals/status.lua#L36-L50
   local val = {}
   if status.hide then
-    val = {kind = "end"}
+    val = { kind = "end" }
   elseif status.show then
-    val = {kind = "begin", message = status.text}
+    val = { kind = "begin", message = status.text }
   elseif status.text then
-    val = {kind = "report", message = status.text}
+    val = { kind = "report", message = status.text }
   else
     return
   end
-  local info = {client_id = ctx.client_id}
-  local msg = {token = "metals", value = val}
+  local info = { client_id = ctx.client_id }
+  local msg = { token = "metals", value = val }
   -- call fidget progress handler
   vim.lsp.handlers["$/progress"](nil, msg, info)
 end
@@ -128,9 +128,9 @@ metals_config.handlers = handlers
 
 local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "scala", "sbt", "java" },
-    callback = function()
-      metals.initialize_or_attach(metals_config)
-    end,
-    group = nvim_metals_group,
-  })
+  pattern = { "scala", "sbt", "java" },
+  callback = function()
+    metals.initialize_or_attach(metals_config)
+  end,
+  group = nvim_metals_group,
+})
