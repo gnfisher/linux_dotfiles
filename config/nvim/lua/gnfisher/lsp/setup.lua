@@ -67,7 +67,7 @@ if vim.fn.executable('sorbet') == 1 then
   config.sorbet.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    cmd = { "bin/srb", "tc", "--lsp" }
+    cmd = { "srb", "tc", "--lsp" }
   }
 end
 
