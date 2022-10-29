@@ -127,10 +127,11 @@ call plug#end()
 set omnifunc=syntaxcomplete#Complete
 
 set background=dark
-color nvcode
-let g:nvcode_termcolors=256
-" hi LineNr ctermbg=NONE guibg=NONE
-" color ayu-mirage
+color ayu-mirage
+" color nvcode
+" let g:nvcode_termcolors=256
+hi LineNr ctermbg=NONE guibg=NONE guifg=#57C1DF
+highlight Normal ctermbg=NONE guibg=NONE
 map <F6> :call ToggleBackground()<CR>
 
 " Ruby configuration
