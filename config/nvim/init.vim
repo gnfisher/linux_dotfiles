@@ -126,13 +126,13 @@ call plug#end()
 " If we aren't using lsp, then do things the old way.
 set omnifunc=syntaxcomplete#Complete
 
-set background=dark
 color ayu-mirage
 " color nvcode
 " let g:nvcode_termcolors=256
-hi LineNr ctermbg=NONE guibg=NONE guifg=#57C1DF
-highlight Normal ctermbg=NONE guibg=NONE
+" hi LineNr ctermbg=NONE guibg=NONE guifg=#57C1DF
+" highlight Normal ctermbg=NONE guibg=NONE
 map <F6> :call ToggleBackground()<CR>
+set background=light
 
 " Ruby configuration
 let g:ruby_indent_block_style = 'do'
