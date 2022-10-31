@@ -83,7 +83,7 @@ augroup END
 call plug#begin()
   Plug 'christianchiarulli/nvcode-color-schemes.vim'
   Plug 'lifepillar/vim-solarized8'
-  Plug 'Shatur/neovim-ayu'
+  " Plug 'Shatur/neovim-ayu'
   Plug 'lewpoly/sherbet.nvim'
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'tpope/vim-vinegar'
@@ -126,7 +126,7 @@ call plug#end()
 " If we aren't using lsp, then do things the old way.
 set omnifunc=syntaxcomplete#Complete
 
-color ayu-mirage
+" color ayu-mirage
 " color nvcode
 " let g:nvcode_termcolors=256
 " hi LineNr ctermbg=NONE guibg=NONE guifg=#57C1DF
