@@ -63,7 +63,7 @@ config.tsserver.setup {
   capabilities = capabilities,
 }
 
-if vim.fn.executable('sorbet') == 1 then
+if vim.fn.executable('srb') == 1 then
   config.sorbet.setup {
     on_attach = on_attach,
     capabilities = capabilities,
