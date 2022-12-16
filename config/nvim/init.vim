@@ -121,6 +121,7 @@ call plug#begin()
   Plug 'mfussenegger/nvim-lint'
 
   Plug 'gnfisher/nvim-telescope-ctags-plus'
+  Plug 'github/copilot.vim'
 call plug#end()
 
 " If we aren't using lsp, then do things the old way.
@@ -129,10 +130,11 @@ set omnifunc=syntaxcomplete#Complete
 " color ayu-mirage
 " color nvcode
 " let g:nvcode_termcolors=256
+color solarized8
 " hi LineNr ctermbg=NONE guibg=NONE guifg=#57C1DF
 " highlight Normal ctermbg=NONE guibg=NONE
 map <F6> :call ToggleBackground()<CR>
-set background=light
+set background=dark
 
 " Ruby configuration
 let g:ruby_indent_block_style = 'do'
