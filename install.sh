@@ -40,8 +40,17 @@ if [[ "$CODESPACES" = "true" ]]; then
   # Prefer zsh shell
   sudo chsh -s $(which zsh) $(whoami)
 
+  # Node
+  sudo rm -rf /usr/local/share/nvm
+  unset NVM_DIR
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+  { set +x; } 2> /dev/null
+  \. ~/.nvm/nvm.sh
+  nvm install stable
+  set -x
+
   fancy_echo "Install typescript things.."
-  /workspaces/github/bin/npm install typescript typescript-language-server
+  npm install typescript typescript-language-server
 
   fancy_echo "Done."
 fi
