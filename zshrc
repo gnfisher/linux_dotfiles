@@ -7,11 +7,15 @@ export PATH="$HOME/.bin:$PATH"
 # Add Coursier
 export PATH="$PATH:/Users/greg/Library/Application Support/Coursier/bin"
 
+# Add GOPATH
+export GOPATH=$HOME/go
+export PATH="$PATH:$HOME/go/bin"
+
 # Load autocomplete
 autoload -U compinit
 compinit
 
-# makes color constants available
+# makes color constant available
 autoload -U colors
 colors
 
