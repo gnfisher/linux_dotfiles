@@ -57,7 +57,7 @@
 [user]
   name = Greg Fisher
 	email = greg@gnfisher.com
-	signingkey = 35A5C1EA6284D45A
+  signingkey = 3F923BFFC0D0DD18
 [github]
   user = gnfisher
 [commit]
