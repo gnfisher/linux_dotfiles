@@ -25,7 +25,7 @@ set autowrite     " Automatically :write before running commands
 set autoread      " If a file is changed outside of vim automatically reload it without asking
 set number
 set relativenumber
-set colorcolumn=80
+set colorcolumn=100
 set signcolumn=number
 set hidden
 set showtabline=2 " Always show tabline
@@ -58,7 +58,7 @@ augroup gnfisher
   autocmd BufNewFile,BufRead *.mkd,*.md,*.markdown setfiletype markdown
   autocmd BufNewFile,BufRead *.json setfiletype javascript
 
-  autocmd Filetype markdown setlocal spell textwidth=80
+  autocmd Filetype markdown setlocal spell textwidth=100
   autocmd Filetype gitcommit setlocal spell textwidth=76 colorcolumn=77
 
   autocmd QuickFixCmdPost [^l]* cwindow
@@ -70,6 +70,7 @@ call plug#begin()
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-rails'
   Plug 'leafgarland/typescript-vim'
@@ -100,21 +101,17 @@ nnoremap <C-@> <esc>:nohlsearch<CR>
 cnoremap <expr> %% expand('%:h').'/'
 
 if executable("rg")
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
-
-command -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
-nmap \ :Rg<SPACE>
-nmap K :grep "\b<C-R><C-W>\b"<CR>:cw<CR>:redraw!<CR>
-
-if executable('rg')
-  set grepprg=rg\ --color=never
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 else
   let g:ctrlp_clear_cache_on_exit = 0
 endif
+
+command -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
+nmap \ :Rg<SPACE>
+nmap K :grep "\b<C-R><C-W>\b"<CR>:cw<CR>:redraw!<CR>
 
 let g:ctrlp_custom_ignore = {
     \ 'dir': '\.git\|node_modules\|target$'
