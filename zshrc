@@ -98,3 +98,6 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
 fi
 
 export GPG_TTY=$(tty)
+
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion
+fpath=(~/.zsh $fpath)
