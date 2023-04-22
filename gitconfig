@@ -62,6 +62,6 @@
   user = gnfisher
 [commit]
   template=~/.gitmessage
-	gpgsign = true
+  gpgsign = true
 [includeIf "gitdir:**/workspaces/**/.git"]
   path = ~/.gitconfig-codespaces
